@@ -1,0 +1,139 @@
+.section {
+  background: var(--ink);
+  padding: 72px 52px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 48px;
+  gap: 32px;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.35);
+  margin-bottom: 14px;
+}
+
+.kicker::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--sand);
+  line-height: 1.2;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(250, 250, 248, 0.4);
+  max-width: 280px;
+  text-align: right;
+  line-height: 1.65;
+}
+
+.clockDisplay {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.debtNumber {
+  font-family: var(--serif);
+  font-size: clamp(32px, 6vw, 68px);
+  font-weight: 400;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  word-break: break-all;
+}
+
+.debtLabel {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(250, 250, 248, 0.3);
+  margin-top: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat {
+  background: var(--ink);
+  padding: 24px 20px;
+}
+
+.statN {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.statL {
+  font-size: 11px;
+  color: rgba(250, 250, 248, 0.35);
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+}
+
+.note {
+  margin-top: 24px;
+  font-size: 11px;
+  color: rgba(250, 250, 248, 0.2);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 56px 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sub {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

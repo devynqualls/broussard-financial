@@ -1,0 +1,160 @@
+.about {
+  border-bottom: 0.5px solid var(--border);
+  padding: 80px 64px;
+}
+
+.inner {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--ink);
+  color: var(--sand);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-bottom: 32px;
+}
+
+.lede {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--ink);
+  margin: 0 0 36px;
+  padding: 0 0 28px;
+  border-bottom: 0.5px solid var(--border);
+  font-style: normal;
+}
+
+.lede em {
+  font-style: italic;
+  color: var(--taupe);
+}
+
+.body {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0 0 36px;
+}
+
+.frcCard {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 24px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  background: var(--sand);
+  margin-bottom: 24px;
+}
+
+.frcLogo {
+  width: 160px;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.frcText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.frcTitle {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.frcTitle sup {
+  font-size: 0.55em;
+  font-weight: 400;
+  vertical-align: super;
+  margin-left: 2px;
+}
+
+.frcDesc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.frcDisclaimer {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--light);
+  line-height: 1.55;
+  margin: 8px 0 0;
+}
+
+.frcDisclaimer sup {
+  font-size: 0.7em;
+  vertical-align: super;
+  margin-left: 1px;
+}
+
+.credRow {
+  display: flex;
+}
+
+.cred {
+  flex: 1;
+  padding: 18px 20px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+
+.cred:not(:last-child) {
+  border-right: none;
+}
+
+.credLabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 6px;
+}
+
+.credVal {
+  font-family: var(--serif);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .about {
+    padding: 56px 20px;
+  }
+
+  .lede {
+    font-size: 22px;
+  }
+
+  .frcCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .frcLogo {
+    width: 140px;
+  }
+}

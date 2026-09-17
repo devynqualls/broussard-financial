@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1A1A18" />
+
+    <!-- Preconnect for Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Fallback title — React Helmet overrides this -->
+    <title>Broussard Financial Services | San Diego, CA</title>
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://assets.calendly.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://stcdn.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://stcdn.leadconnectorhq.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://calendly.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com; frame-src https://calendly.com https://widgets.leadconnectorhq.com;"
+    />
+  </head>
+  <body>
+    <!--
+      Hidden form for Netlify build-time detection so the React form
+      submissions are processed and routed via Forms → Notifications
+      to rene@broussardfinancialservices.com.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="honeypot" hidden>
+      <input type="text" name="firstName" />
+      <input type="text" name="lastName" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="topic" />
+      <textarea name="message"></textarea>
+      <input type="text" name="honeypot" />
+    </form>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      src="https://widgets.leadconnectorhq.com/loader.js"
+      data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+      data-widget-id="6a6a7e6fdf71a59238cfb6fa"
+      data-source="WEB_USER"
+    ></script>
+  </body>
+</html>

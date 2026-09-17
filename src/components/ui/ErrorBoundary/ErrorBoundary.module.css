@@ -1,0 +1,13 @@
+.fallback {
+  padding: 48px 52px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--taupe);
+  text-align: center;
+}

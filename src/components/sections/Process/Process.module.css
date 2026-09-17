@@ -1,0 +1,111 @@
+.section {
+  padding: 80px 52px;
+  border-bottom: 0.5px solid var(--border);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 56px;
+  gap: 32px;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--ink);
+  max-width: 440px;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--taupe);
+}
+
+.desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--taupe);
+  max-width: 260px;
+  text-align: right;
+  line-height: 1.65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 0.5px solid var(--border);
+  border-left: 0.5px solid var(--border);
+}
+
+.step {
+  border-right: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 36px 28px;
+}
+
+.stepNum {
+  font-family: var(--serif);
+  font-size: 52px;
+  font-weight: 300;
+  color: #e8e4dc;
+  line-height: 0.9;
+  margin-bottom: 24px;
+}
+
+.stepName {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.stepDesc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--taupe);
+  line-height: 1.65;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 56px 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+
+  .desc {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 28px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
