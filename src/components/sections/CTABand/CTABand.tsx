@@ -5,7 +5,7 @@ const details = [
   'Complimentary, 30-minute consultation',
   'Available in person or virtually — nationwide',
   '(619) 581-0010',
-  '1420 Kettner Blvd, Suite 100, San Diego',
+  '1420 Kettner Blvd, Suite 321, San Diego',
 ];
 
 export default function CTABand() {
@@ -14,12 +14,10 @@ export default function CTABand() {
       <div className={styles.left}>
         <div className={styles.eyebrow}>Free Consultation · No Obligation</div>
         <h2 className={styles.title} id="cta-heading">
-          Ready to take the next step toward the retirement you deserve?
+          Let’s talk about your next step.
         </h2>
         <p className={styles.sub}>
-          Your financial future deserves attention today. Schedule a complimentary appointment
-          with our team and discover how personalized planning can help you protect, grow, and
-          enjoy your wealth with confidence.
+          Ask your questions and explore your options in a free 30-minute phone consultation with Rene Broussard.
         </p>
       </div>
       <div className={styles.right}>

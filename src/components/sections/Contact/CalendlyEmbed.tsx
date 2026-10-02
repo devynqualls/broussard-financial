@@ -1,33 +1,18 @@
-import { InlineWidget } from 'react-calendly';
+import { useState } from 'react';
 import { CALENDLY_URL } from '../../../config/site';
 import styles from './CalendlyEmbed.module.css';
 
 export default function CalendlyEmbed() {
-  return (
-    <div className={styles.wrap}>
-      <div className={styles.header}>
-        <div className={styles.kicker}>Schedule a Consultation</div>
-        <h3 className={styles.title}>Pick a time that works for you</h3>
-        <p className={styles.sub}>
-          Book a complimentary 30-minute consultation directly on our calendar — no phone tag,
-          no back-and-forth. Available in person at our San Diego office or via secure video call.
-        </p>
-      </div>
-
-      <div className={styles.calendar}>
-        <InlineWidget
-          url={CALENDLY_URL}
-          styles={{ height: '720px', width: '100%' }}
-          pageSettings={{
-            backgroundColor: 'faf9f5',
-            primaryColor: '1a1a18',
-            textColor: '1a1a18',
-            hideEventTypeDetails: false,
-            hideLandingPageDetails: false,
-            hideGdprBanner: true,
-          }}
-        />
-      </div>
+  const [open, setOpen] = useState(false);
+  return <div className={styles.wrap}>
+    <div className={styles.header}>
+      <div className={styles.kicker}>Free 30-minute phone consultation</div>
+      <h3 className={styles.title}>Choose a time to talk with Rene</h3>
+      <p className={styles.sub}>For an in-person or video meeting, contact our office. Appointments outside office hours require prior approval.</p>
     </div>
-  );
+    {open ? <div className={styles.calendar}>
+      <iframe title="Schedule your free consultation with Rene Broussard" src={`${CALENDLY_URL}?embed_type=Inline&embed_domain=${window.location.hostname}&background_color=faf9f5&primary_color=1a1a18&text_color=1a1a18`} width="100%" height="720" style={{border:0,display:'block'}} />
+    </div> : <button type="button" className={styles.loadButton} onClick={() => setOpen(true)}>Choose an appointment time</button>}
+    <p className={styles.sub}><a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer">Open calendar in a new tab →</a></p>
+  </div>;
 }

@@ -7,16 +7,13 @@ export default function Hero() {
       <div className={styles.left}>
         <div className={styles.eyebrow}>Fiduciary Advisors · AIF® · Nationwide</div>
         <h1 className={styles.h1}>
-          Retirement planning<br />
-          done with <em>purpose.</em>
+          Make your next<br />
+          retirement decision <em>with confidence.</em>
         </h1>
         <p className={styles.sub}>
-          At Broussard Financial Services, we pride ourselves on our ability to make advanced
-          recommendations and design customized financial plans. We do this by providing our
-          clients with an upfront analysis of their financial situation as well as ongoing
-          revisions and updates as needed. Our company utilizes some of the most sophisticated
-          technology and experienced professionals available to provide our clients with the
-          highest level of unbiased analysis.
+          Retirement income planning for federal employees, retirees, and families.
+          Get guidance on your benefits, trusts, annuities, and life insurance—starting
+          with a free consultation.
         </p>
         <div className={styles.btns}>
           <Button href="#contact" variant="primary">Schedule Free Consultation</Button>
@@ -26,6 +23,7 @@ export default function Hero() {
 
       <div className={styles.right} aria-hidden="true">
         <div className={styles.photoZone}>
+          <img className={styles.heroImage} src="/images/downtown.avif" alt="" width="1280" height="800" fetchPriority="high" decoding="async" />
           <div className={styles.photoOverlay} />
         </div>
         <div className={styles.statsRow}>

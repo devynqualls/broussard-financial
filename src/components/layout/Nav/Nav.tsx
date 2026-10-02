@@ -18,7 +18,7 @@ const navLinks: NavLink[] = [
   { label: 'Services', to: '/', hash: 'services' },
   { label: 'Meet the Team', to: '/team', matchPath: '/team' },
   { label: 'Seminars', to: '/', hash: 'seminars' },
-  { label: 'Resources', to: '/', hash: 'resources' },
+  { label: 'Planning Tools', to: '/planning-tools', matchPath: '/planning-tools' },
 ];
 
 export default function Nav() {
@@ -38,6 +38,11 @@ export default function Nav() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const escape = (event: KeyboardEvent) => {if(event.key === 'Escape') setMenuOpen(false);};
+    document.addEventListener('keydown', escape);
+    return () => document.removeEventListener('keydown', escape);
+  }, []);
   const handleLinkClick = () => setMenuOpen(false);
 
   const isActive = (link: NavLink) => {
@@ -52,14 +57,15 @@ export default function Nav() {
         <div className={styles.brand}>
           <Link to="/" className={styles.logo} aria-label="Broussard Financial Services — home" onClick={handleLinkClick}>
             <img
-              src="/images/bfs-logo.png"
+              src="/images/bfs-logo-web.webp"
               alt="Broussard Financial Services"
+              width="2172" height="724"
               className={styles.logoImg}
             />
           </Link>
           <span className={styles.brandDivider} aria-hidden="true" />
           <img
-            src="/images/frc-logo.png"
+            src="/images/frc-logo-web.webp"
             alt="Federal Retirement Consultant"
             className={styles.frcBadge}
             loading="lazy"
@@ -68,7 +74,7 @@ export default function Nav() {
           />
         </div>
 
-        <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`} role="list">
+        <ul id="nav-menu" className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`} role="list">
           {navLinks.map((link) => {
             const to = link.hash ? `${link.to}#${link.hash}` : link.to;
             return (

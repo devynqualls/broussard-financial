@@ -1,3 +1,4 @@
+import {measure} from '../../../utils/measurement';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,9 +11,10 @@ import CalendlyEmbed from './CalendlyEmbed';
 const contactSchema = z.object({
   firstName: z.string().min(1, 'First name is required').max(50),
   lastName: z.string().min(1, 'Last name is required').max(50),
-  email: z.string().email('Please enter a valid email address'),
+  email: z.string().trim().max(254).email('Please enter a valid email address'),
   phone: z
     .string()
+    .trim().max(40)
     .min(1, 'Phone number is required')
     .refine((v) => isValidPhoneNumber(v, 'US'), 'Please enter a valid phone number'),
   topic: z.string(),
@@ -27,16 +29,24 @@ const topics = [
   'Tax Planning & Reduction',
   'Social Security Planning',
   'TSP / Federal Benefits',
+  'Free Trust / Trust Account Review',
+  'Trust Updates / New Trust Setup',
+  'Existing Annuity Review',
+  'New Annuity / Income Planning',
   'Legacy Planning',
+  'Life Insurance',
+  'Real Estate — Buying a Home',
+  'Real Estate — Selling a Property',
+  'Real Estate — Investment Properties',
   'LTC Planning',
   'General Consultation',
   'Upcoming Seminar',
 ];
 
 const contactDetails = [
-  { label: 'Office Address', value: '1420 Kettner Blvd, Suite 100\nSan Diego, CA 92101' },
+  { label: 'Office Address', value: '1420 Kettner Blvd, Suite 321\nSan Diego, CA 92101' },
   { label: 'Phone', value: '(619) 581-0010' },
-  { label: 'Office Hours', value: 'Monday – Friday: 9:00 AM – 7:00 PM PT' },
+  { label: 'Office Hours', value: 'Monday – Friday: 9:00 AM – 5:00 PM PT\nSaturday & Sunday: Closed\nAppointments outside office hours require prior approval.' },
   { label: 'Serving', value: 'Clients nationwide\nIn-person & virtual consultations available' },
 ];
 
@@ -56,6 +66,10 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFields) => {
     setSubmitError(null);
+    if (['localhost','127.0.0.1'].includes(window.location.hostname)) {
+      setSubmitError('This preview does not send messages. Please use the live website or call (619) 581-0010.');
+      return;
+    }
     try {
       // Server-side gate: confirm the email domain can receive mail and the
       // phone is a real number before recording the lead. A 422 means one of
@@ -64,6 +78,7 @@ export default function Contact() {
       try {
         const verify = await fetch('/.netlify/functions/verify-lead', {
           method: 'POST',
+          signal: AbortSignal.timeout(10000),
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: data.email, phone: data.phone }),
         });
@@ -91,6 +106,7 @@ export default function Contact() {
 
       const res = await fetch('/', {
         method: 'POST',
+        signal: AbortSignal.timeout(15000),
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
       });
@@ -100,6 +116,7 @@ export default function Contact() {
       }
 
       setSubmitted(true);
+      measure('inquiry_success');
     } catch (err) {
       console.error(err);
       setSubmitError(
@@ -110,6 +127,7 @@ export default function Contact() {
 
   return (
     <section className={styles.contact} id="contact" aria-labelledby="contact-heading">
+      <div className="consultation-explainer"><h2>Your free consultation</h2><p>Bring your questions. No document upload is needed to book.</p></div>
       <CalendlyEmbed />
 
       <div className={styles.divider} aria-hidden="true">
@@ -142,7 +160,7 @@ export default function Contact() {
       <div className={styles.right}>
         <h3 className={styles.formTitle}>Send us a message</h3>
         <p className={styles.formSub}>
-          Fill out the form below and we'll get back to you within one business day.
+          Fill out the form below and we'll get back to you within one business day. Please do not include account numbers, Social Security numbers, or sensitive financial documents.
         </p>
 
         {submitted ? (
@@ -185,26 +203,30 @@ export default function Contact() {
                 <input
                   type="text"
                   id="firstName"
+                  aria-invalid={!!errors.firstName}
+                  aria-describedby={errors.firstName ? "firstName-error" : undefined}
                   className={`${styles.input} ${errors.firstName ? styles.inputError : ''}`}
                   placeholder="First name"
                   autoComplete="given-name"
                   maxLength={50}
                   {...register('firstName', { setValueAs: (v) => sanitizeFormField(v) })}
                 />
-                {errors.firstName && <span className={styles.error}>{errors.firstName.message}</span>}
+                {errors.firstName && <span id="firstName-error" role="alert" className={styles.error}>{errors.firstName.message}</span>}
               </div>
               <div className={styles.formGroup}>
                 <label className={styles.label} htmlFor="lastName">Last Name</label>
                 <input
                   type="text"
                   id="lastName"
+                  aria-invalid={!!errors.lastName}
+                  aria-describedby={errors.lastName ? "lastName-error" : undefined}
                   className={`${styles.input} ${errors.lastName ? styles.inputError : ''}`}
                   placeholder="Last name"
                   autoComplete="family-name"
                   maxLength={50}
                   {...register('lastName', { setValueAs: (v) => sanitizeFormField(v) })}
                 />
-                {errors.lastName && <span className={styles.error}>{errors.lastName.message}</span>}
+                {errors.lastName && <span id="lastName-error" role="alert" className={styles.error}>{errors.lastName.message}</span>}
               </div>
             </div>
 
@@ -213,12 +235,14 @@ export default function Contact() {
               <input
                 type="email"
                 id="email"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
                 className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                 placeholder="your@email.com"
                 autoComplete="email"
                 {...register('email')}
               />
-              {errors.email && <span className={styles.error}>{errors.email.message}</span>}
+              {errors.email && <span id="email-error" role="alert" className={styles.error}>{errors.email.message}</span>}
             </div>
 
             <div className={styles.formGroup}>
@@ -226,12 +250,14 @@ export default function Contact() {
               <input
                 type="tel"
                 id="phone"
+                  aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
                 className={`${styles.input} ${errors.phone ? styles.inputError : ''}`}
                 placeholder="(619) 000-0000"
                 autoComplete="tel"
                 {...register('phone')}
               />
-              {errors.phone && <span className={styles.error}>{errors.phone.message}</span>}
+              {errors.phone && <span id="phone-error" role="alert" className={styles.error}>{errors.phone.message}</span>}
             </div>
 
             <div className={styles.formGroup}>
@@ -249,13 +275,15 @@ export default function Contact() {
               <label className={styles.label} htmlFor="message">Message</label>
               <textarea
                 id="message"
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
                 className={`${styles.input} ${errors.message ? styles.inputError : ''}`}
                 rows={4}
                 placeholder="Tell us a bit about your situation and what you're looking to accomplish…"
                 maxLength={2000}
                 {...register('message', { setValueAs: (v) => sanitizeFormField(v, 2000) })}
               />
-              {errors.message && <span className={styles.error}>{errors.message.message}</span>}
+              {errors.message && <span id="message-error" role="alert" className={styles.error}>{errors.message.message}</span>}
             </div>
 
             <button

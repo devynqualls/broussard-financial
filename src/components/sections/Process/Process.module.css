@@ -51,7 +51,7 @@
   font-family: var(--serif);
   font-size: 52px;
   font-weight: 300;
-  color: #e8e4dc;
+  color: var(--taupe);
   line-height: 0.9;
   margin-bottom: 24px;
 }

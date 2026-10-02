@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import handler, {domainAcceptsMail} from '../netlify/functions/verify-lead.mts';
+const absent = () => Promise.reject(Object.assign(new Error(),{code:'ENODATA'}));
+const dns = {mx: async()=>[], a: absent, aaaa: absent};
+assert.equal(await domainAcceptsMail('test',{...dns,mx:async()=>[{exchange:'.',priority:0}]}),false);
+assert.equal(await domainAcceptsMail('test',{...dns,mx:async()=>[{exchange:'',priority:0}]}),false);
+assert.equal(await domainAcceptsMail('test',{...dns,mx:async()=>[{exchange:'mail.test',priority:10}]}),true);
+assert.equal(await domainAcceptsMail('test',{...dns,aaaa:async()=>['::1']}),true);
+assert.equal(await domainAcceptsMail('test',dns),false);
+assert.equal(await domainAcceptsMail('test',{...dns,mx:()=>Promise.reject(Object.assign(new Error(),{code:'ETIMEOUT'}))}),true);
+const url='https://example.test/.netlify/functions/verify-lead';
+assert.equal((await handler(new Request(url))).status,405);
+for(const body of ['null','bad json',JSON.stringify({email:{},phone:[]})]) assert.equal((await handler(new Request(url,{method:'POST',body}))).status,400);
+assert.equal((await handler(new Request(url,{method:'POST',body:'x'.repeat(5000)}))).status,413);
+assert.equal((await handler(new Request(url,{method:'POST',body:JSON.stringify({email:'invalid',phone:'123'})}))).status,422);
+console.log('12 backend checks passed: null MX, IPv6 fallback, DNS outage, methods, malformed/oversized requests and invalid fields.');

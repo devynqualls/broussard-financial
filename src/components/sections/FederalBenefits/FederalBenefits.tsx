@@ -4,7 +4,7 @@ import { Button } from '../../ui/Button/Button';
 const bullets = [
   'Knowing what your monthly annuity income will be when you retire',
   'How Social Security will impact your retirement benefits',
-  'Secrets to maximizing your TSP payout',
+  'Understanding your TSP withdrawal options',
   'Your Group Life Insurance benefits options during retirement',
   "Making the right survivors' benefits decisions",
   'FERS supplement strategies and timing',
@@ -20,12 +20,11 @@ export default function FederalBenefits() {
           Avoid the costliest mistakes people make when electing <em>federal benefits</em>
         </h2>
         <p className={styles.body}>
-          Our FREE Benefits Analysis Report will uncover opportunities to save you thousands
-          of dollars while you work and help you maximize your benefits throughout retirement.
-          This exclusive tool will show you ways to protect yourself from losing hundreds of
-          thousands to market volatility.
+          Our complimentary benefits analysis helps you understand how your pension, TSP,
+          Social Security, and survivor benefits fit together. Start with a conversation
+          about your retirement timing and the information needed for your review.
         </p>
-        <Button href="#contact" variant="primary">Get Your Free Pension Analysis Report</Button>
+        <Button href="#contact" variant="primary">Discuss Your Free Benefits Analysis</Button>
       </div>
 
       <div className={styles.right}>

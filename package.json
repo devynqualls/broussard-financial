@@ -5,15 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/optimize-assets.mjs && tsc -b && npm run check:backend && vite build && vite build --ssr src/entry-server.tsx --outDir work/prerender && node scripts/prerender.mjs && node scripts/test-built-site.mjs",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node scripts/test-tax.mjs && node scripts/test-planning.mjs && node scripts/test-backend.mjs",
+    "check:backend": "tsc --ignoreConfig --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck netlify/functions/verify-lead.mts --types node",
+    "verify": "npm test && npm run lint && npm run build"
   },
   "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource-variable/playfair-display": "^5.3.0",
     "@hookform/resolvers": "^5.2.2",
     "libphonenumber-js": "^1.13.8",
     "react": "^19.2.6",
-    "react-calendly": "^4.4.0",
     "react-dom": "^19.2.6",
     "react-helmet-async": "^3.0.0",
     "react-hook-form": "^7.75.0",
@@ -30,8 +34,12 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "sharp": "^0.35.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
     "vite": "^8.0.12"
+  },
+  "engines": {
+    "node": ">=24 <25"
   }
 }

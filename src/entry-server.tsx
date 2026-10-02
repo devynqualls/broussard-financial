@@ -1,0 +1,15 @@
+/// <reference types="node" />
+import Home from './pages/Home';
+import PlanningTools from './pages/PlanningTools';
+import ServicePage from './pages/ServicePage';
+import TeamPage from './pages/TeamPage';
+import {renderToString} from 'react-dom/server';
+import {StaticRouter} from 'react-router-dom';
+import type {HelmetServerState} from 'react-helmet-async';
+import App from './App';
+export async function render(url:string){
+ const context:{helmet?:HelmetServerState}={};
+ const body=renderToString(<StaticRouter location={url}><App helmetContext={context} pages={{Home,PlanningTools,ServicePage,TeamPage}}/></StaticRouter>);
+ const h=context.helmet;
+ return {body,head:h?[h.title,h.meta,h.link,h.script].map(t=>t.toString()).join(''):''};
+}

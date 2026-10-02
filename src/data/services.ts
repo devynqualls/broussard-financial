@@ -5,56 +5,60 @@ export const services: Service[] = [
     id: 'financial-planning',
     num: '01',
     name: 'Financial Planning',
-    description:
-      'A comprehensive approach designed to organize, grow, and protect your finances. We create personalized plans that align your goals, priorities, and lifestyle for lasting financial confidence.',
+    description: 'Connect your savings, benefits, and spending goals in a retirement income plan.',
   },
   {
     id: 'lifetime-income',
     num: '02',
-    name: 'Lifetime Income Planning',
-    description:
-      'Helps ensure your retirement income lasts as long as you do. We develop strategies to turn your savings into reliable, steady income throughout your retirement years.',
+    name: 'Annuity Reviews & Income Planning',
+    description: 'Review an existing annuity or explore a new one, including income options, fees, and access to your money.',
   },
   {
     id: 'living-trust',
     num: '03',
-    name: 'Living Trust',
-    description:
-      'A living trust helps you manage and protect your assets during your lifetime while ensuring a smooth, private transfer to your beneficiaries — avoiding the costly and time-consuming probate process.',
+    name: 'Trust Reviews, Updates & Setup',
+    description: 'Get a free review of your trust and trust accounts, with help on updates and new trust setup.',
   },
   {
     id: 'tax-planning',
     num: '04',
     name: 'Tax Planning',
-    description:
-      'We help you make the most of your money by identifying smart, tax-efficient strategies that reduce your burden today while positioning you for a stronger financial future.',
+    description: 'Explore how taxes affect your retirement income and withdrawal decisions.',
   },
   {
     id: 'social-security',
     num: '05',
     name: 'Social Security Planning',
-    description:
-      'Get the most out of your Social Security benefits. We guide you through timing, claiming options, and coordination strategies to help maximize your lifetime income.',
+    description: 'Understand claiming ages and how Social Security fits with your other income.',
   },
   {
     id: 'ltc',
     num: '06',
     name: 'LTC Preparation & Insurance',
-    description:
-      'Long-term care planning helps you prepare for the unexpected. We offer insurance options and strategies to protect your assets and maintain your quality of life in later years.',
+    description: 'Plan for care costs and explore long-term care insurance options.',
   },
   {
     id: 'benefit-analysis',
     num: '07',
     name: 'Benefit Analysis',
-    description:
-      'We review and evaluate your existing benefits — from pensions to employer plans — to ensure you\'re making the most of what\'s available and aligning them with your broader financial strategy.',
+    description: 'Understand your pension, insurance, and survivor benefits before making retirement decisions.',
   },
   {
     id: 'tsp-education',
     num: '08',
     name: 'TSP Education',
-    description:
-      'We help federal employees understand and maximize their Thrift Savings Plan options. From contribution strategies to withdrawal planning, we ensure your TSP supports your long-term goals.',
+    description: 'Explore TSP contributions, investment options, and retirement withdrawals.',
+  },
+  {
+    id: 'life-insurance',
+    num: '09',
+    name: 'Life Insurance',
+    description: 'Review your coverage and explore protection for the people who depend on you.',
+  },
+  {
+    id: 'real-estate',
+    num: '10',
+    name: 'Real Estate: Buy, Sell & Invest',
+    description: 'Work with our licensed Realtors to buy, sell, or explore investment properties.',
   },
 ];

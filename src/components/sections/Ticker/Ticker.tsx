@@ -1,11 +1,13 @@
 import styles from './Ticker.module.css';
 
 const items = [
-  { bold: 'Retirement Income Planning', rest: ' · Guaranteed Lifetime Income' },
+  { bold: 'Real Estate', rest: ' · Buy · Sell · Invest · Free Consultation' },
+  { bold: 'Life Insurance', rest: ' · Family Protection · Free Consultation' },
+  { bold: 'Annuity Reviews & Setup', rest: ' · Retirement Income Planning' },
   { bold: 'Tax Reduction Strategies', rest: ' · Individuals & Business Owners' },
   { bold: 'TSP Education', rest: ' · Maximize Your Retirement Income' },
   { bold: 'Social Security Optimization', rest: ' · Best Time to Start' },
-  { bold: 'Living Trust', rest: ' · Legacy & Estate Planning' },
+  { bold: 'Free Trust Reviews', rest: ' · Trust Updates & New Trust Setup' },
   { bold: 'LTC Preparation', rest: ' · Long-Term Care Insurance' },
   { bold: 'Benefit Analysis', rest: ' · FERS · CSRS · TSP' },
 ];

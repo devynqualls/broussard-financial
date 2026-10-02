@@ -1,0 +1,14 @@
+import {Link} from 'react-router-dom';
+const questions:Record<string,string>={
+ 'trust-reviews':'Which assets and accounts are intended to be covered, and what has changed since the documents were prepared? A review can identify questions; legal document changes require appropriate legal guidance.',
+ annuities:'How much income do you need, when will you need access to the money, and what fees or surrender charges apply? Guarantees depend on the issuing insurer and contract terms.',
+ 'real-estate':'What location, timeline, and budget fit your goals? Investment property involves ongoing expenses, vacancy risk, and potential loss; projected rent is not guaranteed income.',
+ 'life-insurance':'Who relies on your income, how long might they need support, and what coverage do you already have? Policy costs and eligibility depend on the product and underwriting.',
+ 'retirement-income':'What spending must your income cover, and how would you handle unexpected costs or a decline while withdrawing? Compare essential expenses with other goals and consider taxes, fees, and access to savings.',
+ 'federal-retirement':'How do your pension start date, Social Security timing, survivor election, and TSP withdrawals fit together? Confirm personal eligibility and benefit estimates with your agency benefits office.',
+ 'tsp-planning':'What would change if you kept money in TSP or moved it? Compare fees, investment choices, withdrawal flexibility, services, and account protections before making a decision. A rollover is not automatically an improvement.'
+};
+export default function ServiceEducation({slug}:{slug:string}){const federal=['federal-retirement','tsp-planning'].includes(slug);return <>
+ <section className="planning-card"><h2>Questions to consider</h2><p>{questions[slug]}</p><p>We start with your circumstances. A calculator or general example cannot determine which product or strategy is appropriate for you.</p></section>
+ <section className="planning-card"><h2>Explore reliable resources</h2><p><Link to="/planning-tools">Use our free planning calculators →</Link></p><p>{federal?<><a href="https://www.opm.gov/retirement-center/">OPM retirement information</a> · <a href="https://www.tsp.gov/">Official Thrift Savings Plan</a></>:<a href="https://www.investor.gov/">Investor.gov financial education</a>}</p>{federal&&<p className="tool-note">We are not affiliated with or endorsed by OPM, TSP, or the U.S. government. Official agencies and plan documents determine benefit eligibility and rules.</p>}<p>Related services: <Link to="/services/retirement-income">Retirement income</Link> · <Link to="/services/federal-retirement">Federal retirement</Link> · <Link to="/services/tsp-planning">TSP education</Link></p></section>
+ </>}

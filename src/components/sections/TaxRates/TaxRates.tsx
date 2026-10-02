@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styles from './TaxRates.module.css';
-import { TAX_BRACKETS_2026, TABLE_LABELS } from '../../../data/taxBrackets';
+import { TAX_BRACKETS_2026, TABLE_LABELS, STANDARD_DEDUCTIONS_2026 } from '../../../data/taxBrackets';
 import { useTaxCalc } from '../../../hooks/useTaxCalc';
 import { formatCurrency, formatPercent } from '../../../utils/formatCurrency';
 import type { FilingStatus } from '../../../types';
 
 const deductionLimits = [
-  { label: 'Standard deduction (Single)', value: '$15,750' },
-  { label: 'Standard deduction (MFJ)', value: '$31,500' },
+  { label: 'Standard deduction (Single)', value: formatCurrency(STANDARD_DEDUCTIONS_2026.single) },
+  { label: 'Standard deduction (MFJ)', value: formatCurrency(STANDARD_DEDUCTIONS_2026.married) },
   { label: '401(k) contribution limit', value: '$24,500' },
   { label: '401(k) catch-up (50+)', value: '+$8,000' },
   { label: 'IRA contribution limit', value: '$7,500' },
@@ -40,7 +40,7 @@ export default function TaxRates() {
   const brackets = TAX_BRACKETS_2026[activeStatus];
 
   return (
-    <section className={styles.section} aria-labelledby="tax-heading">
+    <section className={styles.section} id="resources" aria-labelledby="tax-heading">
       <div className={styles.intro}>
         <div>
           <div className={styles.eyebrow}>2026 Federal Tax Reference</div>
@@ -104,14 +104,14 @@ export default function TaxRates() {
                   const owed =
                     bracket.rate === 10
                       ? `${bracket.rate}% of taxable income`
-                      : `Flat ${formatCurrency(bracket.base)} + ${bracket.rate}% of amount over ${formatCurrency(bracket.min)}`;
+                      : `Flat ${formatCurrency(bracket.base, 2)} + ${bracket.rate}% of amount over ${formatCurrency(bracket.min)}`;
                   return (
                     <tr key={bracket.rate}>
                       <td>
                         <span className={styles.rateBadge}>{bracket.rate}%</span>
                       </td>
                       <td>
-                        {min} – {max}
+                        {bracket.max === Infinity ? max : bracket.min === 0 ? max : `Over ${min} – ${max}`}
                       </td>
                       <td className={styles.owedCell}>{owed}</td>
                     </tr>
@@ -126,10 +126,10 @@ export default function TaxRates() {
           <div className={styles.sideCard}>
             <div className={styles.sideCardTitle}>Capital Gains Rates (2026)</div>
             {[
-              { label: '0% rate (Single, up to)', value: '$50,000' },
-              { label: '15% rate (Single)', value: '$50,001–$550,000' },
-              { label: '20% rate (Single, above)', value: '$550,000' },
-              { label: 'Net Investment Income Tax', value: '3.8% (above $200K)' },
+              { label: '0% rate (Single, up to)', value: '$49,450' },
+              { label: '15% rate (Single)', value: 'Over $49,450–$545,500' },
+              { label: '20% rate (Single, above)', value: '$545,500' },
+              { label: 'Net Investment Income Tax (Single MAGI)', value: '3.8% (above $200K)' },
               { label: 'Qualified Dividends', value: 'Same as LT Cap Gains' },
             ].map((row) => (
               <div key={row.label} className={styles.sideRow}>
@@ -143,9 +143,9 @@ export default function TaxRates() {
             <div className={styles.sideCardTitle}>Social Security &amp; Medicare (FICA)</div>
             {[
               { label: 'Social Security (employee)', value: '6.2%' },
-              { label: 'Social Security wage base', value: '$180,000' },
+              { label: 'Social Security wage base', value: '$184,500' },
               { label: 'Medicare (employee)', value: '1.45%' },
-              { label: 'Additional Medicare (above $200K)', value: '+0.9%' },
+              { label: 'Additional Medicare (Single wages above $200K)', value: '+0.9%' },
             ].map((row) => (
               <div key={row.label} className={styles.sideRow}>
                 <span>{row.label}</span>
@@ -193,7 +193,7 @@ export default function TaxRates() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="additionalDeductions">
-              Additional Deductions <span>(401k, IRA, HSA, etc.)</span>
+              Eligible Adjustments <span>(not already excluded from income)</span>
             </label>
             <input
               type="number"
@@ -207,7 +207,7 @@ export default function TaxRates() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="otherIncome">
-              Other Income <span>(investments, rental, etc.)</span>
+              Other Ordinary Income <span>(taxable pension, rental, etc.)</span>
             </label>
             <input
               type="number"
@@ -248,8 +248,7 @@ export default function TaxRates() {
         </div>
         <div className={styles.calcCta}>
           <span>
-            This is an estimate only. Actual tax liability may vary. For personalized tax
-            reduction strategies, speak with Rene.
+            Simplified ordinary-income estimate using the basic standard deduction. Excludes credits, additional age/blindness and senior deductions, capital gains, qualified dividends, AMT, payroll and state taxes. Do not subtract contributions already excluded from your income. Negative amounts are not supported.
           </span>
           <a href="#contact" className={styles.calcCtaLink}>
             Schedule a Tax Planning Consultation →
@@ -259,9 +258,11 @@ export default function TaxRates() {
 
       <p className={styles.taxNote}>
         Tax rates shown are for Tax Year 2026 (returns filed in 2027), per IRS Revenue
-        Procedure 2025-28. This information is for educational reference only and does not
+        Procedure 2025-32. Last reviewed October 2, 2026.  This information is for educational reference only and does not
         constitute tax advice. Consult a qualified tax professional for guidance specific to
-        your situation. Broussard Financial Services does not prepare tax returns.
+        your situation. Broussard Financial Services does not prepare tax returns. {' '}
+        <a href="https://www.irs.gov/irb/2025-45_IRB">IRS 2026 tax tables</a> · {' '}
+        <a href="https://www.ssa.gov/oact/COLA/cbb.html">SSA wage base</a>
       </p>
     </section>
   );

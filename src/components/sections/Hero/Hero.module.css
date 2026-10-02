@@ -78,7 +78,7 @@
 .photoZone {
   position: absolute;
   inset: 0 0 200px 0;
-  background-image: url('/images/downtown.avif');
+
   background-size: cover;
   background-position: center;
   display: flex;
@@ -190,3 +190,12 @@
     font-size: 20px;
   }
 }
+
+@media (max-width: 768px) { .left { padding-top: 32px; } .btns { flex-wrap: wrap; gap: 16px; } }
+
+@media (max-width: 768px) {
+  .right { min-height: 390px; }
+  .photoZone { bottom: 140px; }
+}
+
+.heroImage { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }

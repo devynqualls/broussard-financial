@@ -1,4 +1,6 @@
-import { resolveMx, resolve } from 'node:dns/promises';
+import { Resolver } from 'node:dns/promises';
+const resolver = new Resolver({timeout: 1500, tries: 1});
+const dns = {mx: resolver.resolveMx.bind(resolver), a: resolver.resolve4.bind(resolver), aaaa: resolver.resolve6.bind(resolver)};
 import {
   parsePhoneNumberFromString,
   isValidPhoneNumber,
@@ -23,32 +25,33 @@ import {
  */
 
 const DEFAULT_REGION = 'US';
+const env = (name: string) => (globalThis as typeof globalThis & {Netlify?: {env: {get(key: string): string | undefined}}}).Netlify?.env.get(name);
 
 type Errors = { email?: string; phone?: string };
 
 function json(status: number, body: unknown): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'content-type': 'application/json' },
+    headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...(status === 405 ? {Allow: 'POST'} : {}) },
   });
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Domain can receive mail if it has MX records, or (per RFC 5321 fallback) an A/AAAA record.
-async function domainAcceptsMail(domain: string): Promise<boolean> {
+export async function domainAcceptsMail(domain: string, lookup = dns): Promise<boolean> {
   try {
-    const mx = await resolveMx(domain);
-    if (mx.length > 0) return true;
-  } catch {
-    /* fall through to A-record check */
+    const mx = await lookup.mx(domain);
+    // A null MX explicitly states the domain does not accept email.
+    if (mx.length > 0) return mx.some(record => record.exchange !== '.' && record.exchange !== '');
+  } catch (error) {
+    const code = (error as {code?: string}).code;
+    if (code === 'ENOTFOUND') return false;
+    if (code !== 'ENODATA') return true; // Transient DNS failures must not reject a real lead.
   }
-  try {
-    const a = await resolve(domain);
-    return a.length > 0;
-  } catch {
-    return false;
-  }
+  const addresses = await Promise.allSettled([lookup.a(domain), lookup.aaaa(domain)]);
+  if (addresses.some(result => result.status === 'fulfilled' && result.value.length > 0)) return true;
+  return addresses.some(result => result.status === 'rejected' && !['ENODATA','ENOTFOUND'].includes(result.reason?.code));
 }
 
 // Optional: ZeroBounce mailbox-level deliverability. Fails the email only on a
@@ -58,7 +61,7 @@ async function zeroBounceInvalid(email: string, apiKey: string): Promise<boolean
     const url = `https://api.zerobounce.net/v2/validate?api_key=${encodeURIComponent(
       apiKey
     )}&email=${encodeURIComponent(email)}`;
-    const res = await fetch(url);
+    const res = await fetch(url, {signal: AbortSignal.timeout(4000)});
     if (!res.ok) return false;
     const data = (await res.json()) as { status?: string };
     return data.status === 'invalid';
@@ -76,6 +79,7 @@ async function twilioInvalid(
   try {
     const url = `https://lookups.twilio.com/v2/PhoneNumbers/${encodeURIComponent(e164)}`;
     const res = await fetch(url, {
+      signal: AbortSignal.timeout(4000),
       headers: {
         Authorization: 'Basic ' + Buffer.from(`${sid}:${token}`).toString('base64'),
       },
@@ -96,9 +100,13 @@ export default async (req: Request): Promise<Response> => {
   let email = '';
   let phone = '';
   try {
-    const body = (await req.json()) as { email?: unknown; phone?: unknown };
-    email = String(body.email ?? '').trim();
-    phone = String(body.phone ?? '').trim();
+    const raw = await req.text();
+    if (raw.length > 4096) return json(413, {ok: false, error: 'Request too large'});
+    const body = JSON.parse(raw) as {email?: unknown; phone?: unknown};
+    if (!body || typeof body.email !== 'string' || typeof body.phone !== 'string') return json(400, {ok:false, error:'Email and phone must be strings'});
+    email = body.email.trim();
+    phone = body.phone.trim();
+    if (email.length > 254 || phone.length > 40) return json(400, {ok:false, error:'Input too long'});
   } catch {
     return json(400, { ok: false, error: 'Invalid request body' });
   }
@@ -113,7 +121,7 @@ export default async (req: Request): Promise<Response> => {
     if (!(await domainAcceptsMail(domain))) {
       errors.email = "That email domain can't receive mail — please double-check it.";
     } else {
-      const zbKey = process.env.ZEROBOUNCE_API_KEY;
+      const zbKey = env('ZEROBOUNCE_API_KEY');
       if (zbKey && (await zeroBounceInvalid(email, zbKey))) {
         errors.email = "That email address doesn't appear to be deliverable.";
       }
@@ -124,8 +132,8 @@ export default async (req: Request): Promise<Response> => {
   if (!phone || !isValidPhoneNumber(phone, DEFAULT_REGION)) {
     errors.phone = 'Please enter a valid phone number.';
   } else {
-    const sid = process.env.TWILIO_ACCOUNT_SID;
-    const token = process.env.TWILIO_AUTH_TOKEN;
+    const sid = env('TWILIO_ACCOUNT_SID');
+    const token = env('TWILIO_AUTH_TOKEN');
     if (sid && token) {
       const e164 = parsePhoneNumberFromString(phone, DEFAULT_REGION)?.number;
       if (e164 && (await twilioInvalid(e164, sid, token))) {

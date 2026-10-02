@@ -153,6 +153,7 @@
     position: fixed;
     top: 0;
     right: -100%;
+    visibility: hidden;
     width: 280px;
     height: 100dvh;
     background: var(--sand);
@@ -166,6 +167,7 @@
   }
 
   .linksOpen {
+    visibility: visible;
     right: 0;
   }
 

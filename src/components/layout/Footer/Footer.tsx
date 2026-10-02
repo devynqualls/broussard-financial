@@ -2,14 +2,16 @@ import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
-  'Financial Planning',
-  'Lifetime Income Planning',
-  'Tax Planning',
-  'Social Security Planning',
-  'Legacy Planning',
-  'LTC Preparation',
-  'Benefit Analysis',
-  'TSP Education',
+  {label:'Financial Planning',to:'/services/retirement-income'},
+  {label:'Annuity Reviews & Income Planning',to:'/services/annuities'},
+  {label:'Tax Planning',to:'/#resources'},
+  {label:'Social Security Planning',to:'/#contact'},
+  {label:'Trust Reviews, Updates & Setup',to:'/services/trust-reviews'},
+  {label:'Life Insurance',to:'/services/life-insurance'},
+  {label:'Real Estate: Buy, Sell & Invest',to:'/services/real-estate'},
+  {label:'LTC Preparation',to:'/#contact'},
+  {label:'Benefit Analysis',to:'/services/federal-retirement'},
+  {label:'TSP Education',to:'/services/tsp-planning'},
 ];
 
 const companyLinks = [
@@ -21,11 +23,11 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
+  { label: 'Planning Tools', to: '/planning-tools' },
   { label: 'Schedule a Call', to: '/#contact' },
   { label: 'Free Benefits Analysis', to: '/#contact' },
   { label: 'Upcoming Seminars', to: '/#seminars' },
   { label: 'Tax Rate Reference', to: '/#resources' },
-  { label: 'US Debt Tracker', to: '/#resources' },
 ];
 
 export default function Footer() {
@@ -39,7 +41,7 @@ export default function Footer() {
             and care.
           </p>
           <address className={styles.addr}>
-            1420 Kettner Blvd, Suite 100<br />
+            1420 Kettner Blvd, Suite 321<br />
             San Diego, CA 92101<br />
             Office:{' '}
             <a href="tel:+16195810010" className={styles.addrLink}>(619) 581-0010</a>
@@ -49,9 +51,9 @@ export default function Footer() {
         <div>
           <div className={styles.colTitle}>Services</div>
           <ul className={styles.links}>
-            {serviceLinks.map((label) => (
+            {serviceLinks.map(({label,to}) => (
               <li key={label}>
-                <Link to="/#services" className={styles.link}>{label}</Link>
+                <Link to={to} className={styles.link}>{label}</Link>
               </li>
             ))}
           </ul>
@@ -83,7 +85,7 @@ export default function Footer() {
       <div className={styles.bottom}>
         <p className={styles.copy}>
           © {new Date().getFullYear()} Broussard Financial Services · 1420 Kettner Blvd Suite
-          100, San Diego CA 92101 · (619) 581-0010
+          321, San Diego CA 92101 · (619) 581-0010
         </p>
         <div className={styles.right}>
           Serving Clients Nationwide<br />AIF® Fiduciary
@@ -99,9 +101,7 @@ export default function Footer() {
         is not indicative of future results. Insurance and annuity products are backed by the
         financial strength and claims-paying ability of the issuing company. We recommend
         consulting with qualified professionals before making any financial decisions. Tax rate
-        information is for Tax Year 2025 per IRS Revenue Procedure 2024-40 and is subject to
-        change. National debt figures are approximate estimates based on publicly available
-        data.
+        information is for Tax Year 2026 per IRS Revenue Procedure 2025-32 and is subject to change.
       </div>
     </footer>
   );

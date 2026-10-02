@@ -26,12 +26,12 @@ export default function TeamPage() {
         <meta property="og:url" content="https://www.broussardfinancialservices.com/team" />
         <meta property="og:site_name" content="Broussard Financial Services" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content="https://www.broussardfinancialservices.com/images/bfs-logo.png" />
+        <meta property="og:image" content="https://www.broussardfinancialservices.com/images/bfs-logo-clean.png" />
         <meta property="og:image:alt" content="Broussard Financial Services" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Meet the Team | Broussard Financial Services" />
         <meta name="twitter:description" content="Get to know the advisors and team members behind Broussard Financial Services." />
-        <meta name="twitter:image" content="https://www.broussardfinancialservices.com/images/bfs-logo.png" />
+        <meta name="twitter:image" content="https://www.broussardfinancialservices.com/images/bfs-logo-clean.png" />
         <link rel="canonical" href="https://www.broussardfinancialservices.com/team" />
         <meta name="robots" content="index, follow" />
       </Helmet>

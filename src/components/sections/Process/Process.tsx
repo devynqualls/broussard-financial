@@ -4,22 +4,22 @@ const steps = [
   {
     num: '01',
     name: 'Connect & Clarify',
-    desc: 'We start with a real conversation — about your goals, your lifestyle, and what financial freedom looks like to you. This is where your vision takes shape and your priorities come into focus.',
+    desc: 'Tell us about your goals, retirement timeline, and the questions you want answered.',
   },
   {
     num: '02',
     name: 'Strategize & Simplify',
-    desc: "Next, we cut through the noise. We'll analyze your current financial picture, identify what's working, and simplify the path toward your long-term goals with clear, actionable strategies.",
+    desc: 'Review your benefits, savings, and income needs with a clear explanation of your options.',
   },
   {
     num: '03',
     name: 'Implement & Elevate',
-    desc: 'Once your custom plan is ready, we put it into motion — aligning investments, protection, and income strategies designed to help your wealth grow and your confidence rise.',
+    desc: 'Agree on next steps and put your chosen strategy into action.',
   },
   {
     num: '04',
     name: 'Review & Renew',
-    desc: "Life changes, and your plan should evolve with it. Through regular check-ins, we'll refine and adjust your strategy to make sure you stay on track and always moving forward.",
+    desc: 'Revisit your plan as your family, finances, and priorities change.',
   },
 ];
 
@@ -31,8 +31,7 @@ export default function Process() {
           Your 4 steps to <em>financial confidence</em>
         </h2>
         <p className={styles.desc}>
-          We believe financial planning should be empowering, not overwhelming. Our simple
-          four-step process turns your goals into action.
+          A clear process, from your first questions to ongoing reviews.
         </p>
       </div>
 

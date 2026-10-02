@@ -72,9 +72,9 @@ export default function Team() {
   return (
     <section className={styles.section} id="team" aria-labelledby="team-heading">
       <div className={styles.header}>
-        <h2 className={styles.title} id="team-heading">
+        <h1 className={styles.title} id="team-heading">
           Meet <em>the team</em>
-        </h2>
+        </h1>
         <p className={styles.desc}>
           Experienced professionals dedicated to your financial success.
         </p>

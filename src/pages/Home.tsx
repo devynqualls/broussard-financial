@@ -8,7 +8,6 @@ import Services from '../components/sections/Services/Services';
 import About from '../components/sections/About/About';
 import Process from '../components/sections/Process/Process';
 import FederalBenefits from '../components/sections/FederalBenefits/FederalBenefits';
-import DebtClock from '../components/sections/DebtClock/DebtClock';
 import TaxRates from '../components/sections/TaxRates/TaxRates';
 import Seminars from '../components/sections/Seminars/Seminars';
 import CTABand from '../components/sections/CTABand/CTABand';
@@ -31,7 +30,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Retirement Planning Nationwide | Broussard Financial Services | AIF® Fiduciary</title>
+        <title>Retirement Planning in San Diego | Broussard Financial Services</title>
         <meta
           name="description"
           content="Broussard Financial Services helps business owners, high net worth individuals, and federal employees reduce taxes and build confident retirement income. Free consultation with AIF® Fiduciary Rene Broussard."
@@ -49,7 +48,7 @@ export default function Home() {
         <meta property="og:url" content="https://www.broussardfinancialservices.com" />
         <meta property="og:site_name" content="Broussard Financial Services" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content="https://www.broussardfinancialservices.com/images/bfs-logo.png" />
+        <meta property="og:image" content="https://www.broussardfinancialservices.com/images/bfs-logo-clean.png" />
         <meta property="og:image:alt" content="Broussard Financial Services" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Retirement Planning | Broussard Financial Services" />
@@ -57,7 +56,7 @@ export default function Home() {
           name="twitter:description"
           content="Helping you build a confident retirement with personalized income strategies, tax planning, and wealth protection. Serving clients nationwide."
         />
-        <meta name="twitter:image" content="https://www.broussardfinancialservices.com/images/bfs-logo.png" />
+        <meta name="twitter:image" content="https://www.broussardfinancialservices.com/images/bfs-logo-clean.png" />
         <link rel="canonical" href="https://www.broussardfinancialservices.com" />
         <meta name="robots" content="index, follow" />
         <meta name="geo.region" content="US-CA" />
@@ -88,10 +87,6 @@ export default function Home() {
 
       <ErrorBoundary sectionName="Federal Benefits">
         <FederalBenefits />
-      </ErrorBoundary>
-
-      <ErrorBoundary sectionName="Debt Clock">
-        <DebtClock />
       </ErrorBoundary>
 
       <ErrorBoundary sectionName="Tax Rates">

@@ -12,37 +12,20 @@ export default function About() {
         </blockquote>
 
         <p className={styles.body}>
-          Broussard Financial Services helps federal employees, retirees, families, and business
-          owners build clear retirement income and wealth preservation strategies designed for
-          long-term financial security.
+          Based in San Diego, we help you connect your benefits, savings, insurance,
+          and tax considerations into a retirement income plan you understand.
+          For federal employees, that includes FERS, TSP, Social Security, and survivor benefits.
           <br /><br />
-          We specialize in retirement planning, federal benefit consulting, life insurance, and
-          tax-efficient income strategies. Our work is focused on helping clients understand how
-          their benefits, savings, insurance, and income sources fit together inside one
-          complete financial plan.
+          Start with your goals and questions. We’ll explain your options and discuss
+          the next steps, including trusts, annuities, life insurance, or buying,
+          selling, and investing in real estate.
           <br /><br />
-          For federal employees, this includes guidance around FERS, TSP, Social Security,
-          survivor benefits, pension decisions, and retirement income options. These benefits
-          can be valuable, but they are often difficult to understand without a clear strategy.
-          We help simplify the process so clients can make informed decisions before and during
-          retirement.
-          <br /><br />
-          Broussard Financial Services also includes Federal Retirement Consultant<sup>™</sup>{' '}
-          designation support, reflecting advanced training in the federal retirement system and
-          the unique planning issues federal employees face when preparing for retirement.
-          <br /><br />
-          Our approach is built on education, clarity, and integrity. We take time to understand
-          your goals, income needs, risk tolerance, family priorities, and long-term concerns
-          before recommending a strategy.
-          <br /><br />
-          Whether you are preparing for retirement, protecting your family, preserving your
-          wealth, or planning your legacy, our goal is to help you move forward with confidence
-          and a plan you understand.
+          <a href="/team">Meet the people behind your plan →</a>
         </p>
 
         <div className={styles.frcCard}>
           <img
-            src="/images/frc-logo.png"
+            src="/images/frc-logo-web.webp"
             alt="Federal Retirement Consultant"
             className={styles.frcLogo}
             loading="lazy"
