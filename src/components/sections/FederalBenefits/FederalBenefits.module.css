@@ -15,7 +15,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--taupe);
@@ -46,7 +46,7 @@
 
 .body {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--muted);
   line-height: 1.75;
   margin-bottom: 32px;
@@ -68,7 +68,7 @@
 
 .bullets li {
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--muted);
   display: flex;
   align-items: flex-start;

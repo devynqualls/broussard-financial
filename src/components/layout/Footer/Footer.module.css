@@ -24,7 +24,7 @@
 
 .tagline {
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   color: rgba(250, 250, 248, 0.72);
   line-height: 1.65;
   margin-bottom: 24px;
@@ -48,7 +48,7 @@
 }
 
 .colTitle {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: rgba(250, 250, 248, 0.72);
@@ -64,7 +64,7 @@
 
 .link {
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   color: rgba(250, 250, 248, 0.72);
   transition: color 0.2s;
 }
@@ -81,14 +81,14 @@
 }
 
 .copy {
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(250, 250, 248, 0.72);
   line-height: 1.65;
   max-width: 580px;
 }
 
 .right {
-  font-size: 11px;
+  font-size: 12px;
   color: rgba(250, 250, 248, 0.72);
   text-align: right;
   flex-shrink: 0;
@@ -98,7 +98,7 @@
   margin-top: 20px;
   padding-top: 20px;
   border-top: 0.5px solid rgba(250, 250, 248, 0.06);
-  font-size: 10px;
+  font-size: 12px;
   color: rgba(250, 250, 248, 0.72);
   line-height: 1.65;
 }
