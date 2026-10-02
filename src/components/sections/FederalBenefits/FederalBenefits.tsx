@@ -1,15 +1,7 @@
 import styles from './FederalBenefits.module.css';
 import { Button } from '../../ui/Button/Button';
 
-const bullets = [
-  'Knowing what your monthly annuity income will be when you retire',
-  'How Social Security will impact your retirement benefits',
-  'Understanding your TSP withdrawal options',
-  'Your Group Life Insurance benefits options during retirement',
-  "Making the right survivors' benefits decisions",
-  'FERS supplement strategies and timing',
-  'CSRS offset planning and coordination',
-];
+const bullets = ['Pension estimates and retirement timing','TSP withdrawals and Social Security','Insurance and survivor-benefit decisions'];
 
 export default function FederalBenefits() {
   return (
@@ -17,14 +9,12 @@ export default function FederalBenefits() {
       <div className={styles.left}>
         <div className={styles.kicker}>For Federal Employees</div>
         <h2 className={styles.fedTitle} id="fed-heading">
-          Avoid the costliest mistakes people make when electing <em>federal benefits</em>
+          Make your <em>federal benefits</em> work together.
         </h2>
         <p className={styles.body}>
-          Our complimentary benefits analysis helps you understand how your pension, TSP,
-          Social Security, and survivor benefits fit together. Start with a conversation
-          about your retirement timing and the information needed for your review.
+          Explore your retirement paycheck, then discuss the decisions that need a personal review.
         </p>
-        <Button href="#contact" variant="primary">Discuss Your Free Benefits Analysis</Button>
+        <Button href="/federal-planning" variant="primary">Explore federal planning tools</Button><p style={{marginTop:20}}><a className="text-link" href="/services/federal-retirement">Learn about our free benefits review →</a></p>
       </div>
 
       <div className={styles.right}>

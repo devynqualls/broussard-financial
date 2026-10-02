@@ -3,14 +3,14 @@ import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ErrorBoundary } from '../components/ui/ErrorBoundary/ErrorBoundary';
 import Hero from '../components/sections/Hero/Hero';
-import Ticker from '../components/sections/Ticker/Ticker';
+
 import Services from '../components/sections/Services/Services';
 import About from '../components/sections/About/About';
 import Process from '../components/sections/Process/Process';
 import FederalBenefits from '../components/sections/FederalBenefits/FederalBenefits';
-import TaxRates from '../components/sections/TaxRates/TaxRates';
+import {Link} from 'react-router-dom';
 import Seminars from '../components/sections/Seminars/Seminars';
-import CTABand from '../components/sections/CTABand/CTABand';
+
 import Contact from '../components/sections/Contact/Contact';
 
 export default function Home() {
@@ -33,7 +33,7 @@ export default function Home() {
         <title>Retirement Planning in San Diego | Broussard Financial Services</title>
         <meta
           name="description"
-          content="Broussard Financial Services helps business owners, high net worth individuals, and federal employees reduce taxes and build confident retirement income. Free consultation with AIF® Fiduciary Rene Broussard."
+          content="San Diego retirement planning for federal employees, retirees and families. Explore income, TSP, trusts, annuities and insurance. Free consultations."
         />
         <meta
           name="keywords"
@@ -69,9 +69,7 @@ export default function Home() {
         <Hero />
       </ErrorBoundary>
 
-      <ErrorBoundary sectionName="Ticker">
-        <Ticker />
-      </ErrorBoundary>
+      
 
       <ErrorBoundary sectionName="Services">
         <Services />
@@ -89,17 +87,13 @@ export default function Home() {
         <FederalBenefits />
       </ErrorBoundary>
 
-      <ErrorBoundary sectionName="Tax Rates">
-        <TaxRates />
-      </ErrorBoundary>
+      <section className="home-resources" id="resources" aria-labelledby="resources-heading"><div><span>EXPLORE AT YOUR OWN PACE</span><h2 id="resources-heading">Turn questions into a clearer plan.</h2><p>Use our free tools before your consultation. No signup or account numbers required.</p></div><nav aria-label="Planning resources"><Link to="/planning-tools">Income, savings &amp; market scenarios →</Link><Link to="/federal-planning">Federal retirement planning center →</Link><Link to="/tax-planning">2026 tax reference &amp; estimator →</Link><Link to="/federal-resources">Official federal benefits resources →</Link></nav></section>
 
       <ErrorBoundary sectionName="Seminars">
         <Seminars />
       </ErrorBoundary>
 
-      <ErrorBoundary sectionName="CTA">
-        <CTABand />
-      </ErrorBoundary>
+      
 
       <ErrorBoundary sectionName="Contact">
         <Contact />

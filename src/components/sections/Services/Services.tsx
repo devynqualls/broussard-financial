@@ -14,20 +14,20 @@ export default function Services() {
       </div>
 
       <div className={styles.grid}>
-        {services.map((svc) => (
+        {services.filter(svc=>['financial-planning','lifetime-income','living-trust','benefit-analysis','life-insurance','real-estate'].includes(svc.id)).map((svc) => (
           <a
             key={svc.id}
             href={({ 'financial-planning':'/services/retirement-income', 'benefit-analysis':'/services/federal-retirement', 'tsp-education':'/services/tsp-planning', 'living-trust':'/services/trust-reviews', 'lifetime-income':'/services/annuities', 'life-insurance':'/services/life-insurance', 'real-estate':'/services/real-estate' } as Record<string,string>)[svc.id] || '#contact'}
             className={styles.card}
           >
             <div className={styles.num}>{svc.num}</div>
-            <div className={styles.name}>{svc.name}</div>
+            <h3 className={styles.name}>{svc.name}</h3>
             <p className={styles.cardDesc}>{svc.description}</p>
-            <div className={styles.link} aria-hidden="true">Learn More →</div>
+            <div className={styles.link} aria-hidden="true">Explore service →</div>
           </a>
         ))}
       </div>
-      <p className={styles.desc}>Trust reviews and consultations are complimentary. Annuity guarantees depend on the issuing insurer’s financial strength and claims-paying ability and are subject to contract terms.</p>
+      <p className={styles.additional}>Also explore <a href="/services/tsp-planning">TSP education</a>, <a href="/tax-planning">tax planning tools</a>, and <a href="#contact">Social Security and long-term care planning</a>.</p><p className={styles.note}>Trust reviews and consultations are complimentary. Annuity guarantees depend on the issuing insurer’s financial strength and claims-paying ability and are subject to contract terms.</p>
     </section>
   );
 }

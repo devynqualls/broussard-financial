@@ -29,7 +29,7 @@ const resourceLinks = [
   { label: 'Schedule a Call', to: '/#contact' },
   { label: 'Free Benefits Analysis', to: '/#contact' },
   { label: 'Upcoming Seminars', to: '/#seminars' },
-  { label: 'Tax Rate Reference', to: '/#resources' },
+  { label: 'Tax Rate Reference', to: '/tax-planning' },
 ];
 
 export default function Footer() {

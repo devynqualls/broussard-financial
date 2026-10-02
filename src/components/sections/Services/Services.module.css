@@ -137,3 +137,4 @@
     grid-template-columns: 1fr;
   }
 }
+.section{max-width:1440px;margin:auto;padding-top:56px;padding-bottom:56px}.header{margin-bottom:32px}.header .desc{max-width:440px;font-size:16px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));border:0;gap:18px}.card{border:1px solid #dedbd0;border-radius:8px;background:#fffefa;padding:24px}.name{font-size:23px}.cardDesc{font-size:15px}.num{margin-bottom:12px}.additional{margin-top:24px;font-size:15px;color:var(--muted)}.additional a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}.note{font-size:13px;color:var(--muted);margin-top:16px;max-width:900px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.grid{grid-template-columns:1fr}.section{padding:40px 20px}}

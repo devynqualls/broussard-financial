@@ -250,7 +250,7 @@ export default function TaxRates() {
           <span>
             Simplified ordinary-income estimate using the basic standard deduction. Excludes credits, additional age/blindness and senior deductions, capital gains, qualified dividends, AMT, payroll and state taxes. Do not subtract contributions already excluded from your income. Negative amounts are not supported.
           </span>
-          <a href="#contact" className={styles.calcCtaLink}>
+          <a href="/#contact" className={styles.calcCtaLink}>
             Schedule a Tax Planning Consultation →
           </a>
         </div>
