@@ -1,3 +1,4 @@
+import SeminarSignup from './SeminarSignup';
 import styles from './Seminars.module.css';
 import { initialSeminars } from '../../../data/seminars';
 import type { Seminar } from '../../../types';
@@ -56,15 +57,16 @@ export default function Seminars() {
             {seminars.map((seminar) => (
               <SeminarCard key={seminar.id} seminar={seminar} />
             ))}
+          <SeminarSignup />
           </div>
         ) : (
-          <div className={styles.empty} role="status">
+          <div className={styles.empty}>
             <div className={styles.emptyTitle}>No upcoming events scheduled</div>
             <p className={styles.emptyBody}>
               New seminars and webinars will be posted here as they're announced. In the
-              meantime, reach out and we'll let you know about the next one.
+              meantime, leave your details below for upcoming event announcements.
             </p>
-            <Button href="/#contact" variant="outline">Get Notified</Button>
+            <SeminarSignup />
           </div>
         )}
 
