@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import ts from 'typescript';
+const js=ts.transpileModule(fs.readFileSync('src/utils/federal.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext}}).outputText;
+const {mraMonths,eligibility,pension,paycheck}=await import('data:text/javascript;base64,'+Buffer.from(js).toString('base64'));
+assert.equal(mraMonths(1947),660);assert.equal(mraMonths(1948),662);assert.equal(mraMonths(1953),672);assert.equal(mraMonths(1966),676);assert.equal(mraMonths(1970),684);
+assert.equal(eligibility(1970,683,360).eligible,false);assert.equal(eligibility(1970,684,360).reduction,0);
+assert.equal(eligibility(1970,684,120).reduction,.25);assert.equal(eligibility(1966,720,240).reduction,0);assert.equal(eligibility(1966,720,239).reduction,.1);
+assert.equal(eligibility(1964,744,60).eligible,true);assert.equal(eligibility(1964,744,59).eligible,false);
+assert.equal(pension(100000,240,743,0,0).factor,.01);assert.equal(pension(100000,240,744,0,0).factor,.011);
+assert.equal(pension(100000,360,720,0,50).monthly,2250);assert.equal(pension(100000,360,720,0,50).survivor,1250);assert.equal(pension(100000,360,720,0,25).monthly,2375);
+assert.equal(pension(100000,120,684,.25,0).base,625);
+assert.deepEqual(paycheck(2000,1000,0,0,500,400,2500),{gross:3000,net:2100,remaining:-400});
+console.log('19 federal checks passed: MRA boundaries, eligibility, age reductions, multipliers, survivor elections and paycheck shortfalls.');

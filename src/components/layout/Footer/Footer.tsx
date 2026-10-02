@@ -23,6 +23,8 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
+  { label: 'Federal Planning Center', to: '/federal-planning' },
+  { label: 'Federal Resources', to: '/federal-resources' },
   { label: 'Planning Tools', to: '/planning-tools' },
   { label: 'Schedule a Call', to: '/#contact' },
   { label: 'Free Benefits Analysis', to: '/#contact' },

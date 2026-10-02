@@ -8,7 +8,7 @@
     "build": "node scripts/optimize-assets.mjs && tsc -b && npm run check:backend && vite build && vite build --ssr src/entry-server.tsx --outDir work/prerender && node scripts/prerender.mjs && node scripts/test-built-site.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node scripts/test-tax.mjs && node scripts/test-planning.mjs && node scripts/test-backend.mjs",
+    "test": "node scripts/test-tax.mjs && node scripts/test-planning.mjs && node scripts/test-federal.mjs && node scripts/test-backend.mjs",
     "check:backend": "tsc --ignoreConfig --noEmit --target ES2022 --module NodeNext --moduleResolution NodeNext --skipLibCheck netlify/functions/verify-lead.mts --types node",
     "verify": "npm test && npm run lint && npm run build"
   },

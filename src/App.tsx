@@ -13,10 +13,12 @@ import ChatLauncher from './components/ui/ChatLauncher';
 import NotFound from './pages/NotFound';
 const LazyServicePage = lazy(() => import('./pages/ServicePage'));
 import { CALENDLY_URL } from './config/site';
+const LazyFederalPlanning = lazy(() => import('./pages/FederalPlanning'));
+const LazyFederalResources = lazy(() => import('./pages/FederalResources'));
 const LazyTeamPage = lazy(() => import('./pages/TeamPage'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {Home=LazyHome,PlanningTools=LazyPlanningTools,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,Home=LazyHome,PlanningTools=LazyPlanningTools,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -29,6 +31,8 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
       <main id="main-content" tabIndex={-1}>
         <Suspense fallback={<p className="planning-page">Loading page…</p>}><Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/federal-planning" element={<FederalPlanning />} />
+          <Route path="/federal-resources" element={<FederalResources />} />
           <Route path="/planning-tools" element={<PlanningTools />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />

@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import {render} from '../work/prerender/entry-server.js';
-const routes=['/','/team','/planning-tools',...['trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s),'/404'];
+const routes=['/','/team','/planning-tools','/federal-planning','/federal-resources',...['trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s),'/404'];
 const styles=(await fs.readdir('dist/assets')).filter(f=>f.endsWith('.css')).map(f=>'<link rel="stylesheet" href="/assets/'+f+'">').join('');
 const template=await fs.readFile('dist/index.html','utf8');
 for(const route of routes){let {body,head}=await render(route);body=body.replace(/<title>.*?<\/title>|<meta\s[^>]*>|<link\s[^>]*>/gs,tag=>{head+=tag;return ''});const html=template.replace(/<title>.*?<\/title>/s,'').replace('</head>',head+styles+'</head>').replace('<div id="root"></div>',`<div id="root">${body}</div>`);const file=route==='/404'?'dist/404.html':path.join('dist',route,'index.html');await fs.mkdir(path.dirname(file),{recursive:true});await fs.writeFile(file,html);if(route!=='/'&&route!=='/404')await fs.writeFile(path.join('dist',route+'.html'),html);if(body.includes('<!--$?-->')||body.includes('<!--$!-->'))throw Error('Unresolved content: '+route);if(!body.includes('<h1')||!head.includes('canonical')&&route!='/404')throw Error('Incomplete prerender: '+route);console.log('Generated '+route);}
