@@ -16,10 +16,13 @@ import { CALENDLY_URL } from './config/site';
 const LazyFederalPlanning = lazy(() => import('./pages/FederalPlanning'));
 const LazyFederalResources = lazy(() => import('./pages/FederalResources'));
 const LazyTaxPlanning = lazy(() => import('./pages/TaxPlanning'));
+const LazyEstateChecklist = lazy(() => import('./pages/EstateChecklist'));
+const LazyAnnuityEducation = lazy(() => import('./pages/AnnuityEducation'));
+const LazyLearningLibrary = lazy(() => import('./pages/LearningLibrary'));
 const LazyTeamPage = lazy(() => import('./pages/TeamPage'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,TaxPlanning=LazyTaxPlanning,Home=LazyHome,PlanningTools=LazyPlanningTools,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -35,6 +38,9 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/federal-planning" element={<FederalPlanning />} />
           <Route path="/federal-resources" element={<FederalResources />} />
           <Route path="/tax-planning" element={<TaxPlanning />} />
+          <Route path="/estate-planning-checklist" element={<EstateChecklist />} />
+          <Route path="/annuity-education" element={<AnnuityEducation />} />
+          <Route path="/learning-library" element={<LearningLibrary />} />
           <Route path="/planning-tools" element={<PlanningTools />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />

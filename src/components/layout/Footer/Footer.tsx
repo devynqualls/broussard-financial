@@ -23,6 +23,9 @@ const companyLinks = [
 ];
 
 const resourceLinks = [
+  {label:'Learning Library',to:'/learning-library'},
+  {label:'Estate Planning Checklist',to:'/estate-planning-checklist'},
+  {label:'Annuity Education',to:'/annuity-education'},
   { label: 'Federal Planning Center', to: '/federal-planning' },
   { label: 'Federal Resources', to: '/federal-resources' },
   { label: 'Planning Tools', to: '/planning-tools' },
