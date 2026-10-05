@@ -6,7 +6,7 @@ const serviceLinks = [
   {label:'Annuity Reviews & Income Planning',to:'/services/annuities'},
   {label:'Tax Planning',to:'/#resources'},
   {label:'Social Security Planning',to:'/#contact'},
-  {label:'Trust Reviews, Updates & Setup',to:'/services/trust-reviews'},
+  {label:'Estate Planning & Trust Services',to:'/services/trust-reviews'},
   {label:'Life Insurance',to:'/services/life-insurance'},
   {label:'Real Estate: Buy, Sell & Invest',to:'/services/real-estate'},
   {label:'LTC Preparation',to:'/#contact'},

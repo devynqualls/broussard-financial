@@ -9,7 +9,7 @@ export default function Services() {
           Plan for your <em>next chapter</em>
         </h2>
         <p className={styles.desc}>
-          Retirement income, trusts, annuities, life insurance, and real estate — with a free consultation for every service.
+          Retirement income, estate planning, annuities, life insurance, and real estate — with a free consultation for every service.
         </p>
       </div>
 

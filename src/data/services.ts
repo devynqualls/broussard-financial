@@ -16,8 +16,8 @@ export const services: Service[] = [
   {
     id: 'living-trust',
     num: '03',
-    name: 'Trust Reviews, Updates & Setup',
-    description: 'Get a free review of your trust and trust accounts, with help on updates and new trust setup.',
+    name: 'Estate Planning & Trust Services',
+    description: 'Plan for your family and legacy with free trust and trust-account reviews, trust updates, and new trust setup.',
   },
   {
     id: 'tax-planning',

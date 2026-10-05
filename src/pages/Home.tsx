@@ -33,7 +33,7 @@ export default function Home() {
         <title>Retirement Planning in San Diego | Broussard Financial Services</title>
         <meta
           name="description"
-          content="San Diego retirement planning for federal employees, retirees and families. Explore income, TSP, trusts, annuities and insurance. Free consultations."
+          content="San Diego retirement planning for federal employees, retirees and families. Explore income, TSP, estate planning, trusts and insurance. Free consultations."
         />
         <meta
           name="keywords"

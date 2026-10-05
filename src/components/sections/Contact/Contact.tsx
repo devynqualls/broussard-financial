@@ -33,7 +33,7 @@ const topics = [
   'Trust Updates / New Trust Setup',
   'Existing Annuity Review',
   'New Annuity / Income Planning',
-  'Legacy Planning',
+  'Estate Planning & Legacy Goals',
   'Life Insurance',
   'Real Estate — Buying a Home',
   'Real Estate — Selling a Property',
