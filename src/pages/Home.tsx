@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom';
 import Seminars from '../components/sections/Seminars/Seminars';
 
 import Contact from '../components/sections/Contact/Contact';
+import ClientReviews from '../components/sections/ClientReviews';
 
 export default function Home() {
   const { hash } = useLocation();
@@ -96,6 +97,7 @@ export default function Home() {
       
 
       <ErrorBoundary sectionName="Contact">
+        <ClientReviews />
         <Contact />
       </ErrorBoundary>
     </>
