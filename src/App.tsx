@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import Nav from './components/layout/Nav/Nav';
 import Footer from './components/layout/Footer/Footer';
 import SchemaOrg from './seo/SchemaOrg';
+import Breadcrumbs from './seo/Breadcrumbs';
 const LazyHome = lazy(() => import('./pages/Home'));
 const LazyPlanningTools = lazy(() => import('./pages/PlanningTools'));
 import ChatLauncher from './components/ui/ChatLauncher';
@@ -33,6 +34,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
       <Nav />
 
       <main id="main-content" tabIndex={-1}>
+        <Breadcrumbs />
         <Suspense fallback={<p className="planning-page">Loading page…</p>}><Routes>
           <Route path="/" element={<Home />} />
           <Route path="/federal-planning" element={<FederalPlanning />} />
