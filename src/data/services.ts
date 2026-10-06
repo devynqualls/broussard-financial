@@ -10,8 +10,8 @@ export const services: Service[] = [
   {
     id: 'lifetime-income',
     num: '02',
-    name: 'Annuity Reviews & Income Planning',
-    description: 'Review an existing annuity or explore a new one, including income options, fees, and access to your money.',
+    name: 'Annuities & Retirement Income',
+    description: 'Explore income that can last a lifetime with the right annuity, or get a free review of your existing contract.',
   },
   {
     id: 'living-trust',
