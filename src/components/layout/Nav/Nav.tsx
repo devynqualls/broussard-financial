@@ -72,6 +72,7 @@ export default function Nav() {
             width="106"
             height="40"
           />
+          <img src="/images/aif-logo.png" alt="Accredited Investment Fiduciary (AIF)" title="Rene Broussard — Accredited Investment Fiduciary" className={styles.aifBadge} width="392" height="139" />
         </div>
 
         <ul id="nav-menu" className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`} role="list">

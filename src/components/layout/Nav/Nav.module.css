@@ -49,6 +49,10 @@
   object-fit: contain;
 }
 
+.aifBadge { display:block; width:80px; height:auto; object-fit:contain; }
+@media (min-width:769px) and (max-width:1250px) { .nav {padding-left:20px;padding-right:20px}.brand{gap:10px}.logoImg{height:50px}.frcBadge{height:30px}.aifBadge{width:65px}.links{gap:12px} }
+@media (max-width:768px) { .aifBadge{width:58px} }
+
 @media (max-width: 768px) {
   .logoImg {
     height: 50px;
