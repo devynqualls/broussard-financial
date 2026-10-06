@@ -26,6 +26,7 @@ const resourceLinks = [
   {label:'Learning Library',to:'/learning-library'},
   {label:'Estate Planning Checklist',to:'/estate-planning-checklist'},
   {label:'Annuity Education',to:'/annuity-education'},
+  {label:'Military Retirement & TSP',to:'/military-retirement'},
   { label: 'Federal Planning Center', to: '/federal-planning' },
   { label: 'Federal Resources', to: '/federal-resources' },
   { label: 'Planning Tools', to: '/planning-tools' },
@@ -49,7 +50,9 @@ export default function Footer() {
             1420 Kettner Blvd, Suite 321<br />
             San Diego, CA 92101<br />
             Office:{' '}
-            <a href="tel:+16195810010" className={styles.addrLink}>(619) 581-0010</a>
+            <a href="tel:+16195810010" className={styles.addrLink}>(619) 581-0010</a><br />
+            Email:{' '}
+            <a href="mailto:info@broussardfinancialservices.com" className={styles.addrLink}>info@broussardfinancialservices.com</a>
           </address>
         </div>
 

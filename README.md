@@ -13,7 +13,7 @@ For a CLI deployment, link this source to the correct existing project, then run
 
 No new environment variables are required for the default email-domain and phone-format checks. Optional provider keys are not included. The calendar and opt-in Analytics property are already configured in source.
 
-Netlify Forms must be enabled in the destination account, with notifications routed to rene@broussardfinancialservices.com. These account settings and receipt of an actual inquiry cannot be proved by a local build. After publication, verify one controlled inquiry, calendar operation, Analytics events, Search Console ownership and sitemap submission.
+Netlify Forms must be enabled in the destination account, with notifications routed to info@broussardfinancialservices.com. These account settings and receipt of an actual inquiry cannot be proved by a local build. After publication, verify one controlled inquiry, calendar operation, Analytics events, Search Console ownership and sitemap submission.
 
 ## Local verification
 
@@ -23,7 +23,7 @@ npm run verify
 npm run preview
 ```
 
-`verify` runs 99 calculation/backend checks, lint, frontend and backend type checking, production builds, prerendering, and generated-page checks. Native fonts and optimized logo assets are built locally. Original cleaned logo artwork remains in public/images.
+`verify` runs 132 calculation/backend checks, lint, frontend and backend type checking, production builds, prerendering, and generated-page checks. Native fonts and optimized logo assets are built locally. Original cleaned logo artwork remains in public/images.
 
 `npm run dev` starts the editing preview. Localhost contact forms intentionally do not send inquiries or claim successful delivery. Analytics only loads on the production hostnames after consent. Scheduling loads only after a visitor chooses to open it.
 

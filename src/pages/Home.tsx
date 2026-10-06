@@ -88,7 +88,7 @@ export default function Home() {
         <FederalBenefits />
       </ErrorBoundary>
 
-      <section className="home-resources" id="resources" aria-labelledby="resources-heading"><div><span>EXPLORE AT YOUR OWN PACE</span><h2 id="resources-heading">Turn questions into a clearer plan.</h2><p>Use our free tools before your consultation. No signup or account numbers required.</p></div><nav aria-label="Planning resources"><Link to="/learning-library">Learning library &amp; estate checklist →</Link><Link to="/planning-tools">Income, savings &amp; market scenarios →</Link><Link to="/federal-planning">Federal retirement planning center →</Link><Link to="/tax-planning">2026 tax reference &amp; estimator →</Link><Link to="/federal-resources">Official federal benefits resources →</Link></nav></section>
+      <section className="home-resources" id="resources" aria-labelledby="resources-heading"><div><span>EXPLORE AT YOUR OWN PACE</span><h2 id="resources-heading">Turn questions into a clearer plan.</h2><p>Use our free tools before your consultation. No signup or account numbers required.</p></div><nav aria-label="Planning resources"><Link to="/learning-library">Learning library &amp; estate checklist →</Link><Link to="/planning-tools">Income, savings &amp; market scenarios →</Link><Link to="/federal-planning">Federal retirement planning center →</Link><Link to="/tax-planning">2026 tax reference &amp; estimator →</Link><Link to="/federal-resources">Official civilian federal benefits resources →</Link><Link to="/military-retirement">Military retirement &amp; TSP guide →</Link></nav></section>
 
       <ErrorBoundary sectionName="Seminars">
         <Seminars />

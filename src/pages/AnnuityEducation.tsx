@@ -1,6 +1,53 @@
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import AnnuityBenefits from '../components/sections/AnnuityBenefits';
-import {Helmet} from 'react-helmet-async';
-import {Link} from 'react-router-dom';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
 import './PlanningTools.css';
-export default function AnnuityEducation(){return <div className="planning-page"><Helmet><title>Annuity Education & Review Questions | Broussard Financial Services</title><meta name="description" content="Understand annuity types, income timing, access to money, costs, and questions to ask before reviewing or purchasing a contract."/><link rel="canonical" href="https://www.broussardfinancialservices.com/annuity-education"/></Helmet><header className="planning-intro"><Link to="/learning-library">← Learning library</Link><h1>Annuities: plan for income with confidence.</h1><p>Explore how annuities can support your retirement paycheck, then understand the features that fit your goals. We help review existing contracts and explore new annuity options.</p><p className="tool-note">Educational guide · Updated October 5, 2026</p></header><AnnuityBenefits/><section className="planning-card"><h2>What an annuity does</h2><p>An annuity is an insurance contract. Income can begin soon or later, depending on its terms. Guarantees depend on the insurer’s financial strength and claims-paying ability.</p><div className="planning-table"><table><caption>General annuity categories — educational overview, not a list of products we offer</caption><thead><tr><th scope="col">Type</th><th scope="col">Basic feature</th><th scope="col">Question to ask</th></tr></thead><tbody><tr><th scope="row">Fixed</th><td>Insurer-set interest with a contractual minimum.</td><td>How long does the quoted rate apply?</td></tr><tr><th scope="row">Fixed indexed</th><td>Interest linked partly to an index, with limits on credited gains.</td><td>What caps or participation rates apply?</td></tr><tr><th scope="row">Variable</th><td>Investment performance affects value; losses are possible.</td><td>What risks and ongoing costs apply?</td></tr><tr><th scope="row">Registered index-linked</th><td>Index-linked results with defined limits; losses remain possible.</td><td>What losses can occur, including on early withdrawal?</td></tr></tbody></table></div><p>Immediate versus deferred describes timing. Fees, withdrawal limits, surrender charges, and taxes can affect what you receive. Compare the contract rather than its headline rate.</p><p className="tool-note">Source: <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/annuities">SEC Investor.gov annuity guide</a>.</p></section><section className="planning-card"><h2>Seven questions for your review</h2><ol>{['What income do I need, and when should it start?','How much money must remain accessible for emergencies?','What is guaranteed, and what is only illustrated?','What are the costs, withdrawal rules, and surrender schedule?','What would my beneficiaries receive?','If replacing a contract, what benefits or terms would I give up?','How is the person recommending the product compensated?'].map(q=><li key={q}>{q}</li>)}</ol><p>Bring your current statement and contract for your own reference. Ask for a written explanation of proposed terms and alternatives.</p></section><section className="planning-card"><h2>Put the tools in context</h2><p>A compound-growth calculator or market-decline scenario is not an annuity quote. Use the tools to organize income questions, then review actual contract terms.</p><p><Link to="/planning-tools">Explore retirement planning tools →</Link></p><p><Link to="/services/annuities">Existing-annuity reviews and new-annuity services →</Link></p></section><button className="tool-button" onClick={()=>window.print()}>Print / save this guide</button><ConsultationCTA label="Discuss my annuity questions"/></div>;}
+
+const reviewQuestions = [
+  'How much monthly income do I want to cover, and when should it begin?',
+  'Which payments are guaranteed by the contract, and for how long?',
+  'How much of my savings should stay available for emergencies?',
+  'What are the withdrawal limits, surrender charges, and other costs?',
+  'If I already own an annuity, what benefits would I lose by changing it?',
+];
+
+export default function AnnuityEducation() {
+  return <div className="planning-page">
+    <Helmet>
+      <title>Safe Retirement Income & Annuity Reviews | Broussard Financial Services</title>
+      <meta name="description" content="See how an annuity may help provide steady retirement income. Learn what to check in your current contract and request a free annuity review." />
+      <link rel="canonical" href="https://www.broussardfinancialservices.com/annuity-education" />
+    </Helmet>
+    <header className="planning-intro">
+      <Link to="/learning-library">← Learning library</Link>
+      <h1>Plan for income you can count on.</h1>
+      <p>When a paycheck ends, your need for reliable income does not. An annuity may help cover part of your monthly expenses with payments defined by an insurance contract. We can review an annuity you own or help you explore a new one.</p>
+      <ConsultationCTA label="Schedule my free annuity review" />
+      <p className="tool-note">Your initial consultation and review are free.</p>
+    </header>
+
+    <AnnuityBenefits />
+
+    <section className="planning-card">
+      <h2>Start with the income you need</h2>
+      <p>List the expenses that continue every month. Subtract income you expect from Social Security and any pension. The remaining gap gives you a practical starting point for discussing how much additional income you want and when it should begin.</p>
+      <p><Link to="/planning-tools#gap">Estimate your monthly income gap →</Link></p>
+      <p className="tool-note">The calculator organizes your numbers; it does not provide an annuity quote or determine suitability.</p>
+    </section>
+
+    <section className="planning-card">
+      <h2>Already own an annuity? Know what it can do for you.</h2>
+      <p>A free review can clarify when income may begin, what payments or protections your contract provides, what money remains accessible, and what would happen if you changed the contract. Bring your statement and contract for your own reference.</p>
+      <p>There is no need to replace an annuity simply because it is older. We will discuss your goals and compare any proposed change with the benefits and costs of the contract you have.</p>
+      <ConsultationCTA label="Review my current annuity" />
+    </section>
+
+    <section className="planning-card">
+      <h2>Five questions worth asking</h2>
+      <ol>{reviewQuestions.map(question => <li key={question}>{question}</li>)}</ol>
+      <p className="tool-note">Annuities are long-term insurance contracts. Guarantees depend on the issuing insurer’s financial strength and claims-paying ability. Features, income terms, fees, surrender charges, and tax treatment vary by contract. <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/annuities">Read the SEC’s annuity guide →</a></p>
+    </section>
+    <ConsultationCTA label="Talk with us about safe retirement income" />
+  </div>;
+}

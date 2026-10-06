@@ -11,7 +11,7 @@ export const services: Service[] = [
     id: 'lifetime-income',
     num: '02',
     name: 'Annuities & Retirement Income',
-    description: 'Explore income that can last a lifetime with the right annuity, or get a free review of your existing contract.',
+    description: 'Add a dependable retirement income stream with the right annuity, or get a free review of the contract you own.',
   },
   {
     id: 'living-trust',

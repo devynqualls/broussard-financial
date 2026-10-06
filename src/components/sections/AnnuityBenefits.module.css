@@ -1,0 +1,5 @@
+.benefits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 28px 0; }
+.benefits > div { border-left: 2px solid #b9b7a9; padding: 0 20px; }
+.benefits h3 { margin: 0 0 10px; color: #243e35; font-size: 18px; }
+.benefits p { margin: 0; line-height: 1.65; }
+@media (max-width: 760px) { .benefits { grid-template-columns: 1fr; } .benefits > div { padding: 0 16px; } }

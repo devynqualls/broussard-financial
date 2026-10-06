@@ -29,6 +29,7 @@ const topics = [
   'Tax Planning & Reduction',
   'Social Security Planning',
   'TSP / Federal Benefits',
+  'Military Retirement / TSP',
   'Free Trust / Trust Account Review',
   'Trust Updates / New Trust Setup',
   'Existing Annuity Review',
@@ -46,6 +47,7 @@ const topics = [
 const contactDetails = [
   { label: 'Office Address', value: '1420 Kettner Blvd, Suite 321\nSan Diego, CA 92101' },
   { label: 'Phone', value: '(619) 581-0010' },
+  { label: 'Email', value: 'info@broussardfinancialservices.com' },
   { label: 'Office Hours', value: 'Monday – Friday: 9:00 AM – 5:00 PM PT\nSaturday & Sunday: Closed\nAppointments outside office hours require prior approval.' },
   { label: 'Serving', value: 'Clients nationwide\nIn-person & virtual consultations available' },
 ];
@@ -120,7 +122,7 @@ export default function Contact() {
     } catch (err) {
       console.error(err);
       setSubmitError(
-        'Sorry — something went wrong sending your message. Please email us directly at rene@broussardfinancialservices.com or call (619) 581-0010.'
+        'Sorry — something went wrong sending your message. Please email us directly at info@broussardfinancialservices.com or call (619) 581-0010.'
       );
     }
   };
@@ -145,7 +147,7 @@ export default function Contact() {
             <div key={item.label} className={styles.detailItem}>
               <div className={styles.detailLabel}>{item.label}</div>
               <div className={styles.detailVal}>
-                {item.value.split('\n').map((line, i) => (
+                {item.label === 'Email' ? <a href="mailto:info@broussardfinancialservices.com">{item.value}</a> : item.value.split('\n').map((line, i) => (
                   <span key={i}>
                     {line}
                     {i < item.value.split('\n').length - 1 && <br />}
@@ -166,7 +168,7 @@ export default function Contact() {
         {submitted ? (
           <div className={styles.success} role="status">
             Thank you! We'll be in touch within one business day. If you need to reach us
-            sooner, email <a href="mailto:rene@broussardfinancialservices.com">rene@broussardfinancialservices.com</a> or call (619) 581-0010.
+            sooner, email <a href="mailto:info@broussardfinancialservices.com">info@broussardfinancialservices.com</a> or call (619) 581-0010.
           </div>
         ) : (
           <form

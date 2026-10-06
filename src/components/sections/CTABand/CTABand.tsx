@@ -17,7 +17,7 @@ export default function CTABand() {
           Let’s talk about your next step.
         </h2>
         <p className={styles.sub}>
-          Ask your questions and explore your options in a free 30-minute phone consultation with Rene Broussard.
+          Ask your questions and explore your options in a free 30-minute phone consultation with one of our consultants.
         </p>
       </div>
       <div className={styles.right}>
