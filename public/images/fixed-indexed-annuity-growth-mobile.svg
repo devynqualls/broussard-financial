@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 470" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative fixed indexed annuity account path</title>
+  <desc id="description">The indexed account holds steady during two market declines and steps higher after positive interest credits. This assumes a zero percent floor and excludes charges and withdrawals.</desc>
+  <rect x="1" y="1" width="418" height="468" rx="16" fill="#fff" stroke="#cddbd0" stroke-width="2"/>
+  <text x="25" y="40" fill="#243e35" font-family="Arial, sans-serif" font-size="20" font-weight="700">Level through declines.</text>
+  <text x="25" y="67" fill="#243e35" font-family="Arial, sans-serif" font-size="20" font-weight="700">Higher after interest credits.</text>
+  <text x="25" y="94" fill="#52685a" font-family="Arial, sans-serif" font-size="13">Hypothetical · 0% index-crediting floor</text>
+  <g transform="translate(0,-90)">
+  <path d="M45 372 H115 L184 318 H253 L323 244 H379" fill="none" stroke="#236247" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#236247" stroke="#fff" stroke-width="4">
+    <circle cx="45" cy="372" r="9"/><circle cx="115" cy="372" r="9"/><circle cx="184" cy="318" r="9"/><circle cx="253" cy="318" r="9"/><circle cx="323" cy="244" r="9"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="15" text-anchor="middle" font-weight="700">
+    <text x="45" y="411" fill="#243e35">Start</text>
+    <text x="115" y="411" fill="#9d4944">Down</text>
+    <text x="184" y="411" fill="#236247">Up</text>
+    <text x="253" y="411" fill="#9d4944">Down</text>
+    <text x="323" y="411" fill="#236247">Up</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#236247">
+    <text x="31" y="473">Down market → no index-linked loss</text>
+    <text x="31" y="505">Up market → possible interest credit</text>
+  </g>
+  <text x="31" y="535" fill="#52685a" font-family="Arial, sans-serif" font-size="13">Before charges or withdrawals</text>
+  </g>
+</svg>

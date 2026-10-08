@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title description">
+  <title id="title">Illustrative fixed indexed annuity account path</title>
+  <desc id="description">The indexed account stays level through two market declines and steps higher when positive interest is credited. This example assumes a zero percent floor and excludes charges and withdrawals.</desc>
+  <defs>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ab89b" stop-opacity=".42"/>
+      <stop offset="1" stop-color="#8ab89b" stop-opacity=".05"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="958" height="418" rx="16" fill="#fff" stroke="#cddbd0" stroke-width="2"/>
+  <text x="42" y="47" fill="#243e35" font-family="Arial, sans-serif" font-size="23" font-weight="700">Indexed account value: level, then higher</text>
+  <text x="42" y="78" fill="#52685a" font-family="Arial, sans-serif" font-size="16">Hypothetical pattern with a 0% index-crediting floor</text>
+  <line x1="76" y1="328" x2="888" y2="328" stroke="#bed0c2" stroke-width="2"/>
+  <path d="M90 310 H265 L440 244 H615 L790 165 H875 V328 H90 Z" fill="url(#area)"/>
+  <path d="M90 310 H265 L440 244 H615 L790 165 H875" fill="none" stroke="#236247" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#236247" stroke="#fff" stroke-width="5">
+    <circle cx="90" cy="310" r="10"/>
+    <circle cx="265" cy="310" r="10"/>
+    <circle cx="440" cy="244" r="10"/>
+    <circle cx="615" cy="244" r="10"/>
+    <circle cx="790" cy="165" r="10"/>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="90" y="368" fill="#243e35" font-size="17" font-weight="700">Start</text>
+    <text x="265" y="364" fill="#9d4944" font-size="18" font-weight="700">Market ↓</text>
+    <text x="265" y="387" fill="#43604d" font-size="15">Account holds</text>
+    <text x="440" y="364" fill="#236247" font-size="18" font-weight="700">Market ↑</text>
+    <text x="440" y="387" fill="#43604d" font-size="15">Interest credited</text>
+    <text x="615" y="364" fill="#9d4944" font-size="18" font-weight="700">Market ↓</text>
+    <text x="615" y="387" fill="#43604d" font-size="15">Account holds</text>
+    <text x="790" y="364" fill="#236247" font-size="18" font-weight="700">Market ↑</text>
+    <text x="790" y="387" fill="#43604d" font-size="15">Interest credited</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#236247">
+    <text x="112" y="282">No index-linked loss</text>
+    <text x="480" y="217">No index-linked loss</text>
+  </g>
+</svg>

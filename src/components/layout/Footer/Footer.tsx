@@ -76,6 +76,7 @@ export default function Footer() {
                 <Link to={to} className={styles.link}>{label}</Link>
               </li>
             ))}
+            <li><a href="https://bfs-benefit-calculator.netlify.app/" target="_blank" rel="noopener noreferrer nofollow" className={styles.link}>Advisor Benefits Calculator (login required)</a></li>
           </ul>
         </div>
 
