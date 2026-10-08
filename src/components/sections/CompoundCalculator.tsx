@@ -1,6 +1,7 @@
 import ConsultationCTA from '../ui/ConsultationCTA';
 import { useState } from 'react';
 import { compoundGrowth } from '../../utils/planning';
+import ReportActions from '../ui/ReportActions';
 
 const money=(n:number)=>n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
 export default function CompoundCalculator(){
@@ -9,7 +10,7 @@ export default function CompoundCalculator(){
  const valid=fields.every(f=>{const v=values[f.key as keyof typeof values];return v.trim()!==''&&Number.isFinite(+v)&&+v>=0&&+v<=f.max})&&Number.isInteger(+values.years)&&+values.years>=1;
  const rows=valid?compoundGrowth(+values.principal,+values.monthly,+values.years,+values.rate):[];
  const final=rows.at(-1);
- return <section className="planning-card" aria-labelledby="compound-title"><span>03 · TIME & CONSISTENCY</span><h2 id="compound-title">Compound-interest calculator</h2><p>Explore how a starting balance and regular monthly contributions could grow over time.</p>
+ return <section className="planning-card" id="compound" aria-labelledby="compound-title"><span>03 · TIME & CONSISTENCY</span><h2 id="compound-title">Compound-interest calculator</h2><p>Explore how a starting balance and regular monthly contributions could grow over time.</p>
  <div className="planning-inputs">{fields.map(f=><label className="tool-field" key={f.key}>{f.label}<input type="number" min={f.key==='years'?1:0} max={f.max} step={f.key==='years'?1:'any'} value={values[f.key as keyof typeof values]} onChange={e=>setValues({...values,[f.key]:e.target.value})}/></label>)}</div>
  {!valid?<p role="alert">Enter a starting balance of $0–$100 million, monthly contributions of $0–$1 million, 1–60 whole years, and an annual rate of 0–20%.</p>:final&&<>
  <div className="planning-results" aria-live="polite"><div><small>Projected ending balance</small><strong>{money(final.balance)}</strong></div><div><small>Your total contributions</small><strong>{money(final.contributions)}</strong></div><div><small>Projected growth</small><strong>{money(final.balance-final.contributions)}</strong></div></div>
@@ -21,5 +22,6 @@ export default function CompoundCalculator(){
  <details><summary>View annual growth breakdown</summary><div className="planning-table"><table><caption>Year-end projections, rounded to the nearest dollar</caption><thead><tr><th>Year</th><th>Contributions</th><th>Growth</th><th>Balance</th></tr></thead><tbody>{rows.map(r=><tr key={r.year}><th>{r.year}</th><td>{money(r.contributions)}</td><td>{money(r.balance-r.contributions)}</td><td>{money(r.balance)}</td></tr>)}</tbody></table></div></details>
  </>}
  <p className="tool-note">Illustration only, not a forecast or product quote. Assumes a constant nominal annual rate divided by 12, compounded monthly, with contributions at the end of each month. Contributions include the starting balance. Excludes fees, taxes, inflation, withdrawals, and market losses. The assumed rate is not an APY, guaranteed return, or annuity crediting rate; actual investment returns vary.</p>
+ <ReportActions targetId="compound" title="Compound-interest projection" disabled={!valid} />
  <ConsultationCTA label="Discuss my savings goals" /></section>;
 }

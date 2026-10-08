@@ -30,6 +30,7 @@ const resourceLinks = [
   { label: 'Federal Planning Center', to: '/federal-planning' },
   { label: 'Federal Resources', to: '/federal-resources' },
   { label: 'Planning Tools', to: '/planning-tools' },
+  { label: 'CD Replacement Comparison', to: '/cd-replacement' },
   { label: 'Schedule a Call', to: '/#contact' },
   { label: 'Free Benefits Analysis', to: '/#contact' },
   { label: 'Upcoming Seminars', to: '/#seminars' },

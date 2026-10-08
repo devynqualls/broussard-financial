@@ -4,6 +4,7 @@ import { TAX_BRACKETS_2026, TABLE_LABELS, STANDARD_DEDUCTIONS_2026 } from '../..
 import { useTaxCalc } from '../../../hooks/useTaxCalc';
 import { formatCurrency, formatPercent } from '../../../utils/formatCurrency';
 import type { FilingStatus } from '../../../types';
+import ReportActions from '../../ui/ReportActions';
 
 const deductionLimits = [
   { label: 'Standard deduction (Single)', value: formatCurrency(STANDARD_DEDUCTIONS_2026.single) },
@@ -156,7 +157,7 @@ export default function TaxRates() {
         </div>
       </div>
 
-      <div className={styles.calculator} aria-labelledby="calc-heading">
+      <div className={styles.calculator} id="tax-estimator" aria-labelledby="calc-heading">
         <div className={styles.calcHead}>
           <div className={styles.calcTitle} id="calc-heading">Quick Tax Estimator — 2026</div>
           <div className={styles.calcSubtitle}>Estimate your federal income tax liability</div>
@@ -254,6 +255,7 @@ export default function TaxRates() {
             Schedule a Tax Planning Consultation →
           </a>
         </div>
+        <ReportActions targetId="tax-estimator" title="2026 federal tax estimate" disabled={!calcResult} />
       </div>
 
       <p className={styles.taxNote}>

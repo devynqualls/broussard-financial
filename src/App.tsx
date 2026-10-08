@@ -10,6 +10,7 @@ import SchemaOrg from './seo/SchemaOrg';
 import Breadcrumbs from './seo/Breadcrumbs';
 const LazyHome = lazy(() => import('./pages/Home'));
 const LazyPlanningTools = lazy(() => import('./pages/PlanningTools'));
+const LazyCDReplacement = lazy(() => import('./pages/CDReplacement'));
 import ChatLauncher from './components/ui/ChatLauncher';
 import NotFound from './pages/NotFound';
 const LazyServicePage = lazy(() => import('./pages/ServicePage'));
@@ -24,7 +25,7 @@ const LazyLearningLibrary = lazy(() => import('./pages/LearningLibrary'));
 const LazyTeamPage = lazy(() => import('./pages/TeamPage'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -46,6 +47,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/annuity-education" element={<AnnuityEducation />} />
           <Route path="/learning-library" element={<LearningLibrary />} />
           <Route path="/planning-tools" element={<PlanningTools />} />
+          <Route path="/cd-replacement" element={<CDReplacement />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="*" element={<NotFound />} />
