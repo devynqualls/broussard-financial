@@ -7,7 +7,7 @@ export default function FederalBenefits() {
   return (
     <section className={styles.banner} aria-labelledby="fed-heading">
       <div className={styles.left}>
-        <div className={styles.kicker}>For Federal Employees</div>
+        <div className={styles.kicker}>Federal Retirement Consultants</div>
         <h2 className={styles.fedTitle} id="fed-heading">
           Make your <em>federal benefits</em> work together.
         </h2>
