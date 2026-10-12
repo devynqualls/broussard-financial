@@ -2,7 +2,7 @@ import {useEffect,useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import './AnalyticsConsent.css';
 const ID='G-YGZZWJMF6F';
-const permittedEvents=new Set(['booking_click','phone_click','inquiry_success','booking_complete']);
+const permittedEvents=new Set(['booking_click','phone_click','inquiry_success']);
 type AnalyticsWindow=Window & {dataLayer?:unknown[];gtag?:(...args:unknown[])=>void};
 export default function AnalyticsConsent(){
  const [choice,setChoice]=useState<'unset'|'yes'|'no'>('unset');

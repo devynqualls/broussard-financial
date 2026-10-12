@@ -1,7 +1,6 @@
 import {Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { CALENDLY_URL } from '../config/site';
 import { incomeGap, simulate } from '../utils/planning';
 import './PlanningTools.css';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
@@ -78,6 +77,6 @@ export default function PlanningTools() {
     </section>
     <div id="savings"><CompoundCalculator /></div>
     <CDCalculator />
-    <section className="planning-next"><h2>Put the numbers in context.</h2><p>Discuss your income needs, current accounts, trusts, life insurance, annuity options, or real estate goals in a complimentary consultation.</p><a href={CALENDLY_URL}>Schedule a free consultation →</a></section>
+    <section className="planning-next"><h2>Put the numbers in context.</h2><p>Discuss your income needs, current accounts, trusts, life insurance, annuity options, or real estate goals in a complimentary consultation.</p><a href="/book">Request a free consultation →</a></section>
   </div>;
 }

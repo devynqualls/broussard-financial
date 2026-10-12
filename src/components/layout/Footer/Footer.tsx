@@ -31,7 +31,7 @@ const resourceLinks = [
   { label: 'Federal Resources', to: '/federal-resources' },
   { label: 'Planning Tools', to: '/planning-tools' },
   { label: 'CD Replacement Comparison', to: '/cd-replacement' },
-  { label: 'Schedule a Call', to: '/#contact' },
+  { label: 'Request a Consultation', to: '/book' },
   { label: 'Free Benefits Analysis', to: '/#contact' },
   { label: 'Upcoming Seminars', to: '/#seminars' },
   { label: 'Tax Rate Reference', to: '/tax-planning' },

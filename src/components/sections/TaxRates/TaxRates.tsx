@@ -252,7 +252,7 @@ export default function TaxRates() {
             Simplified ordinary-income estimate using the basic standard deduction. Excludes credits, additional age/blindness and senior deductions, capital gains, qualified dividends, AMT, payroll and state taxes. Do not subtract contributions already excluded from your income. Negative amounts are not supported.
           </span>
           <a href="/#contact" className={styles.calcCtaLink}>
-            Schedule a Tax Planning Consultation →
+            Request a Tax Planning Consultation →
           </a>
         </div>
         <ReportActions targetId="tax-estimator" title="2026 federal tax estimate" disabled={!calcResult} />

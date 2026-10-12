@@ -6,7 +6,7 @@ import { z } from 'zod';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import styles from './Contact.module.css';
 import { sanitizeFormField } from '../../../utils/sanitize';
-import CalendlyEmbed from './CalendlyEmbed';
+import AppointmentRequest from '../../ui/AppointmentRequest';
 
 const contactSchema = z.object({
   firstName: z.string().min(1, 'First name is required').max(50),
@@ -106,7 +106,7 @@ export default function Contact() {
       body.append('message', data.message);
       body.append('honeypot', '');
 
-      const res = await fetch('/', {
+      const res = await fetch('/__forms.html', {
         method: 'POST',
         signal: AbortSignal.timeout(15000),
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -129,8 +129,8 @@ export default function Contact() {
 
   return (
     <section className={styles.contact} id="contact" aria-labelledby="contact-heading">
-      <div className="consultation-explainer"><h2>Your free consultation</h2><p>Bring your questions. No document upload is needed to book.</p></div>
-      <CalendlyEmbed />
+      <div className="consultation-explainer"><h2>Request your free consultation</h2><p>Choose any preferred day and time. We’ll assign an available consultant and contact you to confirm the appointment. No document upload is needed.</p></div>
+      <AppointmentRequest />
 
       <div className={styles.divider} aria-hidden="true">
         <span>or send us a message</span>

@@ -21,7 +21,7 @@ export default function CTABand() {
         </p>
       </div>
       <div className={styles.right}>
-        <Button href="/#contact" variant="primary">Schedule Free Consultation</Button>
+        <Button href="/book" variant="primary">Request Free Consultation</Button>
         {details.map((d, i) => (
           <div key={i} className={styles.detail}>{d}</div>
         ))}

@@ -14,7 +14,6 @@ const LazyCDReplacement = lazy(() => import('./pages/CDReplacement'));
 import ChatLauncher from './components/ui/ChatLauncher';
 import NotFound from './pages/NotFound';
 const LazyServicePage = lazy(() => import('./pages/ServicePage'));
-import { CALENDLY_URL } from './config/site';
 const LazyFederalPlanning = lazy(() => import('./pages/FederalPlanning'));
 const LazyFederalResources = lazy(() => import('./pages/FederalResources'));
 const LazyMilitaryRetirement = lazy(() => import('./pages/MilitaryRetirement'));
@@ -23,9 +22,10 @@ const LazyEstateChecklist = lazy(() => import('./pages/EstateChecklist'));
 const LazyAnnuityEducation = lazy(() => import('./pages/AnnuityEducation'));
 const LazyLearningLibrary = lazy(() => import('./pages/LearningLibrary'));
 const LazyTeamPage = lazy(() => import('./pages/TeamPage'));
+const LazyBookingPage = lazy(() => import('./pages/BookingPage'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -50,13 +50,14 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/cd-replacement" element={<CDReplacement />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />
+          <Route path="/book" element={<BookingPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes></Suspense>
       </main>
 
       <Footer />
       <AnalyticsConsent />
-      <nav className="mobile-contact-bar" aria-label="Quick contact"><a href="tel:+16195810010">Call us</a><a href={CALENDLY_URL}>Book a free consultation</a></nav>
+      <nav className="mobile-contact-bar" aria-label="Quick contact"><a href="tel:+16195810010">Call us</a><a href="/book">Request a consultation</a></nav>
       <ChatLauncher />
     </HelmetProvider>
   );

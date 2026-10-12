@@ -74,11 +74,11 @@ export default function Seminars() {
           <div className={styles.sideCard}>
             <div className={styles.sideCardTitle}>Can't attend live?</div>
             <p className={styles.sideCardBody}>
-              Schedule a private one-on-one consultation at a time that works for you — in
+              Request a private one-on-one consultation at a time that works for you — in
               person at our office or via video call from anywhere.
             </p>
             <Button href="/#contact" variant="primary" style={{ width: '100%', textAlign: 'center', display: 'block' }}>
-              Schedule Private Consultation
+              Request Private Consultation
             </Button>
           </div>
         </aside>

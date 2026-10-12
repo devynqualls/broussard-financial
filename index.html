@@ -16,25 +16,10 @@
     <!-- Content Security Policy -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://assets.calendly.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://stcdn.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com https://stcdn.leadconnectorhq.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://calendly.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com; frame-src https://calendly.com https://widgets.leadconnectorhq.com https://www.youtube-nocookie.com;"
+      content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com https://stcdn.leadconnectorhq.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://stcdn.leadconnectorhq.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://widgets.leadconnectorhq.com https://services.leadconnectorhq.com; frame-src https://widgets.leadconnectorhq.com https://www.youtube-nocookie.com;"
     />
   </head>
   <body>
-    <!--
-      Hidden form for Netlify build-time detection so the React form
-      submissions can be processed. Notification delivery must be configured
-      and verified in the hosting dashboard.
-    -->
-    <form name="contact" data-netlify="true" netlify-honeypot="honeypot" hidden>
-      <input type="text" name="firstName" />
-      <input type="text" name="lastName" />
-      <input type="email" name="email" />
-      <input type="tel" name="phone" />
-      <input type="text" name="topic" />
-      <textarea name="message"></textarea>
-      <input type="text" name="honeypot" />
-    </form>
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 

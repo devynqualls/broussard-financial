@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Nav.module.css';
 import { useScrollSpy } from '../../../hooks/useScrollSpy';
-import { CALENDLY_URL } from '../../../config/site';
 
 const HOME_SECTIONS = ['about', 'services', 'seminars', 'resources'];
 
@@ -91,9 +90,9 @@ export default function Nav() {
             );
           })}
           <li>
-            <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className={`${styles.link} ${styles.cta}`} onClick={handleLinkClick}>
-              Schedule a Call
-            </a>
+            <Link to="/book" className={`${styles.link} ${styles.cta}`} onClick={handleLinkClick}>
+              Request a Consultation
+            </Link>
           </li>
         </ul>
 

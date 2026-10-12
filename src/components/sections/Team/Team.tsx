@@ -1,6 +1,5 @@
 import styles from './Team.module.css';
 import { Button } from '../../ui/Button/Button';
-import { CALENDLY_URL, STONY_CALENDLY_URL } from '../../../config/site';
 
 type TeamMember = {
   id: string;
@@ -9,7 +8,7 @@ type TeamMember = {
   photo: string;
   body: string[];
   quote: string;
-  calendlyUrl?: string;
+  bookingPath?: string;
 };
 
 const team: TeamMember[] = [
@@ -25,7 +24,7 @@ const team: TeamMember[] = [
     ],
     quote:
       'A strong retirement plan is not just about growing money — it is about protecting what you have built, creating dependable income, and making confident decisions for the future.',
-    calendlyUrl: CALENDLY_URL,
+    bookingPath: '/book',
   },
   {
     id: 'stony-burks',
@@ -39,7 +38,7 @@ const team: TeamMember[] = [
     ],
     quote:
       'A meaningful retirement plan is not just about numbers — it is about creating dependable income, making smart decisions, and moving forward with confidence.',
-    calendlyUrl: STONY_CALENDLY_URL,
+    bookingPath: '/book',
   },
   {
     id: 'jerry-watkins',
@@ -105,10 +104,10 @@ export default function Team() {
                 <span className={styles.quoteMark} aria-hidden="true">“</span>
                 <span className={styles.quoteText}>{m.quote}</span>
               </blockquote>
-              {m.calendlyUrl && (
+              {m.bookingPath && (
                 <div className={styles.cta}>
-                  <Button href={m.calendlyUrl} variant="primary" target="_blank" rel="noopener noreferrer">
-                    Schedule a Call with {m.name.split(' ')[0]}
+                  <Button href={m.bookingPath} variant="primary">
+                    Request a Consultation
                   </Button>
                 </div>
               )}
