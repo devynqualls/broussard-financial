@@ -56,9 +56,9 @@ export default function Nav() {
         <div className={styles.brand}>
           <Link to="/" className={styles.logo} aria-label="Broussard Financial Services — home" onClick={handleLinkClick}>
             <img
-              src="/images/bfs-logo-web.webp"
+              src="/images/bfs-logo-nav.webp"
               alt="Broussard Financial Services"
-              width="2172" height="724"
+              width="320" height="107"
               className={styles.logoImg}
             />
           </Link>

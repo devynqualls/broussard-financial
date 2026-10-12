@@ -2,7 +2,7 @@ import {useEffect,useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import './AnalyticsConsent.css';
 const ID='G-YGZZWJMF6F';
-const permittedEvents=new Set(['booking_click','phone_click','inquiry_success']);
+const permittedEvents=new Set(['booking_click','phone_click','consultation_start','inquiry_success']);
 type AnalyticsWindow=Window & {dataLayer?:unknown[];gtag?:(...args:unknown[])=>void};
 export default function AnalyticsConsent(){
  const [choice,setChoice]=useState<'unset'|'yes'|'no'>('unset');
@@ -18,7 +18,7 @@ export default function AnalyticsConsent(){
    w.gtag('js',new Date());
    const script=document.createElement('script');script.id='bfs-google-analytics';script.async=true;script.src=`https://www.googletagmanager.com/gtag/js?id=${ID}`;document.head.appendChild(script);
   }
-  const safePath=['/','/team','/planning-tools','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning'].includes(pathname)?pathname:'/404';
+  const safePath=['/','/book','/team','/planning-tools','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning'].includes(pathname)?pathname:'/404';
   w.gtag('config',ID,{send_page_view:false,page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:'',allow_google_signals:false,allow_ad_personalization_signals:false});
   w.gtag('event','page_view',{page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:''});
   const track=(event:Event)=>{const name=(event as CustomEvent<{event:string}>).detail?.event;if(permittedEvents.has(name))w.gtag?.('event',name,{page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:''});};

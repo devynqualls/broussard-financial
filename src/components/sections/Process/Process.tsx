@@ -31,7 +31,7 @@ export default function Process() {
           A clear path, <em>at your pace.</em>
         </h2>
         <p className={styles.desc}>
-          A clear process, from your first questions to ongoing reviews.
+          From your first questions to ongoing reviews.
         </p>
       </div>
 

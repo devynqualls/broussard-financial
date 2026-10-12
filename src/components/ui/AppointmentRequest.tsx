@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore, type FormEvent } from 'react';
+import { useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import { sanitizeFormField } from '../../utils/sanitize';
 import { measure } from '../../utils/measurement';
@@ -20,6 +20,7 @@ function monthFor(today: string, offset: number) {
 }
 
 export default function AppointmentRequest() {
+  const hasStarted = useRef(false);
   const today = useSyncExternalStore(subscribeToDate, getToday, getServerToday);
   const [monthOffset, setMonthOffset] = useState(0);
   const [preferredDate, setPreferredDate] = useState('');
@@ -29,6 +30,11 @@ export default function AppointmentRequest() {
   const monthLabel = month?.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   const leadingDays = month?.getDay() ?? 0;
   const daysInMonth = month ? new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate() : 0;
+  const trackStart = () => {
+    if (hasStarted.current) return;
+    hasStarted.current = true;
+    measure('consultation_start');
+  };
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -108,7 +114,7 @@ export default function AppointmentRequest() {
     <p>Your appointment is not confirmed yet. Our team will review advisor availability and contact you to confirm the date, time, and consultant.</p>
   </div>;
 
-  return <form className={styles.wrap} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="honeypot" onSubmit={submit} aria-label="Consultation request form">
+  return <form className={styles.wrap} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="honeypot" onSubmit={submit} onFocusCapture={trackStart} aria-label="Consultation request form">
     <input type="hidden" name="form-name" value="contact" />
     <input type="text" name="honeypot" className={styles.honeypot} tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className={styles.calendar} aria-label="Choose a preferred date">
