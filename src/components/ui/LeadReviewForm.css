@@ -1,0 +1,18 @@
+.lead-review{margin:36px 0;padding:32px;border:1px solid #bdcbbd;border-left:6px solid #456b58;border-radius:10px;background:#f0f5ef}
+.lead-review h2{margin:0 0 10px;font:400 clamp(26px,3vw,34px)/1.2 var(--serif);color:#243e35}
+.lead-review p{max-width:720px;line-height:1.6}
+.lead-review form>label{display:block;margin-top:16px;font-size:14px;font-weight:600}
+.lead-review-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
+.lead-review-fields label{font-size:14px;font-weight:600}
+.lead-review input:not([type=checkbox]),.lead-review textarea{display:block;width:100%;margin-top:7px;padding:12px;border:1px solid #9ea99f;border-radius:5px;background:#fff;color:#243e35;font:inherit}
+.lead-review input:focus-visible,.lead-review textarea:focus-visible,.lead-review button:focus-visible{outline:3px solid #a28043;outline-offset:2px}
+.lead-review .lead-review-consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;line-height:1.5}
+.lead-review-consent input{width:18px;height:18px;flex:0 0 auto;margin-top:2px}
+.lead-review .lead-review-note{font-size:13px;color:#4f5b50}
+.lead-review button{padding:13px 20px;border:0;border-radius:5px;background:#243e35;color:#fff;font:inherit;font-weight:700;cursor:pointer}
+.lead-review button:disabled{opacity:.6;cursor:wait}
+.lead-review .lead-review-error{color:#9e2f22}
+.lead-review .lead-review-success{padding:16px;border-radius:5px;background:#e1eee2;font-weight:600}
+.lead-review-honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important}
+@media(max-width:600px){.lead-review{padding:24px 16px}.lead-review-fields{grid-template-columns:1fr}}
+@media print{.lead-review{display:none}}

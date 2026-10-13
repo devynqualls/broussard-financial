@@ -20,6 +20,7 @@ const companyLinks = [
   { label: 'Our Services', to: '/#services' },
   { label: 'Seminars & Events', to: '/#seminars' },
   { label: 'Contact Us', to: '/#contact' },
+  { label: 'Website Privacy Notice', to: '/privacy' },
 ];
 
 const resourceLinks = [

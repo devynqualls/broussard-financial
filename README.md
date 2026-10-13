@@ -2,6 +2,8 @@
 
 React/Vite website with prerendered public pages, educational calculators, Netlify Forms, and a Netlify lead-verification function.
 
+The three first-party review paths, lead-source fields, and the human follow-up process are documented in [the lead-generation runbook](docs/lead-generation-runbook.md). The site captures inquiries; newsletter sending, webinar dates, and advisor assignment remain operational steps outside the static website.
+
 ## Deploy
 
 Use Node 24. The repository includes the build command, publish directory, function directory, security headers, and asset caching in `netlify.toml`.

@@ -2,6 +2,7 @@ import { useRef, useState, useSyncExternalStore, type FormEvent } from 'react';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import { sanitizeFormField } from '../../utils/sanitize';
 import { measure } from '../../utils/measurement';
+import { leadAttributionFields } from '../../utils/leadAttribution';
 import styles from './AppointmentRequest.module.css';
 
 const pad = (value: number) => String(value).padStart(2, '0');
@@ -94,6 +95,9 @@ export default function AppointmentRequest() {
         message: `CONSULTATION REQUEST — NOT YET CONFIRMED\nPreferred: ${appointmentDay} at ${preferredTime} (${zone})\nMeeting format: ${format}\nInterest: ${topic}${notes ? `\nNotes: ${notes}` : ''}\nPlease assign an available consultant and confirm the appointment with the client.`,
         honeypot: String(values.get('honeypot') ?? ''),
       });
+      for (const [key, value] of leadAttributionFields()) body.set(key, value);
+      body.set('inquiryPage', window.location.pathname);
+      body.set('marketingConsent', 'No');
       const response = await fetch('/__forms.html', {
         method: 'POST',
         signal: AbortSignal.timeout(15_000),
@@ -103,6 +107,7 @@ export default function AppointmentRequest() {
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
       setStatus('sent');
       measure('inquiry_success');
+      measure('generate_lead');
     } catch {
       setError('We could not send your request. Please call (619) 581-0010 or email info@broussardfinancialservices.com.');
       setStatus('idle');
@@ -116,6 +121,8 @@ export default function AppointmentRequest() {
 
   return <form className={styles.wrap} name="contact" method="POST" data-netlify="true" data-netlify-honeypot="honeypot" onSubmit={submit} onFocusCapture={trackStart} aria-label="Consultation request form">
     <input type="hidden" name="form-name" value="contact" />
+    <input type="hidden" name="leadSourcePath" /><input type="hidden" name="inquiryPage" />
+    <input type="hidden" name="utmSource" /><input type="hidden" name="utmMedium" /><input type="hidden" name="utmCampaign" /><input type="hidden" name="marketingConsent" />
     <input type="text" name="honeypot" className={styles.honeypot} tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <div className={styles.calendar} aria-label="Choose a preferred date">
       <div className={styles.calendarTop}>

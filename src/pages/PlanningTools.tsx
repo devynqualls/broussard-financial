@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { incomeGap, simulate } from '../utils/planning';
 import './PlanningTools.css';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
+import LeadReviewForm from '../components/ui/LeadReviewForm';
 import CDCalculator from '../components/sections/CDCalculator';
 import {historicalDeclines} from '../utils/historicalDeclines';
 import CompoundCalculator from '../components/sections/CompoundCalculator';
@@ -51,6 +52,7 @@ export default function PlanningTools() {
       {!incomeValid?<p role="alert">Enter nonnegative amounts up to $100 million in every field.</p>:<div className="planning-results" aria-live="polite"><div><small>Total monthly income</small><strong>{money(gap.income)}</strong></div><div><small>{gap.gap>0?'Monthly income gap':'Monthly surplus'}</small><strong>{money(gap.gap||gap.surplus)}</strong></div><div><small>{gap.gap>0?'Annual income gap':'Annual surplus'}</small><strong>{money((gap.gap||gap.surplus)*12)}</strong></div></div>}
       <p className="tool-note">A gap is the amount you would need from savings or other sources. A surplus does not establish that your retirement plan is sufficient. This snapshot does not project future changes in income, expenses, or taxes.</p>
       <ReportActions targetId="gap" title="Retirement income gap" disabled={!incomeValid} />
+      <LeadReviewForm topic="Retirement income review" />
       <ConsultationCTA label="Discuss my retirement income" />
     </section>
     <section className="planning-card" id="market" aria-labelledby="market-title"><span>02 · EXPLORE A WHAT-IF</span><h2 id="market-title">TSP &amp; market-decline simulator</h2><p>Explore a TSP or other investment account with the same hypothetical decline early or later in a 25-year retirement. This does not model individual TSP funds or their actual returns.</p>

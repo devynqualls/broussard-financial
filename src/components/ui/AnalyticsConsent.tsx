@@ -1,8 +1,20 @@
 import {useEffect,useState} from 'react';
 import {useLocation} from 'react-router-dom';
 import './AnalyticsConsent.css';
+import { safeCampaignValue } from '../../utils/leadAttribution';
 const ID='G-YGZZWJMF6F';
-const permittedEvents=new Set(['booking_click','phone_click','consultation_start','inquiry_success']);
+const permittedEvents=new Set(['booking_click','phone_click','consultation_start','inquiry_success','generate_lead']);
+const trackedPaths=new Set(['/','/book','/team','/privacy','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning']);
+function measurementLocation(pathname:string){
+ const path=trackedPaths.has(pathname)?pathname:'/404';
+ const params=new URLSearchParams(window.location.search);
+ const safe=new URLSearchParams();
+ for(const key of ['utm_source','utm_medium','utm_campaign']){
+  const value=safeCampaignValue(key as 'utm_source'|'utm_medium'|'utm_campaign',params.get(key)||'');
+  if(value)safe.set(key,value);
+ }
+ return 'https://www.broussardfinancialservices.com'+path+(safe.size?'?'+safe.toString():'');
+}
 type AnalyticsWindow=Window & {dataLayer?:unknown[];gtag?:(...args:unknown[])=>void};
 export default function AnalyticsConsent(){
  const [choice,setChoice]=useState<'unset'|'yes'|'no'>('unset');
@@ -18,10 +30,10 @@ export default function AnalyticsConsent(){
    w.gtag('js',new Date());
    const script=document.createElement('script');script.id='bfs-google-analytics';script.async=true;script.src=`https://www.googletagmanager.com/gtag/js?id=${ID}`;document.head.appendChild(script);
   }
-  const safePath=['/','/book','/team','/planning-tools','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning'].includes(pathname)?pathname:'/404';
-  w.gtag('config',ID,{send_page_view:false,page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:'',allow_google_signals:false,allow_ad_personalization_signals:false});
-  w.gtag('event','page_view',{page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:''});
-  const track=(event:Event)=>{const name=(event as CustomEvent<{event:string}>).detail?.event;if(permittedEvents.has(name))w.gtag?.('event',name,{page_location:'https://www.broussardfinancialservices.com'+safePath,page_referrer:''});};
+  const pageLocation=measurementLocation(pathname);
+  w.gtag('config',ID,{send_page_view:false,page_location:pageLocation,allow_google_signals:false,allow_ad_personalization_signals:false});
+  w.gtag('event','page_view',{page_location:pageLocation});
+  const track=(event:Event)=>{const name=(event as CustomEvent<{event:string}>).detail?.event;if(permittedEvents.has(name))w.gtag?.('event',name,{page_location:pageLocation});};
   window.addEventListener('bfs:measurement',track);return()=>window.removeEventListener('bfs:measurement',track);
  },[choice,pathname]);
  function choose(next:'yes'|'no'){

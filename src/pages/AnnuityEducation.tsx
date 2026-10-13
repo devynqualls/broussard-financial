@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import AnnuityBenefits from '../components/sections/AnnuityBenefits';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
+import LeadReviewForm from '../components/ui/LeadReviewForm';
 import './PlanningTools.css';
 
 const reviewQuestions = [
@@ -48,6 +49,7 @@ export default function AnnuityEducation() {
       <ol>{reviewQuestions.map(question => <li key={question}>{question}</li>)}</ol>
       <p className="tool-note">Annuities are long-term insurance contracts. Features and guarantees vary by contract; review costs, liquidity, and tax treatment before deciding. <a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/annuities">Read the SEC’s annuity guide →</a></p>
     </section>
+    <LeadReviewForm topic="Retirement income review" />
     <ConsultationCTA label="Talk with us about safe retirement income" />
   </div>;
 }

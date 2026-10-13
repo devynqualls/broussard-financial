@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { isValidPhoneNumber } from 'libphonenumber-js';
 import styles from './Contact.module.css';
 import { sanitizeFormField } from '../../../utils/sanitize';
+import { leadAttributionFields } from '../../../utils/leadAttribution';
 import AppointmentRequest from '../../ui/AppointmentRequest';
 
 const contactSchema = z.object({
@@ -105,6 +106,9 @@ export default function Contact() {
       body.append('topic', data.topic);
       body.append('message', data.message);
       body.append('honeypot', '');
+      for (const [key, value] of leadAttributionFields()) body.set(key, value);
+      body.set('inquiryPage', window.location.pathname);
+      body.set('marketingConsent', 'No');
 
       const res = await fetch('/__forms.html', {
         method: 'POST',
@@ -119,6 +123,7 @@ export default function Contact() {
 
       setSubmitted(true);
       measure('inquiry_success');
+      measure('generate_lead');
     } catch (err) {
       console.error(err);
       setSubmitError(
@@ -182,6 +187,8 @@ export default function Contact() {
             aria-label="Contact form"
           >
             <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="leadSourcePath" /><input type="hidden" name="inquiryPage" />
+            <input type="hidden" name="utmSource" /><input type="hidden" name="utmMedium" /><input type="hidden" name="utmCampaign" /><input type="hidden" name="marketingConsent" />
 
             {/* Honeypot — hidden from real users, bots fill it in */}
             <input

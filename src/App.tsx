@@ -23,9 +23,10 @@ const LazyAnnuityEducation = lazy(() => import('./pages/AnnuityEducation'));
 const LazyLearningLibrary = lazy(() => import('./pages/LearningLibrary'));
 const LazyTeamPage = lazy(() => import('./pages/TeamPage'));
 const LazyBookingPage = lazy(() => import('./pages/BookingPage'));
+const LazyPrivacy = lazy(() => import('./pages/Privacy'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage,Privacy=LazyPrivacy}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -51,6 +52,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/book" element={<BookingPage />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes></Suspense>
       </main>
