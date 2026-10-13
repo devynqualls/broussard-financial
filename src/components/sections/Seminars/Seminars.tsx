@@ -3,6 +3,7 @@ import styles from './Seminars.module.css';
 import { initialSeminars } from '../../../data/seminars';
 import type { Seminar } from '../../../types';
 import { Button } from '../../ui/Button/Button';
+import { Link } from 'react-router-dom';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -46,9 +47,7 @@ export default function Seminars() {
         <h2 className={styles.title} id="seminars-heading">
           Upcoming seminars <em>&amp; events</em>
         </h2>
-        <p className={styles.desc}>
-          Join us for live educational events — free to attend, no obligation.
-        </p>
+        <p className={styles.desc}>Join us for free educational events. Get notified when the next date is announced.</p>
       </div>
 
       <div className={styles.grid}>
@@ -61,12 +60,11 @@ export default function Seminars() {
           </div>
         ) : (
           <div className={styles.empty}>
-            <div className={styles.emptyTitle}>No upcoming events scheduled</div>
-            <p className={styles.emptyBody}>
-              New seminars and webinars will be posted here as they're announced. In the
-              meantime, leave your details below for upcoming event announcements.
-            </p>
-            <SeminarSignup />
+            <span className={styles.campaignLabel}>FEATURED SEMINAR · DATE TO BE ANNOUNCED</span>
+            <h3 className={styles.emptyTitle}>From retirement savings to a retirement paycheck</h3>
+            <p className={styles.emptyBody}>Rene Broussard will discuss retirement income choices for adults 59½ and older, including annuity income, account and rollover decisions, and beneficiary and trust coordination.</p>
+            <Link className={styles.campaignLink} to="/retirement-income-seminar">See the seminar and get notified →</Link>
+            <small className={styles.campaignNote}>The date is not set. This is an interest list, not a reservation.</small>
           </div>
         )}
 

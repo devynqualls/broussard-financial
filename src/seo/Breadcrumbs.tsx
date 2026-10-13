@@ -3,6 +3,7 @@ import {Link, useLocation} from 'react-router-dom';
 
 const labels:Record<string,string>={
  '/team':'Our team', '/book':'Request a consultation', '/privacy':'Website privacy notice', '/planning-tools':'Retirement planning tools', '/cd-replacement':'CD replacement comparison',
+ '/retirement-income-seminar':'Retirement income seminar',
  '/federal-planning':'Federal retirement planning', '/federal-resources':'Federal employee resources',
  '/military-retirement':'Military retirement & TSP',
  '/tax-planning':'Tax planning', '/estate-planning-checklist':'Estate planning checklist',

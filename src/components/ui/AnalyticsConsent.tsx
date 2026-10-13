@@ -4,7 +4,7 @@ import './AnalyticsConsent.css';
 import { safeCampaignValue } from '../../utils/leadAttribution';
 const ID='G-YGZZWJMF6F';
 const permittedEvents=new Set(['booking_click','phone_click','consultation_start','inquiry_success','generate_lead']);
-const trackedPaths=new Set(['/','/book','/team','/privacy','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning']);
+const trackedPaths=new Set(['/','/book','/team','/privacy','/retirement-income-seminar','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library','/services/trust-reviews','/services/annuities','/services/life-insurance','/services/real-estate','/services/retirement-income','/services/federal-retirement','/services/tsp-planning']);
 function measurementLocation(pathname:string){
  const path=trackedPaths.has(pathname)?pathname:'/404';
  const params=new URLSearchParams(window.location.search);

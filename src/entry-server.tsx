@@ -13,13 +13,14 @@ import ServicePage from './pages/ServicePage';
 import TeamPage from './pages/TeamPage';
 import BookingPage from './pages/BookingPage';
 import Privacy from './pages/Privacy';
+import RetirementIncomeSeminar from './pages/RetirementIncomeSeminar';
 import {renderToString} from 'react-dom/server';
 import {StaticRouter} from 'react-router-dom';
 import type {HelmetServerState} from 'react-helmet-async';
 import App from './App';
 export async function render(url:string){
  const context:{helmet?:HelmetServerState}={};
- const body=renderToString(<StaticRouter location={url}><App helmetContext={context} pages={{LearningLibrary,AnnuityEducation,EstateChecklist,TaxPlanning,FederalPlanning,FederalResources,MilitaryRetirement,Home,PlanningTools,CDReplacement,ServicePage,TeamPage,BookingPage,Privacy}}/></StaticRouter>);
+ const body=renderToString(<StaticRouter location={url}><App helmetContext={context} pages={{LearningLibrary,AnnuityEducation,EstateChecklist,TaxPlanning,FederalPlanning,FederalResources,MilitaryRetirement,Home,PlanningTools,CDReplacement,ServicePage,TeamPage,BookingPage,Privacy,RetirementIncomeSeminar}}/></StaticRouter>);
  const h=context.helmet;
  return {body,head:h?[h.title,h.meta,h.link,h.script].map(t=>t.toString()).join(''):''};
 }
