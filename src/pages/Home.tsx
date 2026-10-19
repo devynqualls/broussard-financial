@@ -31,16 +31,12 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Retirement Planning in San Diego | Broussard Financial Services</title>
+        <title>Financial Planning in San Diego | Broussard Financial Services</title>
         <meta
           name="description"
-          content="San Diego retirement planning for federal employees, retirees and families. Explore income, TSP, estate planning, trusts and insurance. Free consultations."
+          content="San Diego financial planning for adults approaching or living in retirement. Explore income, savings, Social Security, insurance, and estate priorities with a free initial consultation."
         />
-        <meta
-          name="keywords"
-          content="retirement planning, financial advisor, AIF fiduciary, TSP education, federal employee benefits, tax planning, Social Security planning, lifetime income planning, living trust"
-        />
-        <meta property="og:title" content="Retirement Planning | Broussard Financial Services" />
+        <meta property="og:title" content="Financial Planning in San Diego | Broussard Financial Services" />
         <meta
           property="og:description"
           content="Helping you build a confident retirement with personalized income strategies, tax planning, and wealth protection. Serving clients nationwide."
@@ -52,7 +48,7 @@ export default function Home() {
         <meta property="og:image" content="https://www.broussardfinancialservices.com/images/bfs-logo-clean.png" />
         <meta property="og:image:alt" content="Broussard Financial Services" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Retirement Planning | Broussard Financial Services" />
+        <meta name="twitter:title" content="Financial Planning in San Diego | Broussard Financial Services" />
         <meta
           name="twitter:description"
           content="Helping you build a confident retirement with personalized income strategies, tax planning, and wealth protection. Serving clients nationwide."

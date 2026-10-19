@@ -8,8 +8,9 @@ const schema = {
       '@id': 'https://www.broussardfinancialservices.com/#business',
       name: 'Broussard Financial Services',
       description:
-        'Retirement planning, tax reduction, and wealth protection for business owners, federal employees, and high net worth individuals in San Diego.',
+        'Financial planning and retirement income guidance for adults approaching or living in retirement, including federal employees and families in San Diego.',
       url: 'https://www.broussardfinancialservices.com',
+      logo: 'https://www.broussardfinancialservices.com/images/bfs-logo-web.webp',
       telephone: '+16195810010',
       priceRange: 'Free initial consultation',
       address: {
@@ -44,6 +45,7 @@ const schema = {
         containedInPlace: { '@type': 'State', name: 'California' },
       },
       serviceType: [
+        'Financial Planning',
         'Retirement Income Planning',
         'Tax Planning',
         'Social Security Planning',
@@ -66,7 +68,7 @@ const schema = {
       url: 'https://www.broussardfinancialservices.com',
       name: 'Broussard Financial Services',
       description:
-        'Retirement planning and tax reduction for business owners, federal employees, and high net worth individuals in San Diego, CA.',
+        'Financial planning, retirement income, and federal benefits guidance in San Diego, California.',
     },
     {
       '@type': 'Person',

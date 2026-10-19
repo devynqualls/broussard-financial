@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const routes=['/','/team','/book','/retirement-income-seminar','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library',...['trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s)];
+const routes=['/','/team','/book','/retirement-income-seminar','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library',...['financial-planning','trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s)];
 for(const route of routes){
  const html=fs.readFileSync('dist'+(route==='/'?'/index.html':route+'/index.html'),'utf8');
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1,route);
@@ -16,6 +16,11 @@ for(const route of routes){
  for(const match of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) JSON.parse(match[1]);
 }
 assert(fs.readFileSync('dist/404.html','utf8').includes('noindex'));
+const financialPlanningHtml=fs.readFileSync('dist/services/financial-planning/index.html','utf8');
+assert(financialPlanningHtml.includes('Financial Planning in San Diego'),'local planning page must have a distinct title and heading');
+assert(financialPlanningHtml.includes('1420 Kettner Blvd, Suite 321'),'local planning page must identify the actual office');
+assert(fs.readFileSync('dist/index.html','utf8').includes('href="/services/financial-planning"'),'homepage must link to financial planning page');
+assert(fs.readFileSync('dist/sitemap.xml','utf8').includes('/services/financial-planning'),'sitemap must include financial planning page');
 const formSkeleton=fs.readFileSync('dist/__forms.html','utf8');
 assert(formSkeleton.includes('name="contact"')&&formSkeleton.includes('data-netlify="true"'),'contact form must be detectable by Netlify');
 const bookingHtml=fs.readFileSync('dist/book/index.html','utf8');

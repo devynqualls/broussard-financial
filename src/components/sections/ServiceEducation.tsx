@@ -5,6 +5,7 @@ const questions:Record<string,string>={
  'real-estate':'What location, timeline, and budget fit your goals? Investment property involves ongoing expenses, vacancy risk, and potential loss; projected rent is not guaranteed income.',
  'life-insurance':'Who relies on your income, how long might they need support, and what coverage do you already have? Policy costs and eligibility depend on the product and underwriting.',
  'retirement-income':'What spending must your income cover, and how would you handle unexpected costs or a decline while withdrawing? Compare essential expenses with other goals and consider taxes, fees, and access to savings.',
+ 'financial-planning':'How much income will you need, what sources can provide it, and which risks or family priorities matter most? Start with your current benefits and accounts before comparing strategies.',
  'federal-retirement':'How do your pension start date, Social Security timing, survivor election, and TSP withdrawals fit together? Confirm personal eligibility and benefit estimates with your agency benefits office.',
  'tsp-planning':'What would change if you kept money in TSP or moved it? Compare fees, investment choices, withdrawal flexibility, services, and account protections before making a decision. A rollover is not automatically an improvement.'
 };

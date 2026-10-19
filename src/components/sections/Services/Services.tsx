@@ -17,7 +17,7 @@ export default function Services() {
         {services.filter(svc=>['financial-planning','lifetime-income','living-trust','benefit-analysis','life-insurance','real-estate'].includes(svc.id)).map((svc) => (
           <a
             key={svc.id}
-            href={({ 'financial-planning':'/services/retirement-income', 'benefit-analysis':'/services/federal-retirement', 'tsp-education':'/services/tsp-planning', 'living-trust':'/services/trust-reviews', 'lifetime-income':'/services/annuities', 'life-insurance':'/services/life-insurance', 'real-estate':'/services/real-estate' } as Record<string,string>)[svc.id] || '#contact'}
+            href={({ 'financial-planning':'/services/financial-planning', 'benefit-analysis':'/services/federal-retirement', 'tsp-education':'/services/tsp-planning', 'living-trust':'/services/trust-reviews', 'lifetime-income':'/services/annuities', 'life-insurance':'/services/life-insurance', 'real-estate':'/services/real-estate' } as Record<string,string>)[svc.id] || '#contact'}
             className={styles.card}
           >
             <div className={styles.num}>{svc.num}</div>

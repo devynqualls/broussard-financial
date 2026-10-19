@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
-  {label:'Financial Planning',to:'/services/retirement-income'},
+  {label:'Financial Planning',to:'/services/financial-planning'},
   {label:'Annuity Reviews & Income Planning',to:'/services/annuities'},
   {label:'Tax Planning',to:'/#resources'},
   {label:'Social Security Planning',to:'/#contact'},
