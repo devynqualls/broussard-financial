@@ -31,6 +31,23 @@ export default function FederalPlanning(){
  return <div className="planning-page"><Helmet><title>Federal Retirement Planning Center | Broussard Financial Services</title><meta name="description" content="Explore FERS eligibility, pension and survivor estimates, your retirement paycheck, and a federal employee retirement checklist."/><link rel="canonical" href="https://www.broussardfinancialservices.com/federal-planning"/></Helmet>
  <header className="planning-intro"><span>FOR CIVILIAN FEDERAL EMPLOYEES</span><h1>Your next chapter.<br/><em>A clearer retirement picture.</em></h1><p>Connect your retirement date, pension and monthly budget. Free to use, with no signup. Your entries stay in this page and reset when you reload.</p><Link to="/federal-resources">Official federal employee resources →</Link></header>
  <nav className="tool-directory" aria-label="Federal planning sections">{[['eligibility','When can I retire?'],['paycheck','My retirement paycheck'],['survivor','Protect my household'],['checklist','My readiness checklist']].map(([id,title])=><a href={'#'+id} key={id}>{title} →</a>)}</nav>
+ <section className="federal-planning-feature" id="federal-guidance" aria-labelledby="federal-guidance-title">
+   <div className="federal-planning-feature-copy">
+     <span>PERSONAL GUIDANCE</span>
+     <h2 id="federal-guidance-title">Retirement paperwork assistance, start to finish</h2>
+     <p>Meet one-on-one with our federal retirement consultants to work through decisions shaped by your agency, service history, and retirement date.</p>
+     <h3>TSP &amp; income planning</h3>
+     <p>We help you understand how your Thrift Savings Plan, pension, Social Security, and insurance choices fit together.</p>
+     <ul>
+       <li>Plan how your TSP fits your retirement income</li>
+       <li>Understand withdrawal and rollover options</li>
+       <li>Compare financial products that may complement your federal benefits</li>
+       <li>Build a retirement income distribution strategy</li>
+     </ul>
+     <Link className="federal-planning-feature-cta" to="/book">Request a federal retirement review →</Link>
+   </div>
+   <figure><img src="/images/team/rene.jpg" alt="Rene Broussard, Federal Retirement Consultant" loading="lazy" width="629" height="963"/><figcaption>Rene Broussard · Federal Retirement Consultant</figcaption></figure>
+ </section>
  <p className="tool-note">Civilian FERS estimates only; this calculator does not estimate military retired pay. See our <Link to="/military-retirement">military retirement &amp; TSP guide</Link> for that topic. Educational estimates for regular FERS and qualifying special-provisions FERS employees with at least five years of creditable civilian service. Agency-confirmed coverage is required; job title alone does not qualify you. CSRS, disability, deferred/postponed, part-time and mixed CSRS/FERS cases need individual review. No sick-leave credit, supplement, COLAs or deposit adjustments are included.</p>
  <section className="planning-card" id="eligibility"><span>01 · YOUR DATE & PENSION</span><h2>When could you retire?</h2><p>Enter your age and creditable service at the proposed separation date. This assumes your pension starts immediately. Exclude unused sick leave from service here.</p>
  <label className="tool-field">Retirement coverage<select value={category} onChange={ev=>setCategory(ev.target.value)}>{retirementCategories.map(([value,label])=><option key={value} value={value}>{label}</option>)}</select></label>
