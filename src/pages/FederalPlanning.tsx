@@ -46,7 +46,7 @@ export default function FederalPlanning(){
      </ul>
      <Link className="federal-planning-feature-cta" to="/book">Request a federal retirement review →</Link>
    </div>
-   <figure><img src="/images/team/rene.jpg" alt="Rene Broussard, Federal Retirement Consultant" loading="lazy" width="629" height="963"/><figcaption>Rene Broussard · Federal Retirement Consultant</figcaption></figure>
+   <figure><img src="/images/federal-retirement-consultation.jpg" alt="Advisor and client reviewing retirement paperwork together" loading="lazy" width="1200" height="800"/></figure>
  </section>
  <p className="tool-note">Civilian FERS estimates only; this calculator does not estimate military retired pay. See our <Link to="/military-retirement">military retirement &amp; TSP guide</Link> for that topic. Educational estimates for regular FERS and qualifying special-provisions FERS employees with at least five years of creditable civilian service. Agency-confirmed coverage is required; job title alone does not qualify you. CSRS, disability, deferred/postponed, part-time and mixed CSRS/FERS cases need individual review. No sick-leave credit, supplement, COLAs or deposit adjustments are included.</p>
  <section className="planning-card" id="eligibility"><span>01 · YOUR DATE & PENSION</span><h2>When could you retire?</h2><p>Enter your age and creditable service at the proposed separation date. This assumes your pension starts immediately. Exclude unused sick leave from service here.</p>
