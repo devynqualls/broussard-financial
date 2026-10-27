@@ -18,6 +18,7 @@ const LazyFederalPlanning = lazy(() => import('./pages/FederalPlanning'));
 const LazyFederalResources = lazy(() => import('./pages/FederalResources'));
 const LazyMilitaryRetirement = lazy(() => import('./pages/MilitaryRetirement'));
 const LazyTaxPlanning = lazy(() => import('./pages/TaxPlanning'));
+const LazyMedicareIrmaa = lazy(() => import('./pages/MedicareIrmaa'));
 const LazyEstateChecklist = lazy(() => import('./pages/EstateChecklist'));
 const LazyAnnuityEducation = lazy(() => import('./pages/AnnuityEducation'));
 const LazyLearningLibrary = lazy(() => import('./pages/LearningLibrary'));
@@ -27,7 +28,7 @@ const LazyPrivacy = lazy(() => import('./pages/Privacy'));
 const LazyRetirementIncomeSeminar = lazy(() => import('./pages/RetirementIncomeSeminar'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage,Privacy=LazyPrivacy,RetirementIncomeSeminar=LazyRetirementIncomeSeminar}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,MedicareIrmaa=LazyMedicareIrmaa,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage,Privacy=LazyPrivacy,RetirementIncomeSeminar=LazyRetirementIncomeSeminar}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -45,6 +46,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/federal-resources" element={<FederalResources />} />
           <Route path="/military-retirement" element={<MilitaryRetirement />} />
           <Route path="/tax-planning" element={<TaxPlanning />} />
+          <Route path="/medicare-irmaa" element={<MedicareIrmaa />} />
           <Route path="/estate-planning-checklist" element={<EstateChecklist />} />
           <Route path="/annuity-education" element={<AnnuityEducation />} />
           <Route path="/learning-library" element={<LearningLibrary />} />

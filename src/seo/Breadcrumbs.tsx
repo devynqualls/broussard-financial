@@ -6,7 +6,7 @@ const labels:Record<string,string>={
  '/retirement-income-seminar':'Retirement income seminar',
  '/federal-planning':'Federal retirement planning', '/federal-resources':'Federal employee resources',
  '/military-retirement':'Military retirement & TSP',
- '/tax-planning':'Tax planning', '/estate-planning-checklist':'Estate planning checklist',
+ '/tax-planning':'Tax planning', '/medicare-irmaa':'Medicare IRMAA calculator', '/estate-planning-checklist':'Estate planning checklist',
  '/annuity-education':'Annuity education', '/learning-library':'Learning library',
  '/services/trust-reviews':'Estate planning & trust services', '/services/annuities':'Annuity reviews',
  '/services/life-insurance':'Life insurance', '/services/real-estate':'Real estate',
@@ -19,7 +19,7 @@ export default function Breadcrumbs(){
  const label=labels[pathname.replace(/\/$/,'')];
  if(!label)return null;
  const items=[{name:'Home',path:'/'}];
- if(pathname==='/cd-replacement')items.push({name:'Retirement planning tools',path:'/planning-tools'});
+ if(['/cd-replacement','/medicare-irmaa'].includes(pathname))items.push({name:'Retirement planning tools',path:'/planning-tools'});
  if(['/estate-planning-checklist','/annuity-education','/military-retirement'].includes(pathname))items.push({name:'Learning library',path:'/learning-library'});
  items.push({name:label,path:pathname});
  const schema={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:items.map((item,index)=>({'@type':'ListItem',position:index+1,name:item.name,item:'https://www.broussardfinancialservices.com'+item.path}))};

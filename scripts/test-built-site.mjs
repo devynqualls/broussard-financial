@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const routes=['/','/team','/book','/retirement-income-seminar','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/estate-planning-checklist','/annuity-education','/learning-library',...['financial-planning','trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s)];
+const routes=['/','/team','/book','/retirement-income-seminar','/planning-tools','/cd-replacement','/federal-planning','/federal-resources','/military-retirement','/tax-planning','/medicare-irmaa','/estate-planning-checklist','/annuity-education','/learning-library',...['financial-planning','trust-reviews','annuities','life-insurance','real-estate','retirement-income','federal-retirement','tsp-planning'].map(s=>'/services/'+s)];
 for(const route of routes){
  const html=fs.readFileSync('dist'+(route==='/'?'/index.html':route+'/index.html'),'utf8');
  assert.equal((html.match(/<h1[ >]/g)||[]).length,1,route);
