@@ -29,12 +29,12 @@ const team: TeamMember[] = [
   {
     id: 'stony-burks',
     name: 'Stony Burks',
-    role: 'Federal Retirement Consultant · Retirement Income Planning Specialist',
+    role: 'Retirement Income Planning Specialist · Federal Retirement Consultant',
     photo: '/images/team/stony-candidate.webp',
     body: [
-      'Stony Burks is a Retirement Income Planning Specialist who helps individuals, families, and federal employees build clear, practical retirement strategies. His focus includes retirement income planning, TSP planning, Social Security timing, annuities, life insurance, and long-term financial protection.',
-      'Stony takes a holistic approach to retirement planning by helping clients connect income, taxes, risk, insurance, legacy goals, and future retirement needs into one coordinated plan. His style is clear, educational, and straightforward, giving clients the clarity they need to make confident financial decisions.',
-      'Outside of work, Stony enjoys fishing, golf, and spending time with family.',
+      'Stony Burks helps clients with financial planning for retirement, with a focus on dependable income and the decisions that shape it. He works with individuals, families, and federal employees on TSP planning, Social Security timing, annuities, life insurance, and long-term financial protection.',
+      'Stony also works with real estate from the investment and property management side. He helps clients consider how property income, costs, and responsibilities fit into their broader retirement picture. His approach is clear, educational, and practical, connecting income, taxes, risk, insurance, and legacy goals in one coordinated plan.',
+      'Outside of work, Stony enjoys fishing, golf, pickleball, and spending time with his family.',
     ],
     quote:
       'A meaningful retirement plan is not just about numbers — it is about creating dependable income, making smart decisions, and moving forward with confidence.',
