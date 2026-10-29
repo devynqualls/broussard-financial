@@ -71,17 +71,6 @@ export default function Home() {
 
       <section className="home-resources" id="resources" aria-labelledby="resources-heading"><div><span>EXPLORE AT YOUR OWN PACE</span><h2 id="resources-heading">Turn questions into a clearer plan.</h2><p>Explore free tools. No signup or account numbers needed.</p></div><nav aria-label="Planning resources"><Link to="/learning-library">Learning library &amp; estate checklist →</Link><Link to="/planning-tools">Income, savings &amp; market scenarios →</Link><Link to="/federal-planning">Federal retirement planning center →</Link><Link to="/tax-planning">2026 tax reference &amp; estimator →</Link><Link to="/federal-resources">Official civilian federal benefits resources →</Link><Link to="/military-retirement">Military retirement &amp; TSP guide →</Link></nav></section>
 
-      <section className="home-review-offers" aria-labelledby="review-offers-heading">
-        <span>START WITH YOUR QUESTION</span>
-        <h2 id="review-offers-heading">Choose the review that fits your next decision.</h2>
-        <p>Each starts with a free conversation with a Broussard consultant. Tell us what you want to understand, and we will contact you to arrange a time.</p>
-        <div className="home-review-grid">
-          <Link to="/services/annuities"><strong>Retirement income review</strong><small>Monthly income needs and existing annuity questions</small><span>Request a review →</span></Link>
-          <Link to="/services/federal-retirement"><strong>Federal retirement review</strong><small>FERS, TSP, Social Security, and survivor choices</small><span>Request a review →</span></Link>
-          <Link to="/services/trust-reviews"><strong>Trust and estate review</strong><small>Existing trusts, trust accounts, updates, and new trusts</small><span>Request a review →</span></Link>
-        </div>
-      </section>
-
       <ErrorBoundary sectionName="Seminars">
         <Seminars />
       </ErrorBoundary>
