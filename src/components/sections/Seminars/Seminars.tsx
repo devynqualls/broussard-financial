@@ -60,10 +60,10 @@ export default function Seminars() {
           </div>
         ) : (
           <div className={styles.empty}>
-            <span className={styles.campaignLabel}>RETIREMENT INCOME SEMINAR</span>
+            <span className={styles.campaignLabel}>FEATURED SEMINAR · DATE TO BE ANNOUNCED</span>
             <h3 className={styles.emptyTitle}>From retirement savings to a retirement paycheck</h3>
             <p className={styles.emptyBody}>Rene Broussard will discuss retirement income choices for adults 59½ and older, including annuity income, account and rollover decisions, and beneficiary and trust coordination.</p>
-            <Link className={styles.campaignLink} to="/retirement-income-seminar">Join the interest list →</Link>
+            <Link className={styles.campaignLink} to="/retirement-income-seminar">See the seminar and get notified →</Link>
             <small className={styles.campaignNote}>The date is not set. This is an interest list, not a reservation.</small>
           </div>
         )}

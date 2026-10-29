@@ -14,7 +14,7 @@ export default function Services() {
       </div>
 
       <div className={styles.grid}>
-        {services.filter(svc=>['financial-planning','lifetime-income','living-trust','benefit-analysis'].includes(svc.id)).map((svc, index) => (
+        {services.filter(svc=>['financial-planning','lifetime-income','living-trust','tax-planning','benefit-analysis','life-insurance','real-estate'].includes(svc.id)).map((svc, index) => (
           <a
             key={svc.id}
             href={({ 'financial-planning':'/services/financial-planning', 'tax-planning':'/services/tax-planning', 'benefit-analysis':'/services/federal-retirement', 'tsp-education':'/services/tsp-planning', 'living-trust':'/services/trust-reviews', 'lifetime-income':'/services/annuities', 'life-insurance':'/services/life-insurance', 'real-estate':'/services/real-estate' } as Record<string,string>)[svc.id] || '#contact'}
@@ -27,7 +27,7 @@ export default function Services() {
           </a>
         ))}
       </div>
-      <p className={styles.additional}>More ways we can help: <a href="/services/tax-planning">tax planning</a>, <a href="/services/life-insurance">life insurance</a>, <a href="/services/real-estate">real estate</a>, and <a href="/services/tsp-planning">TSP education</a>.</p><p className={styles.note}>Trust reviews and consultations are complimentary. Annuity guarantees depend on the issuing insurer’s financial strength and claims-paying ability and are subject to contract terms.</p>
+      <p className={styles.additional}>Also explore <a href="/services/tsp-planning">TSP education</a>, our <a href="/tax-planning">tax reference and estimator</a>, and <a href="#contact">Social Security and long-term care planning</a>.</p><p className={styles.note}>Trust reviews and consultations are complimentary. Annuity guarantees depend on the issuing insurer’s financial strength and claims-paying ability and are subject to contract terms.</p>
     </section>
   );
 }
