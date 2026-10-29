@@ -112,7 +112,7 @@ export default function Footer() {
         without understanding your individual financial situation. All strategies and
         investments involve risk, including the possible loss of principal. Past performance
         is not indicative of future results. Insurance and annuity products are backed by the
-        financial strength and claims-paying ability of the issuing company. We recommend
+        financial strength and claims-paying ability of the issuing company. Consider
         consulting with qualified professionals before making any financial decisions. Tax rate
         information is for Tax Year 2026 per IRS Revenue Procedure 2025-32 and is subject to change.
       </div>}

@@ -43,10 +43,10 @@ const team: TeamMember[] = [
   {
     id: 'jerry-watkins',
     name: 'Jerry Watkins',
-    role: 'Retirement Income Planning Specialist',
+    role: 'Retirement Income Planning Specialist · Federal Retirement Consultant',
     photo: '/images/team/jerry.jpg',
     body: [
-      'Jerry Watkins is a Retirement Income Planning Specialist who helps individuals, families, and federal employees create clear, practical retirement strategies. His focus includes retirement income planning, TSP planning, Social Security timing, annuities, life insurance, and long-term financial protection.',
+      'Jerry Watkins is a Retirement Income Planning Specialist and Federal Retirement Consultant who helps individuals, families, and federal employees create clear, practical retirement strategies. His focus includes retirement income planning, TSP planning, Social Security timing, annuities, life insurance, and long-term financial protection.',
       'Jerry takes a holistic approach by helping clients connect the major pieces of their financial life — income, taxes, risk, insurance, legacy goals, and future retirement needs — into one coordinated plan. His process is direct, educational, and numbers-driven to help clients make confident decisions without unnecessary complexity.',
       'Outside of work, Jerry enjoys fishing and spending time with family.',
     ],

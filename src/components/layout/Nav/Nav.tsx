@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './Nav.module.css';
 import { useScrollSpy } from '../../../hooks/useScrollSpy';
 
-const HOME_SECTIONS = ['about', 'services', 'seminars', 'resources'];
+const HOME_SECTIONS = ['services', 'about', 'resources', 'seminars'];
 
 type NavLink = {
   label: string;

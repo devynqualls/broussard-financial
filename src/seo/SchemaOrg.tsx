@@ -89,7 +89,7 @@ const schema = {
       '@type': 'Person',
       '@id': 'https://www.broussardfinancialservices.com/#jerry-watkins',
       name: 'Jerry Watkins',
-      jobTitle: 'Retirement Income Planning Specialist',
+      jobTitle: 'Retirement Income Planning Specialist · Federal Retirement Consultant',
       image: 'https://www.broussardfinancialservices.com/images/team/jerry.jpg',
       worksFor: { '@id': 'https://www.broussardfinancialservices.com/#business' },
     },
