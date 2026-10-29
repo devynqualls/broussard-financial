@@ -30,7 +30,7 @@ const team: TeamMember[] = [
     id: 'stony-burks',
     name: 'Stony Burks',
     role: 'Federal Retirement Consultant · Retirement Income Planning Specialist',
-    photo: '/images/team/stony.jpg',
+    photo: '/images/team/stony-candidate.webp',
     body: [
       'Stony Burks is a Retirement Income Planning Specialist who helps individuals, families, and federal employees build clear, practical retirement strategies. His focus includes retirement income planning, TSP planning, Social Security timing, annuities, life insurance, and long-term financial protection.',
       'Stony takes a holistic approach to retirement planning by helping clients connect income, taxes, risk, insurance, legacy goals, and future retirement needs into one coordinated plan. His style is clear, educational, and straightforward, giving clients the clarity they need to make confident financial decisions.',
