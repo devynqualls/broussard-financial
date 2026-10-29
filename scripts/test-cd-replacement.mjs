@@ -9,7 +9,7 @@ const { calculateCDReplacement } = await import('data:text/javascript;base64,' +
 const input = {
   deposit: 100000, cdRate: 3.5, mygaRate: 6.3, taxRate: 24, years: 10,
   simpleIndexReturn: 4, simpleMultiplier: 2.45,
-  bonusPercent: 15, bonusIndexReturn: 13, bonusMultiplier: 0.45,
+  bonusPercent: 15, bonusVestingYears: 10, bonusIndexReturn: 13, bonusMultiplier: 0.45,
   bonusInBasis: true,
 };
 const result = calculateCDReplacement(input);
@@ -25,4 +25,18 @@ assert.equal(rounded(result.bonusAfterTaxWithOriginalBasis), 178319);
 assert.equal(rounded(calculateCDReplacement({ ...input, bonusInBasis: false }).end.bonusFia), 178319);
 assert.equal(calculateCDReplacement({ ...input, cdRate: 0 }).end.cd, input.deposit);
 assert.equal(calculateCDReplacement({ ...input, taxRate: 100 }).simpleEquivalentCDRate, null);
-console.log('10 CD replacement checks passed: reference outputs, yearly growth, tax-basis alternatives, and rate comparison.');
+const zeroCredit = calculateCDReplacement({ ...input,
+  simpleIndexReturn: 7, simpleMultiplier: 0, bonusIndexReturn: 7, bonusMultiplier: 0,
+  bonusInBasis: false,
+});
+assert.equal(zeroCredit.simpleCredit, 0);
+assert.equal(zeroCredit.bonusCredit, 0);
+assert.equal(rounded(zeroCredit.end.simpleFia), 100000);
+assert.equal(rounded(zeroCredit.end.bonusFia), 111400);
+const earlyExit = calculateCDReplacement({ ...input, years: 5, bonusPercent: 18,
+  bonusIndexReturn: 7, bonusMultiplier: 0, bonusInBasis: false });
+assert.equal(earlyExit.rows[4].bonusVestedPercent, 0.5);
+assert.equal(rounded(earlyExit.rows[4].bonusFia), 118000);
+assert.equal(rounded(earlyExit.rows[4].bonusFiaVested), 109000);
+assert.equal(rounded(earlyExit.end.bonusFia), 106840);
+console.log('18 CD replacement checks passed: reference outputs, zero-multiplier case, bonus vesting, tax-basis alternatives, and rate comparison.');

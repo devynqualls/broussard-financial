@@ -2,16 +2,17 @@ import ConsultationCTA from '../ui/ConsultationCTA';
 import { useState } from 'react';
 import { compoundGrowth } from '../../utils/planning';
 import ReportActions from '../ui/ReportActions';
+import HelpHint from '../ui/HelpHint';
 
 const money=(n:number)=>n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
 export default function CompoundCalculator(){
  const [values,setValues]=useState({principal:'10000',monthly:'250',years:'20',rate:'5'});
- const fields=[{key:'principal',label:'Starting balance ($)',max:100000000},{key:'monthly',label:'Monthly contribution ($)',max:1000000},{key:'years',label:'Years to grow',max:60},{key:'rate',label:'Assumed annual rate (%)',max:20}];
+ const fields=[{key:'principal',label:'Starting balance ($)',max:100000000,help:'Enter the amount already saved at the start. This is included in total contributions.'},{key:'monthly',label:'Monthly contribution ($)',max:1000000,help:'Enter the amount added at the end of each month. Use zero if there will be no additions.'},{key:'years',label:'Years to grow',max:60,help:'Enter the number of full years to project, from 1 through 60.'},{key:'rate',label:'Assumed annual rate (%)',max:20,help:'Enter an annual growth assumption, such as 5 for 5%. The calculator divides it into monthly periods; it is not a quoted product rate.'}];
  const valid=fields.every(f=>{const v=values[f.key as keyof typeof values];return v.trim()!==''&&Number.isFinite(+v)&&+v>=0&&+v<=f.max})&&Number.isInteger(+values.years)&&+values.years>=1;
  const rows=valid?compoundGrowth(+values.principal,+values.monthly,+values.years,+values.rate):[];
  const final=rows.at(-1);
- return <section className="planning-card" id="compound" aria-labelledby="compound-title"><span>03 · TIME & CONSISTENCY</span><h2 id="compound-title">Compound-interest calculator</h2><p>Explore how a starting balance and regular monthly contributions could grow over time.</p>
- <div className="planning-inputs">{fields.map(f=><label className="tool-field" key={f.key}>{f.label}<input type="number" min={f.key==='years'?1:0} max={f.max} step={f.key==='years'?1:'any'} value={values[f.key as keyof typeof values]} onChange={e=>setValues({...values,[f.key]:e.target.value})}/></label>)}</div>
+ return <section className="planning-card" id="compound" aria-labelledby="compound-title"><span>03 · TIME & CONSISTENCY</span><h2 id="compound-title">Compound-interest calculator <HelpHint text="Enter a starting amount, monthly deposits, time, and a growth assumption. Review the ending balance, your deposits, and the year-by-year table." /></h2><p>Explore how a starting balance and regular monthly contributions could grow over time.</p>
+ <div className="planning-inputs">{fields.map(f=><label className="tool-field" key={f.key}>{f.label}<HelpHint text={f.help}/><input type="number" min={f.key==='years'?1:0} max={f.max} step={f.key==='years'?1:'any'} value={values[f.key as keyof typeof values]} onChange={e=>setValues({...values,[f.key]:e.target.value})}/></label>)}</div>
  {!valid?<p role="alert">Enter a starting balance of $0–$100 million, monthly contributions of $0–$1 million, 1–60 whole years, and an annual rate of 0–20%.</p>:final&&<>
  <div className="planning-results" aria-live="polite"><div><small>Projected ending balance</small><strong>{money(final.balance)}</strong></div><div><small>Your total contributions</small><strong>{money(final.contributions)}</strong></div><div><small>Projected growth</small><strong>{money(final.balance-final.contributions)}</strong></div></div>
  <svg className="planning-chart" viewBox="0 0 760 300" role="img" aria-label="Projected balance and total contributions over time. Exact annual amounts are available in the table below.">

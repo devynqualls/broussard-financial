@@ -5,12 +5,17 @@ import { measure } from '../../utils/measurement';
 import { sanitizeFormField } from '../../utils/sanitize';
 import './LeadReviewForm.css';
 
-type ReviewTopic = 'Financial planning consultation' | 'Federal retirement review' | 'Retirement income review' | 'Trust and estate review';
+type ReviewTopic = 'Financial planning consultation' | 'Retirement tax planning consultation' | 'Federal retirement review' | 'Retirement income review' | 'Trust and estate review';
 
 const copy: Record<ReviewTopic, { title: string; detail: string; button: string }> = {
   'Financial planning consultation': {
     title: 'Request a free financial planning consultation',
     detail: 'Tell us which retirement, income, or family-planning questions are on your mind. We will contact you to arrange a time with a consultant.',
+    button: 'Request my consultation',
+  },
+  'Retirement tax planning consultation': {
+    title: 'Request a free retirement tax planning consultation',
+    detail: 'Tell us which retirement income and tax timing questions you want to discuss. We will contact you to arrange a time with a consultant.',
     button: 'Request my consultation',
   },
   'Federal retirement review': {

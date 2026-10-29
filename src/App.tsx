@@ -8,6 +8,7 @@ import Nav from './components/layout/Nav/Nav';
 import Footer from './components/layout/Footer/Footer';
 import SchemaOrg from './seo/SchemaOrg';
 import Breadcrumbs from './seo/Breadcrumbs';
+import RouteScroll from './components/ui/RouteScroll';
 const LazyHome = lazy(() => import('./pages/Home'));
 const LazyPlanningTools = lazy(() => import('./pages/PlanningTools'));
 const LazyCDReplacement = lazy(() => import('./pages/CDReplacement'));
@@ -33,6 +34,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
       <Measurement />
+      <RouteScroll />
 
       <a href="#main-content" className="skip-link">Skip to main content</a>
 

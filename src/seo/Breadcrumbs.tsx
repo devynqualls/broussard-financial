@@ -11,6 +11,7 @@ const labels:Record<string,string>={
  '/services/trust-reviews':'Estate planning & trust services', '/services/annuities':'Annuity reviews',
  '/services/life-insurance':'Life insurance', '/services/real-estate':'Real estate',
  '/services/retirement-income':'Retirement income planning',
+ '/services/tax-planning':'Retirement tax planning',
  '/services/financial-planning':'Financial planning in San Diego',
  '/services/federal-retirement':'Federal employee retirement planning', '/services/tsp-planning':'TSP planning',
 };

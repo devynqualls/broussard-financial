@@ -15,7 +15,9 @@ assert.ok(Math.abs(simulate(1000,0,0,100,0,10,0)[2].withdrawal-110)<0.005);
 const a=simulate(500000,60,30,0,4,0,1),b=simulate(500000,60,30,0,4,0,10);
 assert.ok(Math.abs(a[25].balance-b[25].balance)<0.0001);
 assert.ok(simulate(500000,60,30,24000,4,2,1)[10].balance < simulate(500000,60,30,24000,4,2,10)[10].balance);
-console.log('11 planning checks passed: gap, surplus, loss exposure, withdrawals, depletion, inflation, and return-order effects.');
+assert.deepEqual(simulate(100000,60,0,5000,4,0,1),simulate(100000,60,0,5000,4,0,0));
+assert.deepEqual(simulate(100000,0,30,5000,4,0,1),simulate(100000,0,30,5000,4,0,0));
+console.log('13 planning checks passed: gap, surplus, loss exposure, zero-decline behavior, withdrawals, depletion, inflation, and return-order effects.');
 
 
 assert.equal(compoundGrowth(1000,100,2,0)[2].balance,3400);

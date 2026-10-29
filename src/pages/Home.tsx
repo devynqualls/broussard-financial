@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ErrorBoundary } from '../components/ui/ErrorBoundary/ErrorBoundary';
 import Hero from '../components/sections/Hero/Hero';
@@ -15,26 +13,13 @@ import Contact from '../components/sections/Contact/Contact';
 import ClientReviews from '../components/sections/ClientReviews';
 
 export default function Home() {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (!hash) return;
-    const id = hash.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      requestAnimationFrame(() => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
-  }, [hash]);
-
   return (
     <>
       <Helmet>
         <title>Financial Planning in San Diego | Broussard Financial Services</title>
         <meta
           name="description"
-          content="San Diego financial planning for adults approaching or living in retirement. Explore income, savings, Social Security, insurance, and estate priorities with a free initial consultation."
+          content="Financial planning for people nearing or in retirement. Based in San Diego and serving clients nationwide, with guidance on income, Social Security, annuities, and federal benefits."
         />
         <meta property="og:title" content="Financial Planning in San Diego | Broussard Financial Services" />
         <meta
@@ -91,8 +76,8 @@ export default function Home() {
         <h2 id="review-offers-heading">Choose the review that fits your next decision.</h2>
         <p>Each starts with a free conversation with a Broussard consultant. Tell us what you want to understand, and we will contact you to arrange a time.</p>
         <div className="home-review-grid">
-          <Link to="/services/federal-retirement"><strong>Federal retirement review</strong><small>FERS, TSP, Social Security, and survivor choices</small><span>Request a review →</span></Link>
           <Link to="/services/annuities"><strong>Retirement income review</strong><small>Monthly income needs and existing annuity questions</small><span>Request a review →</span></Link>
+          <Link to="/services/federal-retirement"><strong>Federal retirement review</strong><small>FERS, TSP, Social Security, and survivor choices</small><span>Request a review →</span></Link>
           <Link to="/services/trust-reviews"><strong>Trust and estate review</strong><small>Existing trusts, trust accounts, updates, and new trusts</small><span>Request a review →</span></Link>
         </div>
       </section>

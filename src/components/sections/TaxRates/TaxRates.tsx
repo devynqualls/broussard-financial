@@ -5,6 +5,7 @@ import { useTaxCalc } from '../../../hooks/useTaxCalc';
 import { formatCurrency, formatPercent } from '../../../utils/formatCurrency';
 import type { FilingStatus } from '../../../types';
 import ReportActions from '../../ui/ReportActions';
+import HelpHint from '../../ui/HelpHint';
 
 const deductionLimits = [
   { label: 'Standard deduction (Single)', value: formatCurrency(STANDARD_DEDUCTIONS_2026.single) },
@@ -159,13 +160,13 @@ export default function TaxRates() {
 
       <div className={styles.calculator} id="tax-estimator" aria-labelledby="calc-heading">
         <div className={styles.calcHead}>
-          <div className={styles.calcTitle} id="calc-heading">Quick Tax Estimator — 2026</div>
+          <div className={styles.calcTitle} id="calc-heading">Quick Tax Estimator — 2026 <HelpHint text="Enter annual ordinary income, filing status, and any additional deductions. Review taxable income, estimated federal tax, effective rate, and marginal bracket." /></div>
           <div className={styles.calcSubtitle}>Estimate your federal income tax liability</div>
         </div>
         <div className={styles.calcBody}>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="grossIncome">
-              Gross Annual Income <span>(before deductions)</span>
+              Gross Annual Income <span>(before deductions)</span><HelpHint text="Enter annual income before the standard deduction. Use income that has not already been excluded, such as taxable wages or pension payments." />
             </label>
             <input
               type="number"
@@ -179,7 +180,7 @@ export default function TaxRates() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="calcFilingStatus">
-              Filing Status
+              Filing Status<HelpHint text="Choose the filing status that applies to this tax estimate. It determines the standard deduction and tax brackets used." />
             </label>
             <select
               id="calcFilingStatus"
@@ -194,7 +195,7 @@ export default function TaxRates() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="additionalDeductions">
-              Eligible Adjustments <span>(not already excluded from income)</span>
+              Eligible Adjustments <span>(not already excluded from income)</span><HelpHint text="Enter additional allowable deductions or adjustments that this simplified model should subtract. Do not enter amounts already excluded from gross income." />
             </label>
             <input
               type="number"
@@ -208,7 +209,7 @@ export default function TaxRates() {
           </div>
           <div className={styles.inputGroup}>
             <label className={styles.inputLabel} htmlFor="otherIncome">
-              Other Ordinary Income <span>(taxable pension, rental, etc.)</span>
+              Other Ordinary Income <span>(taxable pension, rental, etc.)</span><HelpHint text="Add taxable pension, rental, or other ordinary income not included in the first income field. This is added before deductions." />
             </label>
             <input
               type="number"

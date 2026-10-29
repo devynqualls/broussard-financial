@@ -49,8 +49,8 @@ const contactDetails = [
   { label: 'Office Address', value: '1420 Kettner Blvd, Suite 321\nSan Diego, CA 92101' },
   { label: 'Phone', value: '(619) 581-0010' },
   { label: 'Email', value: 'info@broussardfinancialservices.com' },
-  { label: 'Office Hours', value: 'Monday – Friday: 9:00 AM – 5:00 PM PT\nSaturday & Sunday: Closed\nAppointments outside office hours require prior approval.' },
-  { label: 'Serving', value: 'Clients nationwide\nIn-person & virtual consultations available' },
+  { label: 'Office Hours', value: 'Monday – Friday: 9:00 AM – 5:00 PM PT\nSaturday & Sunday: Closed\nOffice visits are by appointment only. Appointments outside office hours require prior approval.' },
+  { label: 'Serving', value: 'Clients nationwide\nIn-person meetings by appointment and virtual consultations available' },
 ];
 
 export default function Contact() {

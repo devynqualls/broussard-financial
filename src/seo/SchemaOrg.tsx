@@ -8,7 +8,7 @@ const schema = {
       '@id': 'https://www.broussardfinancialservices.com/#business',
       name: 'Broussard Financial Services',
       description:
-        'Financial planning and retirement income guidance for adults approaching or living in retirement, including federal employees and families in San Diego.',
+        'San Diego-based financial planning and retirement income guidance for clients nationwide, including federal employees and families.',
       url: 'https://www.broussardfinancialservices.com',
       logo: 'https://www.broussardfinancialservices.com/images/bfs-logo-web.webp',
       telephone: '+16195810010',
@@ -39,11 +39,10 @@ const schema = {
         name: 'Rene Broussard',
         jobTitle: 'Accredited Investment Fiduciary (AIF®)',
       },
-      areaServed: {
-        '@type': 'City',
-        name: 'San Diego',
-        containedInPlace: { '@type': 'State', name: 'California' },
-      },
+      areaServed: [
+        { '@type': 'City', name: 'San Diego', containedInPlace: { '@type': 'State', name: 'California' } },
+        { '@type': 'Country', name: 'United States' },
+      ],
       serviceType: [
         'Financial Planning',
         'Retirement Income Planning',
@@ -68,7 +67,7 @@ const schema = {
       url: 'https://www.broussardfinancialservices.com',
       name: 'Broussard Financial Services',
       description:
-        'Financial planning, retirement income, and federal benefits guidance in San Diego, California.',
+        'San Diego-based financial planning, retirement income, and federal benefits guidance for clients nationwide.',
     },
     {
       '@type': 'Person',

@@ -3,7 +3,7 @@ import { Button } from '../../ui/Button/Button';
 
 const details = [
   'Complimentary, 30-minute consultation',
-  'Available in person or virtually — nationwide',
+  'Office visits by appointment; virtual consultations nationwide',
   '(619) 581-0010',
   '1420 Kettner Blvd, Suite 321, San Diego',
 ];

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-type Props = { targetId: string; title: string; disabled?: boolean; relatedIds?: string[] };
+type Props = { targetId: string; title: string; disabled?: boolean; relatedIds?: string[]; showReportFooter?: boolean };
 
 const escapeHtml = (value: string) => value.replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -35,7 +35,7 @@ function copySection(source: HTMLElement): string {
   return copy.outerHTML;
 }
 
-function reportHtml(targetId: string, title: string, relatedIds: string[]): string | null {
+function reportHtml(targetId: string, title: string, relatedIds: string[], showReportFooter: boolean): string | null {
   const sources = [...relatedIds, targetId].map(id => document.getElementById(id));
   if (sources.some(source => !source)) return null;
   const content = sources.map(source => copySection(source!)).join('\n');
@@ -61,14 +61,14 @@ function reportHtml(targetId: string, title: string, relatedIds: string[]): stri
     .report-shell .planning-card{margin:0}
     .report-foot{border-top:1px solid #ccc;margin-top:24px;padding-top:12px}
     @media print{.report-shell{padding:0;max-width:none}.report-actions{display:none!important}.report-foot{display:block!important}.report-head{break-inside:avoid-page}.planning-card{break-inside:auto}a{color:inherit;text-decoration:none}body{print-color-adjust:exact}}
-  </style></head><body><main class="report-shell"><header class="report-head"><strong>Broussard Financial Services</strong><h1>${escapeHtml(title)}</h1><p>Prepared ${escapeHtml(generated)} from ${escapeHtml(sourceUrl)}. Your entries were processed in your browser; this report was not sent to us.</p></header><div class="report-actions"><button type="button" onclick="window.print()">Print or save as PDF</button></div><div class="planning-page">${content}</div><footer class="report-foot">Educational planning illustration, not a personalized recommendation or a guarantee. Review the assumptions and limitations above before relying on these numbers. Keep saved reports in a secure location.</footer></main></body></html>`;
+  </style></head><body><main class="report-shell"><header class="report-head"><strong>Broussard Financial Services</strong><h1>${escapeHtml(title)}</h1><p>Prepared ${escapeHtml(generated)} from ${escapeHtml(sourceUrl)}. Your entries were processed in your browser; this report was not sent to us.</p></header><div class="report-actions"><button type="button" onclick="window.print()">Print or save as PDF</button></div><div class="planning-page">${content}</div>${showReportFooter ? '<footer class="report-foot">Educational planning illustration, not a personalized recommendation or a guarantee. Review the assumptions and limitations above before relying on these numbers. Keep saved reports in a secure location.</footer>' : ''}</main></body></html>`;
 }
 
-export default function ReportActions({ targetId, title, disabled = false, relatedIds = [] }: Props) {
+export default function ReportActions({ targetId, title, disabled = false, relatedIds = [], showReportFooter = true }: Props) {
   const [preview, setPreview] = useState('');
   const dialog = useRef<HTMLDialogElement>(null);
   const frame = useRef<HTMLIFrameElement>(null);
-  const create = () => reportHtml(targetId, title, relatedIds);
+  const create = () => reportHtml(targetId, title, relatedIds, showReportFooter);
   const fileName = `${targetId}-report.html`;
 
   function print() {

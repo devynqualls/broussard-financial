@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 const serviceLinks = [
   {label:'Financial Planning',to:'/services/financial-planning'},
   {label:'Annuity Reviews & Income Planning',to:'/services/annuities'},
-  {label:'Tax Planning',to:'/#resources'},
+  {label:'Tax Planning',to:'/services/tax-planning'},
   {label:'Social Security Planning',to:'/#contact'},
   {label:'Estate Planning & Trust Services',to:'/services/trust-reviews'},
   {label:'Life Insurance',to:'/services/life-insurance'},
@@ -39,6 +39,7 @@ const resourceLinks = [
 ];
 
 export default function Footer() {
+  const { pathname } = useLocation();
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
@@ -51,6 +52,7 @@ export default function Footer() {
           <address className={styles.addr}>
             1420 Kettner Blvd, Suite 321<br />
             San Diego, CA 92101<br />
+            Office visits by appointment only<br />
             Office:{' '}
             <a href="tel:+16195810010" className={styles.addrLink}>(619) 581-0010</a><br />
             Email:{' '}
@@ -103,7 +105,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className={styles.disclaimer}>
+      {pathname !== '/cd-replacement' && <div className={styles.disclaimer}>
         The information provided on this website is for educational and informational purposes
         only and should not be construed as investment, tax, or legal advice. Broussard
         Financial Services and its representatives do not provide specific recommendations
@@ -113,7 +115,7 @@ export default function Footer() {
         financial strength and claims-paying ability of the issuing company. We recommend
         consulting with qualified professionals before making any financial decisions. Tax rate
         information is for Tax Year 2026 per IRS Revenue Procedure 2025-32 and is subject to change.
-      </div>
+      </div>}
     </footer>
   );
 }

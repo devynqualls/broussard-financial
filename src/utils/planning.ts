@@ -15,7 +15,8 @@ export function simulate(balance: number, exposed: number, decline: number, with
   const rows = [{ year: 0, balance, withdrawal: 0, shortfall: 0 }];
   for (let year = 1; year <= years; year++) {
     // One-time loss replaces normal return in the shock year; withdrawals follow returns.
-    balance *= year === crashYear ? 1 - exposed / 100 * decline / 100 : 1 + growth / 100;
+    const hasShock = year === crashYear && exposed > 0 && decline > 0;
+    balance *= hasShock ? 1 - exposed / 100 * decline / 100 : 1 + growth / 100;
     const requested = withdrawal * Math.pow(1 + inflation / 100, year - 1);
     const paid = Math.min(balance, requested);
     balance = Math.max(0, balance - paid);

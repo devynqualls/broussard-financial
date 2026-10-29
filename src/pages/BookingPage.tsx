@@ -14,7 +14,7 @@ export default function BookingPage() {
       <div className={styles.intro}>
         <span className={styles.eyebrow}>Your free consultation</span>
         <h1 id="booking-heading">Request a time to talk with us.</h1>
-        <p>Choose any preferred date and time. We’ll check our consultants’ availability and contact you to confirm who you’ll meet with. No appointment is booked until we confirm it.</p>
+        <p>Choose any preferred date and time. We’ll check our consultants’ availability and contact you to confirm who you’ll meet with. San Diego office visits are by appointment only. No appointment is booked until we confirm it.</p>
       </div>
       <AppointmentRequest />
       <p className={styles.help}>Prefer to talk with our office? Call <a href="tel:+16195810010">(619) 581-0010</a> or email <a href="mailto:info@broussardfinancialservices.com">info@broussardfinancialservices.com</a>.</p>
