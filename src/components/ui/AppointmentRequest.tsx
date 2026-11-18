@@ -85,6 +85,8 @@ export default function AppointmentRequest() {
       const format = sanitizeFormField(String(values.get('format') ?? 'Phone call'), 40);
       const zone = sanitizeFormField(String(values.get('timeZone') ?? 'Pacific Time'), 60);
       const notes = sanitizeFormField(String(values.get('notes') ?? ''), 800);
+      const retirementTiming = sanitizeFormField(String(values.get('retirementTiming') ?? ''), 80);
+      const mainConcern = sanitizeFormField(String(values.get('mainConcern') ?? ''), 80);
       const body = new URLSearchParams({
         'form-name': 'contact',
         firstName,
@@ -92,7 +94,9 @@ export default function AppointmentRequest() {
         email,
         phone,
         topic: `Appointment request: ${topic}`,
-        message: `CONSULTATION REQUEST — NOT YET CONFIRMED\nPreferred: ${appointmentDay} at ${preferredTime} (${zone})\nMeeting format: ${format}\nInterest: ${topic}${notes ? `\nNotes: ${notes}` : ''}\nPlease assign an available consultant and confirm the appointment with the client.`,
+        retirementTiming,
+        mainConcern,
+        message: `CONSULTATION REQUEST — NOT YET CONFIRMED\nPreferred: ${appointmentDay} at ${preferredTime} (${zone})\nMeeting format: ${format}\nInterest: ${topic}${retirementTiming ? `\nRetirement timing: ${retirementTiming}` : ''}${mainConcern ? `\nMain concern: ${mainConcern}` : ''}${notes ? `\nNotes: ${notes}` : ''}\nPlease assign an available consultant and confirm the appointment with the client.`,
         honeypot: String(values.get('honeypot') ?? ''),
       });
       for (const [key, value] of leadAttributionFields()) body.set(key, value);
@@ -162,6 +166,10 @@ export default function AppointmentRequest() {
         <label>Phone<input type="tel" name="phone" autoComplete="tel" maxLength={40} required /></label>
       </div>
       <label>What would you like to discuss?<select name="interest" defaultValue="General consultation"><option>General consultation</option><option>Federal retirement and TSP</option><option>Retirement income and annuities</option><option>Estate planning and trusts</option><option>Life insurance</option><option>Real estate</option><option>Other</option></select></label>
+      <div className={styles.row}>
+        <label>When are you planning to retire? (optional)<select name="retirementTiming" defaultValue=""><option value="">Select if applicable</option><option>Already retired</option><option>Within 12 months</option><option>In 1–3 years</option><option>More than 3 years away</option><option>Not sure yet</option></select></label>
+        <label>What concerns you most? (optional)<select name="mainConcern" defaultValue=""><option value="">Select a concern</option><option>Reliable retirement income</option><option>Market risk</option><option>Taxes and Medicare costs</option><option>Federal benefits and TSP</option><option>Family and estate planning</option><option>Something else</option></select></label>
+      </div>
       <label>Other times or details (optional)<textarea name="notes" rows={3} maxLength={800} placeholder="Share another time that could work. Please do not include account numbers or sensitive financial information." /></label>
       {error && <p className={styles.error} role="alert">{error}</p>}
       <button className={styles.submit} type="submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending request…' : 'Request a consultation'}</button>
