@@ -29,7 +29,9 @@ export default function AnalyticsConsent(){
   if(choice!=='yes'||!['www.broussardfinancialservices.com','broussardfinancialservices.com'].includes(window.location.hostname))return;
   const w=window as AnalyticsWindow;
   w.dataLayer=w.dataLayer||[];
-  w.gtag=w.gtag||((...args:unknown[])=>{w.dataLayer!.push(args)});
+  // Google Tag reads the Arguments object placed on dataLayer by its standard snippet.
+  // eslint-disable-next-line prefer-rest-params
+  w.gtag=w.gtag||function(){w.dataLayer!.push(arguments)};
   if(!document.getElementById('bfs-google-analytics')){
    w.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
    w.gtag('js',new Date());
