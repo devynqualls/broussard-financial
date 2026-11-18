@@ -16,8 +16,13 @@ function measurementLocation(pathname:string){
  return 'https://www.broussardfinancialservices.com'+path+(safe.size?'?'+safe.toString():'');
 }
 type AnalyticsWindow=Window & {dataLayer?:unknown[];gtag?:(...args:unknown[])=>void};
+const choiceKey='bfs_analytics_choice';
+function savedChoice(): 'unset'|'yes'|'no' {
+ try { const value=sessionStorage.getItem(choiceKey); return value==='yes'||value==='no'?value:'unset'; }
+ catch { return 'unset'; }
+}
 export default function AnalyticsConsent(){
- const [choice,setChoice]=useState<'unset'|'yes'|'no'>('unset');
+ const [choice,setChoice]=useState<'unset'|'yes'|'no'>(savedChoice);
  const [settings,setSettings]=useState(false);
  const {pathname}=useLocation();
  useEffect(()=>{
@@ -37,6 +42,7 @@ export default function AnalyticsConsent(){
   window.addEventListener('bfs:measurement',track);return()=>window.removeEventListener('bfs:measurement',track);
  },[choice,pathname]);
  function choose(next:'yes'|'no'){
+  try { sessionStorage.setItem(choiceKey,next); } catch { /* Keep the in-page choice if storage is unavailable. */ }
   if(next==='no'&&choice==='yes'){
    (window as AnalyticsWindow).gtag?.('consent','update',{analytics_storage:'denied'});
    // Reload removes the loaded Google script and ends tracking immediately.
@@ -44,5 +50,5 @@ export default function AnalyticsConsent(){
   }
   setChoice(next);setSettings(false);
  }
- return <div className="analytics-preferences">{choice==='unset'||settings?<section aria-label="Optional analytics" className="analytics-choice"><p>May we use Google Analytics to understand visits and consultation activity? Our custom events do not include calculator amounts or contact-form contents. Google Analytics uses cookies. Your choice applies while this page stays open.</p><div><button onClick={()=>choose('no')}>Decline</button><button onClick={()=>choose('yes')}>Accept analytics</button><a href="https://policies.google.com/privacy">Google privacy information</a></div></section>:<button onClick={()=>setSettings(true)}>Analytics preferences</button>}</div>;
+ return <div className="analytics-preferences">{choice==='unset'||settings?<section aria-label="Optional analytics" className="analytics-choice"><p>May we use Google Analytics to understand visits and consultation activity? Our custom events do not include calculator amounts or contact-form contents. Google Analytics uses cookies. Your choice applies while this browser tab stays open.</p><div><button onClick={()=>choose('no')}>Decline</button><button onClick={()=>choose('yes')}>Accept analytics</button><a href="https://policies.google.com/privacy">Google privacy information</a></div></section>:<button onClick={()=>setSettings(true)}>Analytics preferences</button>}</div>;
 }
