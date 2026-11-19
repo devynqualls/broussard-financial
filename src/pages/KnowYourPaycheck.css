@@ -1,49 +1,62 @@
-.paycheck-guide{max-width:1460px;margin:auto}
+.paycheck-guide{max-width:1580px;margin:auto}
 .paycheck-guide .planning-intro>span{display:block;margin-top:14px}
 .paycheck-guide-note{padding:19px 22px;margin:22px 0;background:#f7f3e8;border-left:4px solid #b99a50;line-height:1.55}
-.les-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start;margin:26px 0 32px}
-.les-scroll{min-width:0;overflow:auto;border:1px solid #b8c3ba;border-radius:8px;background:#fff;box-shadow:0 8px 24px #263c3412}
-.les-sheet{min-width:900px;padding:18px;font:14px/1.35 Arial,Helvetica,sans-serif;color:#1d2b29}
-.les-mast{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#e9eee8;padding:16px;font-size:18px}
-.les-mast span{font-size:12px;font-weight:700;letter-spacing:.06em}
-.les-header-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-left:1px solid #cad4cc;border-top:1px solid #cad4cc}
-.les-field{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;width:100%;min-height:57px;padding:8px 10px;text-align:left;color:inherit;background:#fff;border:0;border-right:1px solid #cad4cc;border-bottom:1px solid #cad4cc;cursor:pointer;font:inherit}
-.les-field:hover,.les-field:focus-visible,.les-field.is-active{background:#e2efdf;outline:2px solid #40734d;outline-offset:-2px}
-.les-field-label{font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#3d5142}
-.les-field-value{font-weight:700;overflow-wrap:anywhere}
-.les-section-title{margin-top:16px;padding:9px 11px;background:#e9eee8;font-weight:700;letter-spacing:.04em}
-.les-ledger{width:100%;border-collapse:collapse;font:13px/1.3 Arial,Helvetica,sans-serif}
-.les-ledger caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.les-ledger th,.les-ledger td{border:1px solid #cad4cc;padding:5px 7px;text-align:left}
-.les-ledger thead{background:#eef2ed}
-.les-ledger thead th:nth-child(n+3){text-align:right}
-.les-ledger tbody tr:nth-child(even){background:#f7f8f6}
-.les-ledger tbody tr:has(.les-field.is-active){background:#e2efdf}
-.les-ledger tbody th{padding:0;min-width:250px;font-weight:400}
-.les-ledger tbody th .les-field{min-height:32px;border:0;padding:5px 7px;background:transparent}
-.les-ledger tbody th .les-field:hover,.les-ledger tbody th .les-field:focus-visible,.les-ledger tbody th .les-field.is-active{background:#e2efdf}
-.les-ledger tbody th .les-field-label{font-size:13px;letter-spacing:0;text-transform:none}
-.les-ledger tbody td:nth-child(n+3){text-align:right;white-space:nowrap}
-.les-code{white-space:nowrap;color:#607268}
-.les-leave-table{width:100%;border-collapse:collapse;font:13px/1.3 Arial,Helvetica,sans-serif}
-.les-leave-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.les-leave-table th,.les-leave-table td{border:1px solid #cad4cc;padding:4px 7px;text-align:left}
-.les-leave-table thead{background:#eef2ed}
-.les-leave-table thead th:not(:first-child),.les-leave-table td{text-align:right}
-.les-leave-table tbody th{padding:0;font-weight:400;width:58%}
-.les-leave-table tbody th .les-field{min-height:31px;border:0;background:transparent;padding:4px 7px}
-.les-leave-table tbody th .les-field-label{font-size:13px;letter-spacing:0;text-transform:none}
-.les-leave-table tbody tr:nth-child(even){background:#f7f8f6}
-.les-leave-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-left:1px solid #cad4cc;border-top:1px solid #cad4cc}
-.les-footnote{padding:15px 5px 3px;color:#546259;font-size:12px;line-height:1.5}
-.les-explainer{position:sticky;top:90px;padding:22px;border-radius:8px;background:#eef3ed;border:1px solid #c4d5c2;box-shadow:0 5px 18px #263c3410}
-.les-explainer>span{font-size:12px;font-weight:700;letter-spacing:.09em;color:#527258}
-.les-explainer h2{font:400 25px/1.2 var(--serif);margin:10px 0 14px}
-.les-explainer p{font-size:15px;line-height:1.5}
-.les-check{padding:11px;background:#fff;border-radius:5px}
+.les-layout{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px;align-items:start;margin:26px 0 32px}
+.les-scroll{grid-column:1;min-width:0;overflow-x:auto;border:1px solid #74827a;background:#fff;box-shadow:0 8px 24px #263c3412}
+.les-sheet{min-width:870px;padding:10px 14px 14px;font:12px/1.22 Arial,Helvetica,sans-serif;color:#171d1a}
+.les-field{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;width:100%;min-height:43px;padding:5px 7px;text-align:left;color:inherit;background:transparent;border:0;border-right:1px solid #aeb9b1;border-bottom:1px solid #aeb9b1;cursor:pointer;font:inherit}
+.les-field:hover,.les-field:focus-visible,.les-field.is-active{background:#e4f0e4;outline:2px solid #41764a;outline-offset:-2px}
+.les-field-label{font-size:10px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#37463b}
+.les-field-value{font-size:12px;font-weight:700;overflow-wrap:anywhere}
+.les-topline{display:grid;grid-template-columns:64px minmax(0,1fr) 145px 85px;align-items:stretch;border:1px solid #aeb9b1;border-bottom:0}
+.les-topline>strong{display:flex;align-items:center;justify-content:center;font-size:18px;background:#eff2ee}
+.les-topline>.les-inline-help{grid-column:1/-1}
+.les-top-grid{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));border-left:1px solid #aeb9b1;border-top:1px solid #aeb9b1}
+.les-top-grid>.les-field:nth-child(1){grid-column:span 3}.les-top-grid>.les-field:nth-child(2){grid-column:span 3}.les-top-grid>.les-field:nth-child(3){grid-column:span 1}.les-top-grid>.les-field:nth-child(4){grid-column:span 3}.les-top-grid>.les-field:nth-child(5){grid-column:span 2}.les-top-grid>.les-field:nth-child(6){grid-column:span 3}.les-top-grid>.les-field:nth-child(7){grid-column:span 2}.les-top-grid>.les-field:nth-child(8),.les-top-grid>.les-field:nth-child(9),.les-top-grid>.les-field:nth-child(10){grid-column:span 1}
+.les-title-row{display:grid;grid-template-columns:56% 44%;border-left:1px solid #aeb9b1}
+.les-title-row>strong{display:flex;align-items:center;justify-content:center;padding:8px;text-align:center;font-size:18px;grid-column:2;grid-row:1;background:#f7f8f6;border-right:1px solid #aeb9b1;border-bottom:1px solid #aeb9b1}
+.les-title-row>.les-field{grid-column:2;grid-row:2}
+.les-title-row>.les-inline-help{grid-column:2;grid-row:3}
+.les-pay-grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));grid-column:1;grid-row:1/3}
+.les-pay-grid>.les-field:nth-child(1){grid-column:span 2}.les-pay-grid>.les-field:nth-child(2){grid-column:span 1}.les-pay-grid>.les-field:nth-child(3){grid-column:span 2}.les-pay-grid>.les-field:nth-child(4){grid-column:span 2}.les-pay-grid>.les-field:nth-child(5){grid-column:span 3}
+.les-section-title{padding:5px 7px;background:#eef1ed;border:1px solid #aeb9b1;border-bottom:0;text-align:center;font-size:12px;font-weight:700;letter-spacing:.03em}
+.les-ledger,.les-leave-table{width:100%;border-collapse:collapse;table-layout:fixed;font:12px/1.18 Arial,Helvetica,sans-serif}
+.les-ledger caption,.les-leave-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.les-ledger th,.les-ledger td,.les-leave-table th,.les-leave-table td{border:1px solid #aeb9b1;padding:3px 5px;text-align:left}
+.les-ledger thead,.les-leave-table thead{background:#eef1ed}
+.les-ledger thead th:first-child{width:7%}.les-ledger thead th:nth-child(2){width:39%}
+.les-ledger thead th:nth-child(n+3),.les-leave-table thead th:not(:first-child){text-align:right}
+.les-ledger tbody tr:nth-child(even),.les-leave-table tbody tr:nth-child(even){background:#f8f9f7}
+.les-ledger tbody th,.les-leave-table tbody th{padding:0;font-weight:400}
+.les-ledger tbody th .les-field,.les-leave-table tbody th .les-field{min-height:25px;border:0;padding:3px 5px}
+.les-ledger tbody th .les-field-label,.les-leave-table tbody th .les-field-label{font-size:11px;letter-spacing:0;text-transform:none;color:#17231c}
+.les-ledger tbody td:nth-child(n+3),.les-leave-table tbody td{text-align:right;white-space:nowrap}
+.les-code{white-space:nowrap;color:#506056}
+.les-blank-rows{height:85px;border-left:1px solid #aeb9b1;border-right:1px solid #aeb9b1;background:repeating-linear-gradient(to bottom,#fff 0,#fff 23px,#c2cbc3 24px)}
+.les-leave-layout{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.les-leave-layout>div{min-width:0}
+.les-leave-table thead th:first-child{width:55%}
+.les-restored-title{padding:4px 6px;border:1px solid #aeb9b1;border-top:0;text-align:center;font-size:10px;font-weight:700}
+.les-restored-table{width:100%;border-collapse:collapse;table-layout:fixed;font:10px/1.15 Arial,Helvetica,sans-serif}
+.les-restored-table th,.les-restored-table td{border:1px solid #aeb9b1;padding:3px;text-align:left}
+.les-restored-table th:first-child{width:30%}.les-restored-table th:not(:first-child),.les-restored-table td{text-align:right}
+.les-restored-table .les-field{min-height:30px;padding:3px;border:0}
+.les-restored-table .les-field-label{font-size:9px}
+.les-leave-meta{display:grid;grid-template-columns:repeat(2,1fr);border-left:1px solid #aeb9b1}
+.les-leave-meta .les-field{min-height:34px}
+.les-leave-layout>div:nth-child(2)>.les-field{border-left:1px solid #aeb9b1;min-height:54px}
+.les-bottom-grid{display:grid;grid-template-columns:1fr 1fr;border-left:1px solid #aeb9b1}
+.les-bottom-grid>div{display:grid;grid-template-columns:1fr 1fr}
+.les-bottom-grid>.les-inline-help{grid-column:1/-1}
+.les-footnote{padding:9px 2px 1px;color:#526057;font-size:11px;line-height:1.4}
+.les-explainer{position:absolute;right:0;width:300px;padding:17px;border-radius:7px;background:#eef3ed;border:1px solid #b5cbb8;box-shadow:0 8px 22px #263c3422;z-index:2}
+.les-explainer>span{font-size:11px;font-weight:700;letter-spacing:.08em;color:#527258}
+.les-explainer h2{font:400 22px/1.18 var(--serif);margin:8px 0 10px}
+.les-explainer p{font-size:14px;line-height:1.45;margin:8px 0}
+.les-check{padding:9px;background:#fff;border-radius:5px}
+.les-inline-help{display:none}
 .paycheck-next>a{display:inline-block;margin-top:12px;color:#243e35;font-weight:700}
 .paycheck-sources h2{margin-bottom:12px}
-@media(max-width:1150px){.les-layout{display:block}.les-explainer{position:fixed;top:auto;bottom:165px;left:14px;right:14px;z-index:30;padding:12px 16px;max-height:23vh;overflow:auto;box-shadow:0 8px 25px #16241a33}.les-explainer h2{font-size:20px;margin:4px 0}.les-explainer p{font-size:14px;margin:6px 0}.les-check{padding:6px 9px}}
-@media(max-width:1150px){.les-explainer:not(.is-open){display:none}}
-@media(max-width:760px){.paycheck-guide-note{padding:16px}.les-sheet{min-width:850px;padding:10px}.les-mast{font-size:16px}.les-check{display:none}}
-@media print{.les-layout{display:block}.les-scroll{overflow:visible;border:0;box-shadow:none}.les-sheet{min-width:0;padding:0}.les-explainer{display:none}.les-field{min-height:48px}.les-ledger{font-size:11px}.les-leave-details .les-field{min-height:42px}.planning-intro,.paycheck-guide-note,.paycheck-next,.paycheck-sources{display:none!important}}
+@media(max-width:1150px){.les-layout{display:block}.les-scroll{overflow-x:auto}.les-explainer{display:none}.les-inline-help{display:block;grid-column:1/-1;width:min(390px,calc(100vw - 62px));padding:10px 12px;background:#edf5eb;border:1px solid #8eaf91;font:13px/1.45 Arial,Helvetica,sans-serif}.les-inline-help p{margin:5px 0}.les-inline-row td{padding:0!important}.les-inline-row .les-inline-help{border:0}}
+@media(max-width:760px){.paycheck-guide-note{padding:16px}.les-sheet{min-width:870px;padding:8px}}
+@media print{.les-layout{display:block}.les-scroll{overflow:visible;border:0;box-shadow:none}.les-sheet{min-width:0;padding:0}.les-explainer,.les-inline-help{display:none!important}.planning-intro,.paycheck-guide-note,.paycheck-next,.paycheck-sources{display:none!important}}
