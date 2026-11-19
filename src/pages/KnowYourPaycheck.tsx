@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import './PlanningTools.css';
@@ -53,22 +53,28 @@ const blocks:Block[] = [
   {name:'If something is wrong',meaning:'Timecard questions usually start with your timekeeper or supervisor; personnel-action questions with HR; tax or deduction questions with payroll.',check:'Keep a copy of the statement and ask the responsible office to reconcile the specific line.'},
  ]},
 ];
+const positions:Record<string,{top:number;height:number}>={identity:{top:7.5,height:16.3},earnings:{top:23.8,height:22.3},deductions:{top:46.1,height:17.5},net:{top:63.6,height:6.3},leave:{top:69.9,height:12.4},employer:{top:82.3,height:7.6},remarks:{top:89.9,height:10.1}};
 
 export default function KnowYourPaycheck(){
- const [active,setActive]=useState(blocks[0].id);
- const selected=blocks.find(block=>block.id===active)!;
+ const [active,setActive]=useState<string|null>(null);
+ const [locked,setLocked]=useState(false);
+ const selected=blocks.find(block=>block.id===active);
+ const popover=useRef<HTMLElement>(null);
+ useEffect(()=>{popover.current?.scrollTo(0,0);},[active]);
+ function select(id:string){setActive(id);}
+ function toggle(id:string){if(locked&&active===id){setActive(null);setLocked(false);}else{setActive(id);setLocked(true);}}
  return <div className="planning-page paycheck-guide">
   <Helmet><title>Know Your Paycheck: Federal LES Guide | Broussard Financial Services</title><meta name="description" content="Understand a federal civilian Leave and Earnings Statement: pay, deductions, TSP, insurance, leave, agency contributions, and remarks."/><link rel="canonical" href="https://www.broussardfinancialservices.com/know-your-paycheck"/></Helmet>
-  <header className="planning-intro"><Link to="/planning-tools">← Planning tools</Link><span>FEDERAL PAYCHECK GUIDE</span><h1>Know Your Paycheck.</h1><p>Open your federal civilian Leave and Earnings Statement (LES) and select each part of the sample below. Learn what the lines mean, what to check, and where a mistake should go.</p></header>
+  <header className="planning-intro"><Link to="/planning-tools">← Planning tools</Link><span>FEDERAL PAYCHECK GUIDE</span><h1>Know Your Paycheck.</h1><p>Hover over a highlighted section of the sample Leave and Earnings Statement to see what it means. You can also tap a section or use Tab and Enter.</p></header>
   <div className="paycheck-guide-note"><strong>Start with your own statement.</strong> This sample contains no real employee data. DFAS, NFC, USPS, and other payroll providers use different layouts and labels. A field appears only when it applies to your job, coverage, or election. This guide explains common sections; your agency’s LES and payroll office control your actual record.</div>
-  <div className="paycheck-guide-layout">
-   <div className="paycheck-sample" aria-label="Sample Leave and Earnings Statement sections">
-    <div className="paycheck-sample-head"><small>ILLUSTRATIVE FEDERAL CIVILIAN LES</small><strong>Leave &amp; Earnings</strong><span>Choose a section to explain it →</span></div>
-    <div className="paycheck-sample-grid">{blocks.map(block=><button type="button" key={block.id} className={`paycheck-sample-block${active===block.id?' is-active':''}`} onClick={()=>setActive(block.id)} aria-pressed={active===block.id} aria-controls="paycheck-explanation"><span>{block.number}</span><strong>{block.short}</strong><small>{block.title}</small></button>)}</div>
-    <p className="paycheck-sample-foot">An actual LES may show a different order, code, or set of lines.</p>
-   </div>
-   <section className="paycheck-explanation" id="paycheck-explanation" aria-live="polite" aria-labelledby="paycheck-block-title"><span>SECTION {selected.number} OF 07</span><h2 id="paycheck-block-title">{selected.title}</h2><p>{selected.short}</p><div className="paycheck-field-list">{selected.fields.map(field=><article key={field.name}><h3>{field.name}</h3><p>{field.meaning}</p><p className="paycheck-check"><strong>What to check:</strong> {field.check}</p></article>)}</div></section>
-  </div>
+  <div className="paycheck-image-scroll"><div className="paycheck-image-stage" onMouseLeave={()=>{if(!locked)setActive(null);}} onKeyDown={event=>{if(event.key==='Escape'){setActive(null);setLocked(false);}}}>
+   <img src="/images/sample-federal-les.svg" width="1000" height="1160" alt="Illustrative federal civilian Leave and Earnings Statement with fictional employee details, earnings, deductions, net pay, leave, agency benefits, and remarks." />
+   {blocks.map(block=><button type="button" key={block.id} className={`paycheck-hotspot${active===block.id?' is-active':''}`} style={{top:`${positions[block.id].top}%`,height:`${positions[block.id].height}%`}} onMouseEnter={()=>select(block.id)} onFocus={()=>select(block.id)} onClick={()=>toggle(block.id)} aria-label={`Section ${block.number}: ${block.title}. Hover or activate to explain.`} aria-expanded={active===block.id} aria-controls="paycheck-popover"><span aria-hidden="true">{block.number}</span></button>)}
+   <aside ref={popover} className="paycheck-popover" id="paycheck-popover" role="region" aria-label={selected?`${selected.title} explanation`:'Section explanation'} hidden={!selected} style={{top:`${Math.min(positions[active??'identity'].top,58)}%`}}>
+    {selected&&<><div className="paycheck-popover-head"><div><small>SECTION {selected.number} OF 07</small><h2>{selected.title}</h2></div><button type="button" onClick={()=>{setActive(null);setLocked(false);}} aria-label="Close explanation">×</button></div><p>{selected.short}</p><div className="paycheck-field-list">{selected.fields.map(field=><article key={field.name}><h3>{field.name}</h3><p>{field.meaning}</p><p className="paycheck-check"><strong>Check:</strong> {field.check}</p></article>)}</div></>}
+   </aside>
+  </div></div>
+  <p className="paycheck-help">The green outlines are interactive. Hover to preview a section; click or tap to keep its explanation open. Press Escape or use × to close it. On a phone, swipe sideways to view the full statement.</p>
   <section className="planning-card paycheck-next"><span>YOUR FIVE-MINUTE PAYCHECK CHECK</span><h2>Review three numbers first.</h2><ol><li>Confirm the pay period, pay plan, grade, step, and regular hours.</li><li>Compare gross pay, total deductions, and net pay with your deposit.</li><li>Check TSP and insurance elections, leave balances, and remarks for changes.</li></ol><p>For a retirement review, bring your latest LES, SF-50, TSP statement, and agency retirement estimate if available. Please keep Social Security numbers, bank details, and full statements out of the public contact form.</p><Link to="/federal-planning#paycheck">Explore your retirement paycheck →</Link></section>
   <section className="planning-card paycheck-sources"><h2>Official statement guides</h2><p>Use the guide for your payroll provider when a label differs from this example.</p><ul><li><a href="https://help.nfc.usda.gov/publications/PPO/67115.htm" target="_blank" rel="noopener noreferrer">National Finance Center: Statement of Earnings and Leave</a></li><li><a href="https://www.dfas.mil/CivilianEmployees/understandingyourcivilianpay/LES/" target="_blank" rel="noopener noreferrer">DFAS: civilian LES walkthrough</a></li><li><a href="https://www.irs.gov/publications/p721" target="_blank" rel="noopener noreferrer">IRS: traditional and Roth TSP tax treatment</a></li></ul></section>
  </div>;

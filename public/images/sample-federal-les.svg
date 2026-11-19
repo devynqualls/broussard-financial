@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1160" role="img" aria-labelledby="title desc">
+<title id="title">Illustrative federal civilian Leave and Earnings Statement</title>
+<desc id="desc">Fictional sample showing employee and pay period, earnings, deductions, net pay, leave, agency contributions, and remarks. All names, amounts, and identifiers are examples.</desc>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#1d2b29}.small{font-size:15px}.body{font-size:19px}.head{font-size:18px;font-weight:700}.title{font-size:27px;font-weight:700}.section{font-size:18px;font-weight:700;letter-spacing:1px}.muted{fill:#56615d}.line{stroke:#87918b;stroke-width:1.4}.heavy{stroke:#263c34;stroke-width:2.5}</style>
+<rect x="1" y="1" width="998" height="1158" fill="#fff" stroke="#263c34" stroke-width="2"/>
+<rect x="2" y="2" width="996" height="86" fill="#e9eee8"/>
+<text x="30" y="40" class="title">LEAVE AND EARNINGS STATEMENT</text>
+<text x="30" y="67" class="small muted">ILLUSTRATIVE SAMPLE • FEDERAL CIVILIAN PAY • NOT AN OFFICIAL RECORD</text>
+<text x="785" y="43" class="head">PAY PERIOD 18</text>
+<text x="785" y="68" class="small">PAY DATE 09/18/2026</text>
+<line x1="2" y1="88" x2="998" y2="88" class="heavy"/>
+<text x="25" y="119" class="section">EMPLOYEE AND POSITION</text>
+<text x="28" y="152" class="small muted">NAME</text><text x="155" y="152" class="body">SAMPLE EMPLOYEE</text>
+<text x="580" y="152" class="small muted">ID</text><text x="645" y="152" class="body">XXX-XX-0000</text>
+<text x="28" y="184" class="small muted">AGENCY</text><text x="155" y="184" class="body">EXAMPLE FEDERAL AGENCY</text>
+<text x="580" y="184" class="small muted">PAY PERIOD</text><text x="715" y="184" class="body">09/06–09/19/2026</text>
+<text x="28" y="216" class="small muted">PAY PLAN / GRADE / STEP</text><text x="290" y="216" class="body">GS / 12 / 04</text>
+<text x="580" y="216" class="small muted">LEAVE SCD</text><text x="715" y="216" class="body">05/12/2012</text>
+<text x="28" y="248" class="small muted">ADJUSTED ANNUAL SALARY</text><text x="290" y="248" class="body">$101,200.00</text>
+<line x1="2" y1="276" x2="998" y2="276" class="heavy"/>
+<rect x="2" y="277" width="996" height="35" fill="#f1f3f0"/><text x="25" y="302" class="section">EARNINGS</text>
+<text x="25" y="338" class="head">DESCRIPTION</text><text x="500" y="338" class="head">HOURS THIS PERIOD</text><text x="760" y="338" class="head">AMOUNT THIS PERIOD</text>
+<line x1="20" y1="348" x2="980" y2="348" class="line"/>
+<text x="28" y="379" class="body">Regular time</text><text x="560" y="379" class="body">80.00</text><text x="850" y="379" class="body">$3,820.00</text>
+<text x="28" y="414" class="body">Night differential</text><text x="560" y="414" class="body">12.00</text><text x="850" y="414" class="body">$114.60</text>
+<text x="28" y="449" class="body">Annual leave paid</text><text x="560" y="449" class="body">8.00</text><text x="850" y="449" class="body">$382.00</text>
+<line x1="20" y1="461" x2="980" y2="461" class="line"/>
+<text x="28" y="490" class="head">GROSS PAY</text><text x="850" y="490" class="head">$4,316.60</text>
+<text x="28" y="516" class="small muted">Taxable wages and YTD totals may differ from gross pay.</text>
+<line x1="2" y1="535" x2="998" y2="535" class="heavy"/>
+<rect x="2" y="536" width="996" height="35" fill="#f1f3f0"/><text x="25" y="561" class="section">DEDUCTIONS</text>
+<text x="28" y="601" class="body">Federal tax withholding</text><text x="440" y="601" class="body">$425.00</text><text x="540" y="601" class="body">Social Security / Medicare</text><text x="890" y="601" class="body">$330.00</text>
+<text x="28" y="638" class="body">FERS retirement</text><text x="440" y="638" class="body">$168.00</text><text x="540" y="638" class="body">Traditional TSP</text><text x="890" y="638" class="body">$300.00</text>
+<text x="28" y="675" class="body">FEHB health premium</text><text x="440" y="675" class="body">$155.00</text><text x="540" y="675" class="body">FEGLI life premium</text><text x="890" y="675" class="body">$22.00</text>
+<text x="28" y="712" class="body">Other / allotments</text><text x="440" y="712" class="body">$80.00</text><text x="540" y="712" class="head">TOTAL DEDUCTIONS</text><text x="890" y="712" class="head">$1,480.00</text>
+<line x1="2" y1="738" x2="998" y2="738" class="heavy"/>
+<rect x="2" y="739" width="996" height="72" fill="#e9eee8"/><text x="28" y="783" class="title">NET PAY / DIRECT DEPOSIT</text><text x="808" y="783" class="title">$2,836.60</text>
+<line x1="2" y1="811" x2="998" y2="811" class="heavy"/>
+<rect x="2" y="812" width="996" height="35" fill="#f1f3f0"/><text x="25" y="837" class="section">LEAVE BALANCES (HOURS)</text>
+<text x="28" y="873" class="head">TYPE</text><text x="340" y="873" class="head">ACCRUED</text><text x="565" y="873" class="head">USED</text><text x="790" y="873" class="head">BALANCE</text>
+<text x="28" y="906" class="body">Annual leave</text><text x="355" y="906" class="body">6.00</text><text x="580" y="906" class="body">8.00</text><text x="805" y="906" class="body">142.00</text>
+<text x="28" y="939" class="body">Sick leave</text><text x="355" y="939" class="body">4.00</text><text x="580" y="939" class="body">0.00</text><text x="805" y="939" class="body">276.00</text>
+<line x1="2" y1="955" x2="998" y2="955" class="heavy"/>
+<rect x="2" y="956" width="996" height="35" fill="#f1f3f0"/><text x="25" y="981" class="section">BENEFITS PAID BY AGENCY (NOT NET PAY)</text>
+<text x="28" y="1020" class="body">Retirement / TSP</text><text x="390" y="1020" class="body">$315.00</text><text x="540" y="1020" class="body">Health / payroll tax share</text><text x="890" y="1020" class="body">$724.00</text>
+<line x1="2" y1="1043" x2="998" y2="1043" class="heavy"/>
+<rect x="2" y="1044" width="996" height="35" fill="#f1f3f0"/><text x="25" y="1069" class="section">REMARKS</text>
+<text x="28" y="1108" class="body">Review current TSP election and any personnel or payroll adjustments.</text>
+<text x="28" y="1140" class="small muted">All figures and dates are fictional; section names vary by payroll provider.</text>
+</svg>
