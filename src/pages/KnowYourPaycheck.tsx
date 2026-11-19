@@ -1,4 +1,4 @@
-import {useEffect,useRef,useState} from 'react';
+import {useEffect,useRef,useState,type CSSProperties} from 'react';
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
 import './PlanningTools.css';
@@ -85,9 +85,9 @@ const targets:Target[]=[
 ];
 
 export default function KnowYourPaycheck(){
- const [active,setActive]=useState('gross-pay');
- const selected=targets.find(target=>target.id===active) ?? targets[10];
- const explanation=blocks[selected.block].fields[selected.field];
+ const [active,setActive]=useState<string|null>(null);
+ const selected=targets.find(target=>target.id===active);
+ const explanation=selected ? blocks[selected.block].fields[selected.field] : null;
  const popover=useRef<HTMLElement>(null);
  useEffect(()=>{popover.current?.scrollTo(0,0);},[active]);
  function select(id:string){setActive(id);}
@@ -95,13 +95,13 @@ export default function KnowYourPaycheck(){
   <Helmet><title>Know Your Paycheck: Federal LES Guide | Broussard Financial Services</title><meta name="description" content="Understand a federal civilian Leave and Earnings Statement: pay, deductions, TSP, insurance, leave, agency contributions, and remarks."/><link rel="canonical" href="https://www.broussardfinancialservices.com/know-your-paycheck"/></Helmet>
   <header className="planning-intro"><Link to="/planning-tools">← Planning tools</Link><span>FEDERAL PAYCHECK GUIDE</span><h1>Know Your Paycheck.</h1><p>Move your mouse over a green line on the sample paycheck. The box beside it will explain that line in everyday language. On a phone, tap a line.</p></header>
   <div className="paycheck-guide-note"><strong>This is a sample, not a real paycheck.</strong> Federal agencies, including the Postal Service, may use different paycheck layouts and names. Use your own statement to check your pay and benefits. Ask your payroll office about anything that does not match.</div>
-  <div className="paycheck-demo">
-   <aside ref={popover} className="paycheck-popover" id="paycheck-popover" role="region" aria-label={`${selected.label} explanation`}>
-    <div className="paycheck-popover-head"><div><small>FIELD MEANING</small><h2>{selected.label}</h2></div></div><p>{selected.meaning??explanation.meaning}</p><p className="paycheck-check"><strong>What to check:</strong> {selected.check??explanation.check}</p><p className="paycheck-selection-note">Point to or tap any highlighted line on the statement.</p>
-   </aside>
+  <div className="paycheck-demo" onKeyDown={event=>{if(event.key==='Escape')setActive(null);}}>
+   {selected&&explanation&&<aside ref={popover} className="paycheck-popover" id="paycheck-popover" role="region" aria-label={`${selected.label} explanation`} style={{'--field-top':`${Math.min(selected.y,68)}%`} as CSSProperties}>
+    <div className="paycheck-popover-head"><div><small>WHAT THIS MEANS</small><h2>{selected.label}</h2></div><button type="button" onClick={()=>setActive(null)} aria-label="Close explanation">×</button></div><p>{selected.meaning??explanation.meaning}</p><p className="paycheck-check"><strong>What to check:</strong> {selected.check??explanation.check}</p>
+   </aside>}
    <div className="paycheck-image-scroll"><div className="paycheck-image-stage">
    <img src="/images/sample-federal-les.svg" width="1000" height="1160" alt="Illustrative federal civilian Leave and Earnings Statement with fictional employee details, earnings, deductions, net pay, leave, agency benefits, and remarks." />
-   {targets.map(target=><button type="button" key={target.id} className={`paycheck-hotspot${active===target.id?' is-active':''}`} style={{left:`${target.x}%`,top:`${target.y}%`,width:`${target.width}%`,height:`${target.height??2.8}%`}} onMouseEnter={()=>select(target.id)} onFocus={()=>setActive(target.id)} onClick={()=>select(target.id)} aria-label={`Explain ${target.label}`} aria-pressed={active===target.id} aria-controls="paycheck-popover" />)}
+   {targets.map(target=><button type="button" key={target.id} className={`paycheck-hotspot${active===target.id?' is-active':''}`} style={{left:`${target.x}%`,top:`${target.y}%`,width:`${target.width}%`,height:`${target.height??2.8}%`}} onMouseEnter={()=>{if(window.matchMedia('(hover: hover) and (min-width: 1201px)').matches)select(target.id);}} onFocus={()=>setActive(target.id)} onClick={event=>{select(target.id);if(window.matchMedia('(max-width: 1200px)').matches)event.currentTarget.scrollIntoView({block:'center'});}} aria-label={`Explain ${target.label}`} aria-pressed={active===target.id} aria-controls={active===target.id?'paycheck-popover':undefined} />)}
   </div></div></div>
   <p className="paycheck-help">Each green outline corresponds to one field or line. Hover or tap to see its definition and what to check. On a phone, swipe sideways to view the full statement.</p>
   <section className="planning-card paycheck-next"><span>YOUR FIVE-MINUTE PAYCHECK CHECK</span><h2>Check these three things first.</h2><ol><li>Are the pay dates, job details, and hours correct?</li><li>Does your take-home pay match the money deposited in your bank?</li><li>Do your TSP savings, insurance costs, time-off balances, and notes look right?</li></ol><p>For a retirement review, bring your latest paycheck statement, official job record (SF-50), TSP statement, and retirement estimate if you have one. Do not put Social Security numbers, bank details, or full statements in the public contact form.</p><Link to="/federal-planning#paycheck">Explore your retirement paycheck →</Link></section>
