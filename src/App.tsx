@@ -11,6 +11,7 @@ import Breadcrumbs from './seo/Breadcrumbs';
 import RouteScroll from './components/ui/RouteScroll';
 const LazyHome = lazy(() => import('./pages/Home'));
 const LazyPlanningTools = lazy(() => import('./pages/PlanningTools'));
+const LazyKnowYourPaycheck = lazy(() => import('./pages/KnowYourPaycheck'));
 const LazyCDReplacement = lazy(() => import('./pages/CDReplacement'));
 import ChatLauncher from './components/ui/ChatLauncher';
 import NotFound from './pages/NotFound';
@@ -29,7 +30,7 @@ const LazyPrivacy = lazy(() => import('./pages/Privacy'));
 const LazyRetirementIncomeSeminar = lazy(() => import('./pages/RetirementIncomeSeminar'));
 
 export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:HelmetServerState};pages?:Record<string,ComponentType>}) {
-  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,MedicareIrmaa=LazyMedicareIrmaa,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage,Privacy=LazyPrivacy,RetirementIncomeSeminar=LazyRetirementIncomeSeminar}=pages||{};
+  const {FederalPlanning=LazyFederalPlanning,FederalResources=LazyFederalResources,MilitaryRetirement=LazyMilitaryRetirement,TaxPlanning=LazyTaxPlanning,MedicareIrmaa=LazyMedicareIrmaa,EstateChecklist=LazyEstateChecklist,AnnuityEducation=LazyAnnuityEducation,LearningLibrary=LazyLearningLibrary,Home=LazyHome,PlanningTools=LazyPlanningTools,KnowYourPaycheck=LazyKnowYourPaycheck,CDReplacement=LazyCDReplacement,ServicePage=LazyServicePage,TeamPage=LazyTeamPage,BookingPage=LazyBookingPage,Privacy=LazyPrivacy,RetirementIncomeSeminar=LazyRetirementIncomeSeminar}=pages||{};
   return (
     <HelmetProvider context={helmetContext}>
       <SchemaOrg />
@@ -53,6 +54,7 @@ export default function App({helmetContext={},pages}:{helmetContext?:{helmet?:He
           <Route path="/annuity-education" element={<AnnuityEducation />} />
           <Route path="/learning-library" element={<LearningLibrary />} />
           <Route path="/planning-tools" element={<PlanningTools />} />
+          <Route path="/know-your-paycheck" element={<KnowYourPaycheck />} />
           <Route path="/cd-replacement" element={<CDReplacement />} />
           <Route path="/services/:slug" element={<ServicePage />} />
           <Route path="/team" element={<TeamPage />} />

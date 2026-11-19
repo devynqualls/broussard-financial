@@ -44,6 +44,7 @@ export default function PlanningTools() {
     <header className="planning-intro"><span>EXPLORE YOUR RETIREMENT</span><h1>See how your choices<br/><em>could shape your income.</em></h1><p>Explore income, investment risk and savings—or start with our dedicated federal retirement tools. No signup required. The amounts entered here are calculated in your browser and are not submitted to us.</p></header>
     <nav className="tool-directory" aria-label="Start with a planning tool">
       <Link to="/federal-planning"><strong>Federal retirement</strong><small>Explore pension, eligibility, paycheck and survivor decisions →</small></Link>
+      <Link to="/know-your-paycheck"><strong>Know Your Paycheck</strong><small>Understand every major part of a federal Leave and Earnings Statement →</small></Link>
       <a href="#gap"><strong>Retirement income</strong><small>Find the gap between monthly income and expenses →</small></a>
       <a href="#market"><strong>Market decline</strong><small>See how a downturn could affect withdrawals →</small></a>
       <a href="#savings"><strong>Savings &amp; CDs</strong><small>Compare compound growth and CD choices →</small></a>
