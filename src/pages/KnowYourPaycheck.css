@@ -1,43 +1,49 @@
-.paycheck-guide{max-width:1420px}
-.paycheck-guide .planning-intro{max-width:850px;margin-bottom:30px}
-.paycheck-guide .planning-intro>a{display:inline-block;margin-bottom:24px;color:#243e35}
-.paycheck-guide .planning-intro>span{display:block}
-.paycheck-guide-note{padding:20px 24px;background:#f4f3ec;border-left:4px solid #b69b62;border-radius:6px;line-height:1.65;margin-bottom:28px}
-.paycheck-demo{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
-.paycheck-image-scroll{overflow-x:auto;overflow-y:visible;border:1px solid #c8cec5;border-radius:10px;background:#eef1ec}
-.paycheck-demo>.paycheck-image-scroll{grid-column:1;grid-row:1}
-.paycheck-image-stage{position:relative;min-width:760px;margin:0 auto;background:white}
-.paycheck-image-stage>img{display:block;width:100%;height:auto}
-.paycheck-hotspot{position:absolute;left:0;width:100%;padding:0;border:2px solid #58806a;background:rgb(93 139 104 / 8%);color:#20392c;cursor:pointer;font:inherit;text-align:left;transition:background .15s,border-color .15s}
-.paycheck-hotspot:hover,.paycheck-hotspot.is-active{background:rgb(104 161 116 / 19%);border-color:#204c33}
-.paycheck-hotspot:focus-visible{outline:4px solid #b69b62;outline-offset:-5px}
-.paycheck-popover{position:absolute;z-index:2;top:var(--field-top);right:0;width:340px;max-height:min(320px,60vh);overflow:auto;padding:18px;background:#fff;border:2px solid #243e35;border-radius:10px;box-shadow:0 10px 22px rgb(22 40 30 / 12%)}
-.paycheck-popover-head{display:flex;align-items:start;justify-content:space-between;gap:12px;border-bottom:1px solid #d6d4c8;padding-bottom:12px}
-.paycheck-popover-head small{font-size:11px;letter-spacing:.15em;color:#8c723f}
-.paycheck-popover-head h2{font:400 27px/1.2 var(--serif);margin:6px 0 0}
-.paycheck-popover-head button{flex:none;border:0;border-radius:4px;background:#e9eee8;color:#243e35;font-size:26px;line-height:1;width:36px;height:36px;cursor:pointer}
-.paycheck-popover>p{color:#53564e;margin:12px 0}
-.paycheck-popover .paycheck-check{padding:9px 11px;background:#f4f3ec;border-radius:5px}
-.paycheck-help{font-size:14px;color:#53564e;margin:12px 0 28px;line-height:1.55}
-.paycheck-more>p{max-width:940px;line-height:1.6}
-.paycheck-more-table{overflow-x:auto;margin:22px 0 28px}
-.paycheck-more-table table{width:100%;min-width:720px;border-collapse:collapse;font-size:15px;line-height:1.4}
-.paycheck-more-table caption{text-align:left;font-size:13px;color:#59645a;margin-bottom:9px}
-.paycheck-more-table th,.paycheck-more-table td{padding:11px 12px;border-bottom:1px solid #d9dfd8;text-align:left;vertical-align:top}
-.paycheck-more-table thead{background:#e9eee8;color:#203d2d}
-.paycheck-more-table th:nth-child(2),.paycheck-more-table th:nth-child(3),.paycheck-more-table td:nth-child(2),.paycheck-more-table td:nth-child(3){text-align:right;white-space:nowrap}
-.paycheck-more-table tbody tr:nth-child(even){background:#f7f8f5}
-.paycheck-more-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.paycheck-more-grid>div{padding:19px;background:#f4f3ec;border-radius:8px}
-.paycheck-more-grid h3{font:400 24px/1.25 var(--serif);margin:0 0 14px}
-.paycheck-more-grid p{font-size:15px;line-height:1.55;margin:10px 0}
-.paycheck-extra>p{max-width:940px;line-height:1.6}
-.paycheck-extra-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
-.paycheck-extra-grid>div{padding:18px;background:#f4f3ec;border-radius:8px}
-.paycheck-extra-grid h3{font:400 23px/1.25 var(--serif);margin:0 0 12px}
-.paycheck-extra-grid p{font-size:15px;line-height:1.55;margin:10px 0}
+.paycheck-guide{max-width:1460px;margin:auto}
+.paycheck-guide .planning-intro>span{display:block;margin-top:14px}
+.paycheck-guide-note{padding:19px 22px;margin:22px 0;background:#f7f3e8;border-left:4px solid #b99a50;line-height:1.55}
+.les-layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start;margin:26px 0 32px}
+.les-scroll{min-width:0;overflow:auto;border:1px solid #b8c3ba;border-radius:8px;background:#fff;box-shadow:0 8px 24px #263c3412}
+.les-sheet{min-width:900px;padding:18px;font:14px/1.35 Arial,Helvetica,sans-serif;color:#1d2b29}
+.les-mast{display:flex;justify-content:space-between;align-items:center;gap:16px;background:#e9eee8;padding:16px;font-size:18px}
+.les-mast span{font-size:12px;font-weight:700;letter-spacing:.06em}
+.les-header-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-left:1px solid #cad4cc;border-top:1px solid #cad4cc}
+.les-field{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;width:100%;min-height:57px;padding:8px 10px;text-align:left;color:inherit;background:#fff;border:0;border-right:1px solid #cad4cc;border-bottom:1px solid #cad4cc;cursor:pointer;font:inherit}
+.les-field:hover,.les-field:focus-visible,.les-field.is-active{background:#e2efdf;outline:2px solid #40734d;outline-offset:-2px}
+.les-field-label{font-size:11px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:#3d5142}
+.les-field-value{font-weight:700;overflow-wrap:anywhere}
+.les-section-title{margin-top:16px;padding:9px 11px;background:#e9eee8;font-weight:700;letter-spacing:.04em}
+.les-ledger{width:100%;border-collapse:collapse;font:13px/1.3 Arial,Helvetica,sans-serif}
+.les-ledger caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.les-ledger th,.les-ledger td{border:1px solid #cad4cc;padding:5px 7px;text-align:left}
+.les-ledger thead{background:#eef2ed}
+.les-ledger thead th:nth-child(n+3){text-align:right}
+.les-ledger tbody tr:nth-child(even){background:#f7f8f6}
+.les-ledger tbody tr:has(.les-field.is-active){background:#e2efdf}
+.les-ledger tbody th{padding:0;min-width:250px;font-weight:400}
+.les-ledger tbody th .les-field{min-height:32px;border:0;padding:5px 7px;background:transparent}
+.les-ledger tbody th .les-field:hover,.les-ledger tbody th .les-field:focus-visible,.les-ledger tbody th .les-field.is-active{background:#e2efdf}
+.les-ledger tbody th .les-field-label{font-size:13px;letter-spacing:0;text-transform:none}
+.les-ledger tbody td:nth-child(n+3){text-align:right;white-space:nowrap}
+.les-code{white-space:nowrap;color:#607268}
+.les-leave-table{width:100%;border-collapse:collapse;font:13px/1.3 Arial,Helvetica,sans-serif}
+.les-leave-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.les-leave-table th,.les-leave-table td{border:1px solid #cad4cc;padding:4px 7px;text-align:left}
+.les-leave-table thead{background:#eef2ed}
+.les-leave-table thead th:not(:first-child),.les-leave-table td{text-align:right}
+.les-leave-table tbody th{padding:0;font-weight:400;width:58%}
+.les-leave-table tbody th .les-field{min-height:31px;border:0;background:transparent;padding:4px 7px}
+.les-leave-table tbody th .les-field-label{font-size:13px;letter-spacing:0;text-transform:none}
+.les-leave-table tbody tr:nth-child(even){background:#f7f8f6}
+.les-leave-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-left:1px solid #cad4cc;border-top:1px solid #cad4cc}
+.les-footnote{padding:15px 5px 3px;color:#546259;font-size:12px;line-height:1.5}
+.les-explainer{position:sticky;top:90px;padding:22px;border-radius:8px;background:#eef3ed;border:1px solid #c4d5c2;box-shadow:0 5px 18px #263c3410}
+.les-explainer>span{font-size:12px;font-weight:700;letter-spacing:.09em;color:#527258}
+.les-explainer h2{font:400 25px/1.2 var(--serif);margin:10px 0 14px}
+.les-explainer p{font-size:15px;line-height:1.5}
+.les-check{padding:11px;background:#fff;border-radius:5px}
 .paycheck-next>a{display:inline-block;margin-top:12px;color:#243e35;font-weight:700}
 .paycheck-sources h2{margin-bottom:12px}
-@media(max-width:1200px){.paycheck-demo{display:block}.paycheck-popover{position:fixed;top:82px;left:16px;right:16px;width:auto;max-height:min(240px,30vh);padding:12px;z-index:30}.paycheck-popover-head h2{font-size:20px}.paycheck-popover-head button{width:28px;height:28px;font-size:22px}.paycheck-popover>p{font-size:14px;line-height:1.35;margin:7px 0}}
-@media(max-width:760px){.paycheck-guide-note{padding:16px}.paycheck-popover .paycheck-check{display:none}.paycheck-more-grid,.paycheck-extra-grid{grid-template-columns:1fr}.paycheck-more-table{overflow:visible}.paycheck-more-table table{display:block;min-width:0}.paycheck-more-table caption,.paycheck-more-table thead{display:none}.paycheck-more-table tbody{display:grid;gap:10px}.paycheck-more-table tr{display:grid;grid-template-columns:1fr 1fr;padding:12px;border:1px solid #d9dfd8;border-radius:8px;background:#f7f8f5}.paycheck-more-table th,.paycheck-more-table td{border:0;padding:4px 3px}.paycheck-more-table th[scope=row]{grid-column:1/-1;font-size:16px}.paycheck-more-table td:nth-child(2),.paycheck-more-table td:nth-child(3){text-align:left}.paycheck-more-table td:nth-child(2)::before{content:'This paycheck';display:block;color:#5a645a;font-size:12px;font-weight:400}.paycheck-more-table td:nth-child(3)::before{content:'Year to date';display:block;color:#5a645a;font-size:12px;font-weight:400}.paycheck-more-table td:nth-child(4){grid-column:1/-1;color:#536057}}
-@media print{.paycheck-demo{display:block}.paycheck-hotspot,.paycheck-popover,.paycheck-help{display:none!important}.paycheck-image-scroll{overflow:visible}.paycheck-image-stage{min-width:0}}
+@media(max-width:1150px){.les-layout{display:block}.les-explainer{position:fixed;top:auto;bottom:165px;left:14px;right:14px;z-index:30;padding:12px 16px;max-height:23vh;overflow:auto;box-shadow:0 8px 25px #16241a33}.les-explainer h2{font-size:20px;margin:4px 0}.les-explainer p{font-size:14px;margin:6px 0}.les-check{padding:6px 9px}}
+@media(max-width:1150px){.les-explainer:not(.is-open){display:none}}
+@media(max-width:760px){.paycheck-guide-note{padding:16px}.les-sheet{min-width:850px;padding:10px}.les-mast{font-size:16px}.les-check{display:none}}
+@media print{.les-layout{display:block}.les-scroll{overflow:visible;border:0;box-shadow:none}.les-sheet{min-width:0;padding:0}.les-explainer{display:none}.les-field{min-height:48px}.les-ledger{font-size:11px}.les-leave-details .les-field{min-height:42px}.planning-intro,.paycheck-guide-note,.paycheck-next,.paycheck-sources{display:none!important}}
