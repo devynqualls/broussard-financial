@@ -89,14 +89,17 @@ export default function KnowYourPaycheck(){
  const selected=targets.find(target=>target.id===active);
  const explanation=selected ? blocks[selected.block].fields[selected.field] : null;
  const popover=useRef<HTMLElement>(null);
+ const demo=useRef<HTMLDivElement>(null);
+ const [demoInView,setDemoInView]=useState(true);
  useEffect(()=>{popover.current?.scrollTo(0,0);},[active]);
+ useEffect(()=>{const node=demo.current;if(!node)return;const observer=new IntersectionObserver(([entry])=>setDemoInView(entry.isIntersecting),{rootMargin:'-80px 0px 0px 0px'});observer.observe(node);return()=>observer.disconnect();},[]);
  function select(id:string){setActive(id);}
  return <div className="planning-page paycheck-guide">
   <Helmet><title>Know Your Paycheck: Federal LES Guide | Broussard Financial Services</title><meta name="description" content="Understand a federal civilian Leave and Earnings Statement: pay, deductions, TSP, insurance, leave, agency contributions, and remarks."/><link rel="canonical" href="https://www.broussardfinancialservices.com/know-your-paycheck"/></Helmet>
   <header className="planning-intro"><Link to="/planning-tools">← Planning tools</Link><span>FEDERAL PAYCHECK GUIDE</span><h1>Know Your Paycheck.</h1><p>Move your mouse over a green line on the sample paycheck. The box beside it will explain that line in everyday language. On a phone, tap a line.</p></header>
   <div className="paycheck-guide-note"><strong>This is a sample, not a real paycheck.</strong> Federal agencies, including the Postal Service, may use different paycheck layouts and names. Use your own statement to check your pay and benefits. Ask your payroll office about anything that does not match.</div>
-  <div className="paycheck-demo" onKeyDown={event=>{if(event.key==='Escape')setActive(null);}}>
-   {selected&&explanation&&<aside ref={popover} className="paycheck-popover" id="paycheck-popover" role="region" aria-label={`${selected.label} explanation`} style={{'--field-top':`${Math.min(selected.y,68)}%`} as CSSProperties}>
+  <div ref={demo} className="paycheck-demo" onKeyDown={event=>{if(event.key==='Escape')setActive(null);}}>
+   {selected&&explanation&&demoInView&&<aside ref={popover} className="paycheck-popover" id="paycheck-popover" role="region" aria-label={`${selected.label} explanation`} style={{'--field-top':`${Math.min(selected.y,68)}%`} as CSSProperties}>
     <div className="paycheck-popover-head"><div><small>WHAT THIS MEANS</small><h2>{selected.label}</h2></div><button type="button" onClick={()=>setActive(null)} aria-label="Close explanation">×</button></div><p>{selected.meaning??explanation.meaning}</p><p className="paycheck-check"><strong>What to check:</strong> {selected.check??explanation.check}</p>
    </aside>}
    <div className="paycheck-image-scroll"><div className="paycheck-image-stage">
@@ -104,6 +107,23 @@ export default function KnowYourPaycheck(){
    {targets.map(target=><button type="button" key={target.id} className={`paycheck-hotspot${active===target.id?' is-active':''}`} style={{left:`${target.x}%`,top:`${target.y}%`,width:`${target.width}%`,height:`${target.height??2.8}%`}} onMouseEnter={()=>{if(window.matchMedia('(hover: hover) and (min-width: 1201px)').matches)select(target.id);}} onFocus={()=>setActive(target.id)} onClick={event=>{select(target.id);if(window.matchMedia('(max-width: 1200px)').matches)event.currentTarget.scrollIntoView({block:'center'});}} aria-label={`Explain ${target.label}`} aria-pressed={active===target.id} aria-controls={active===target.id?'paycheck-popover':undefined} />)}
   </div></div></div>
   <p className="paycheck-help">Each green outline corresponds to one field or line. Hover or tap to see its definition and what to check. On a phone, swipe sideways to view the full statement.</p>
+  <section className="planning-card paycheck-more" aria-labelledby="paycheck-more-title">
+   <span>THE REST OF THE PAYCHECK</span><h2 id="paycheck-more-title">What has added up this year?</h2>
+   <p>Many pay statements show two columns: <strong>this pay period</strong> means this paycheck, and <strong>year to date</strong> means the running total so far this year. The example below assumes the same amounts in 18 pay periods so the math is easy to follow. Your totals will usually differ.</p>
+   <div className="paycheck-more-table"><table><caption>Fictional pay period and year-to-date example</caption><thead><tr><th scope="col">Line on the statement</th><th scope="col">This paycheck</th><th scope="col">Year to date</th><th scope="col">What it means</th></tr></thead><tbody>
+    <tr><th scope="row">Gross pay</th><td>$4,317</td><td>$77,706</td><td>Pay before anything is taken out.</td></tr>
+    <tr><th scope="row">Total deductions</th><td>$1,480</td><td>$26,640</td><td>Taxes, benefits, savings, and other amounts taken out.</td></tr>
+    <tr><th scope="row">Net pay</th><td>$2,837</td><td>$51,066</td><td>Take-home pay after deductions.</td></tr>
+    <tr><th scope="row">Federal income tax</th><td>$425</td><td>$7,650</td><td>Money already sent toward your federal income tax bill.</td></tr>
+    <tr><th scope="row">Social Security / Medicare</th><td>$330</td><td>$5,940</td><td>Payroll taxes. Your real statement may show these separately.</td></tr>
+    <tr><th scope="row">Your TSP savings</th><td>$300</td><td>$5,400</td><td>Money you put into your retirement savings account.</td></tr>
+    <tr><th scope="row">Your FERS contribution</th><td>$168</td><td>$3,024</td><td>Money taken from your pay for the federal pension system.</td></tr>
+   </tbody></table></div>
+   <div className="paycheck-more-grid">
+    <div><h3>Taxes can have their own boxes</h3><p><strong>Taxable wages:</strong> The part of pay used to figure a tax. It may be different from gross pay.</p><p><strong>Withholding election:</strong> The tax instructions you gave payroll, such as your filing status and any extra amount to withhold.</p><p><strong>State or local tax:</strong> These lines appear when they apply to you. The fictional sample above does not include them.</p></div>
+    <div><h3>Leave shows more than a balance</h3><p><strong>Starting balance:</strong> The time off you had before this paycheck.</p><p><strong>Earned, used, and current balance:</strong> Time off added, time off taken, and time off left.</p><p><strong>Carryover or use-or-lose:</strong> The amount of annual leave you may carry into the next leave year, or may lose if you do not use it in time. Your rules can vary.</p></div>
+   </div>
+  </section>
   <section className="planning-card paycheck-next"><span>YOUR FIVE-MINUTE PAYCHECK CHECK</span><h2>Check these three things first.</h2><ol><li>Are the pay dates, job details, and hours correct?</li><li>Does your take-home pay match the money deposited in your bank?</li><li>Do your TSP savings, insurance costs, time-off balances, and notes look right?</li></ol><p>For a retirement review, bring your latest paycheck statement, official job record (SF-50), TSP statement, and retirement estimate if you have one. Do not put Social Security numbers, bank details, or full statements in the public contact form.</p><Link to="/federal-planning#paycheck">Explore your retirement paycheck →</Link></section>
   <section className="planning-card paycheck-sources"><h2>Official statement guides</h2><p>Use the guide for your payroll provider when a label differs from this example.</p><ul><li><a href="https://help.nfc.usda.gov/publications/PPO/67115.htm" target="_blank" rel="noopener noreferrer">National Finance Center: Statement of Earnings and Leave</a></li><li><a href="https://www.dfas.mil/CivilianEmployees/understandingyourcivilianpay/LES/" target="_blank" rel="noopener noreferrer">DFAS: civilian LES walkthrough</a></li><li><a href="https://www.opm.gov/policy-data-oversight/pay-leave/leave-administration/fact-sheets/annual-leave/" target="_blank" rel="noopener noreferrer">OPM: annual leave</a></li><li><a href="https://www.irs.gov/publications/p721" target="_blank" rel="noopener noreferrer">IRS: traditional and Roth TSP tax treatment</a></li></ul></section>
  </div>;
