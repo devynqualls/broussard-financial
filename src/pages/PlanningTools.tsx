@@ -1,12 +1,11 @@
 import {Link} from 'react-router-dom';
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { incomeGap, simulate } from '../utils/planning';
+import { incomeGap } from '../utils/planning';
 import './PlanningTools.css';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
 import LeadReviewForm from '../components/ui/LeadReviewForm';
 import CDCalculator from '../components/sections/CDCalculator';
-import {historicalDeclines} from '../utils/historicalDeclines';
 import CompoundCalculator from '../components/sections/CompoundCalculator';
 import ReportActions from '../components/ui/ReportActions';
 import HelpHint from '../components/ui/HelpHint';
@@ -17,40 +16,22 @@ const fieldHelp:Record<string,string> = {
   pension:'Enter monthly pension income you expect after deductions, not the annual amount.',
   social:'Enter the monthly Social Security benefit you expect at your chosen claiming age.',
   other:'Enter other dependable monthly income, excluding the pension and Social Security already entered.',
-  balance:'Enter the starting value of the TSP or investment account you want to stress-test.',
-  exposed:'Enter the percentage of the account invested in assets you want the decline to affect. For example, 60 means 60% of the balance.',
-  decline:'Enter the percentage loss for the exposed share only. For example, 30 means a 30% drop in that portion.',
-  withdrawal:'Enter the dollar amount you expect to withdraw during the first year of retirement.',
-  growth:'How much should the account grow in a year without the one-time loss? Enter 0 to leave out growth. This is an assumption, not a predicted return.',
-  inflation:'Should the dollar amount taken from the account rise each year? Enter 0 to take the same amount each year. For example, 2 raises each year’s withdrawal by 2%.',
+  balance:'Enter the current balance of the investment account you want to discuss.',
+  decline:'Choose a hypothetical percentage drop for the full account. This is a what-if question, not a prediction of how your holdings will perform.',
 };
 function Field({label,help,value,onChange,max=100000000,suffix=''}:{label:string;help?:string;value:string;onChange:(s:string)=>void;max?:number;suffix?:string}) {
   return <label className="tool-field">{label}<HelpHint text={help ?? label}/>{suffix && <small>{suffix}</small>}<input type="number" min="0" max={max} step="any" value={value} onChange={e=>onChange(e.target.value)} /></label>;
 }
 export default function PlanningTools() {
   useEffect(()=>{if(window.location.hash){document.getElementById(window.location.hash.slice(1))?.scrollIntoView();}else{window.scrollTo(0,0);}},[]);
-  const [historical,setHistorical]=useState('custom');
   const [income,setIncome]=useState({expenses:'6000',pension:'2000',social:'2500',other:'0'});
-  const [market,setMarket]=useState({balance:'500000',exposed:'60',decline:'30',withdrawal:'',growth:'0',inflation:'0'});
-  const [withdrawalSource,setWithdrawalSource]=useState<'gap'|'manual'>('gap');
-  const [focusYear,setFocusYear]=useState(15);
+  const [market,setMarket]=useState({balance:'500000',decline:'30'});
   const valid = (o:Record<string,string>, limits:Record<string,number>={})=>Object.entries(o).every(([k,v])=>v.trim()!=='' && Number.isFinite(Number(v)) && Number(v)>=0 && Number(v)<=(limits[k]??100000000));
   const incomeValid=valid(income);
   const gap=incomeGap(+income.expenses,+income.pension,+income.social,+income.other);
-  const annualGap=gap.gap*12;
-  const withdrawal=withdrawalSource==='gap'&&incomeValid?String(annualGap):market.withdrawal;
-  const marketInputs={...market,withdrawal};
-  const marketValid=valid(marketInputs,{exposed:100,decline:100,growth:20,inflation:20});
-  const run=(year:number)=>simulate(+market.balance,+market.exposed,+market.decline,+withdrawal,+market.growth,+market.inflation,year);
-  const early=marketValid?run(1):[]; const later=marketValid?run(10):[]; const base=marketValid?run(0):[];
-  const series=[{name:'No decline',color:'#556f57',rows:base},{name:'Decline in year 1',color:'#b05436',rows:early},{name:'Decline in year 10',color:'#315c86',rows:later}];
-  const results=series.map(s=>({
-    ...s,
-    firstShortfall:s.rows.find(r=>r.shortfall>0.001),
-    shortfall:s.rows.reduce((total,r)=>total+r.shortfall,0),
-  }));
-  const focusScale=Math.max(1,...results.map(s=>s.rows[focusYear]?.balance??0));
-  const wholeAccountLoss=+market.exposed*+market.decline/100;
+  const marketValid=valid(market,{decline:100});
+  const amountLost=+market.balance*+market.decline/100;
+  const afterDecline=+market.balance-amountLost;
   return <div className="planning-page">
     <Helmet><title>Retirement Planning Tools | Broussard Financial Services</title><meta name="description" content="Free retirement calculators for income gaps, compound growth, CD comparisons, and market decline scenarios. No signup required."/><link rel="canonical" href="https://www.broussardfinancialservices.com/planning-tools"/></Helmet>
     <header className="planning-intro"><span>EXPLORE YOUR RETIREMENT</span><h1>See how your choices<br/><em>could shape your income.</em></h1><p>Explore income, investment risk and savings—or start with our dedicated federal retirement tools. No signup required. The amounts entered here are calculated in your browser and are not submitted to us.</p></header>
@@ -58,7 +39,7 @@ export default function PlanningTools() {
       <Link to="/federal-planning"><strong>Federal retirement</strong><small>Explore pension, eligibility, paycheck and survivor decisions →</small></Link>
       <Link to="/know-your-paycheck"><strong>Know Your Paycheck</strong><small>Understand every major part of a federal Leave and Earnings Statement →</small></Link>
       <a href="#gap"><strong>Retirement income</strong><small>Find the gap between monthly income and expenses →</small></a>
-      <a href="#market"><strong>Market decline</strong><small>See how a downturn could affect withdrawals →</small></a>
+      <a href="#market"><strong>Market decline</strong><small>See a possible account loss and consider your comfort with it →</small></a>
       <a href="#savings"><strong>Savings &amp; CDs</strong><small>Compare compound growth and CD choices →</small></a>
     </nav>
     <details className="more-tools"><summary>Explore more tools and guides</summary><nav aria-label="More planning tools and guides" className="more-tools-grid"><Link to="/cd-replacement">CD replacement comparison →</Link><Link to="/estate-planning-checklist">Estate-planning checklist →</Link><Link to="/annuity-education">Annuity education →</Link><Link to="/learning-library#bucket-strategy">Bucket strategy →</Link><Link to="/learning-library#three-legged-stool">Three-legged stool →</Link><Link to="/learning-library">Learning library →</Link><Link to="/tax-planning">2026 tax reference &amp; estimator →</Link><Link to="/medicare-irmaa">Medicare IRMAA calculator →</Link><a href="#risk-diversification">Risk &amp; Diversification →</a><Link to="/federal-resources">Official federal resources →</Link></nav></details>
@@ -75,60 +56,29 @@ export default function PlanningTools() {
     <section className="planning-card" id="gap" aria-labelledby="gap-title"><span>01 · YOUR MONTHLY PICTURE</span><h2 id="gap-title">Retirement income gap <HelpHint text="Enter monthly after-tax spending and income. The calculator subtracts income from spending to show a monthly gap or surplus and annualizes it." /></h2><p>Use monthly amounts in today’s dollars, after taxes. Include all spending you expect in retirement.</p>
       <div className="planning-inputs">{Object.entries({expenses:'Monthly expenses',pension:'Monthly pension income',social:'Monthly Social Security income',other:'Other monthly income'}).map(([k,label])=><Field key={k} label={label} help={fieldHelp[k]} value={income[k as keyof typeof income]} onChange={v=>setIncome({...income,[k]:v})}/>)}</div>
       {!incomeValid?<p role="alert">Enter nonnegative amounts up to $100 million in every field.</p>:<div className="planning-results" aria-live="polite"><div><small>Total monthly income</small><strong>{money(gap.income)}</strong></div><div><small>{gap.gap>0?'Monthly income gap':gap.surplus>0?'Monthly surplus':'Monthly income matches expenses'}</small><strong>{money(gap.gap||gap.surplus)}</strong></div><div><small>{gap.gap>0?'Annual income gap':gap.surplus>0?'Annual surplus':'Annual balance'}</small><strong>{money((gap.gap||gap.surplus)*12)}</strong></div></div>}
-      <p className="tool-note">A gap is the amount you would need from savings or other sources. The annual gap fills the market simulator’s first-year withdrawal until you enter a different amount there. A surplus does not establish that your retirement plan is sufficient. This snapshot does not project future changes in income, expenses, or taxes.</p>
+      <p className="tool-note">A gap is the amount you would need from savings or other sources. A surplus does not establish that your retirement plan is sufficient. This snapshot does not project future changes in income, expenses, or taxes.</p>
       <ReportActions targetId="gap" title="Retirement income gap" disabled={!incomeValid} />
       <LeadReviewForm topic="Retirement income review" />
       <ConsultationCTA label="Discuss my retirement income" />
     </section>
-    <section className="planning-card" id="market" aria-labelledby="market-title"><span>02 · EXPLORE A WHAT-IF</span><h2 id="market-title">TSP &amp; market-decline simulator <HelpHint text="Enter your balance, the share exposed to a decline, annual withdrawals, and other-year growth. Compare a loss in year 1 with a loss in year 10." /></h2><p>Explore a TSP or other investment account with the same hypothetical decline early or later in a 25-year retirement. This does not model individual TSP funds or their actual returns.</p>
-      <h3>Stress-test the next downturn</h3>
-      <p>Try a hypothetical decline in the exposed portion of your account. These are planning scenarios, not predictions.</p>
-      <div className="stress-presets" role="group" aria-label="Hypothetical decline scenarios">{[20,35,50].map(decline=><button type="button" className="tool-button" key={decline} title={`Set the loss in the exposed share to ${decline}%. This does not mean the entire account loses ${decline}%.`} aria-pressed={historical==='custom'&&Number(market.decline)===decline} onClick={()=>{setHistorical('custom');setMarket(current=>({...current,decline:String(decline)}));}}>{decline}% decline</button>)}</div>
-      <p className="tool-note">For TSP participants: these are stock-market scenarios, not actual TSP fund returns. Your account's response depends on the investments you hold and the share exposed to the modeled loss. The simulator applies the decline only to the percentage you enter as exposed; it does not automatically apply it to your entire TSP balance.</p>
-      <label className="tool-field">Historical decline<HelpHint text="Choose a historical peak-to-trough market loss to fill in the decline percentage, or select Custom decline and enter your own percentage below."/><select value={historical} onChange={e=>{setHistorical(e.target.value);const h=historicalDeclines.find(v=>v.peak===e.target.value);if(h)setMarket({...market,decline:String(h.loss)});}}><option value="custom">Custom decline</option>{historicalDeclines.map(h=><option key={h.peak} value={h.peak}>{h.event} · {h.peak} – {h.trough} · −{h.loss}%{h.loss<20?' (correction)':''}</option>)}</select></label>
-      {historicalDeclines.filter(h=>h.peak===historical).map(h=><div key={h.peak} aria-live="polite"><h3>{h.event}</h3><p>{h.peak} – {h.trough} · <strong>−{h.loss}% peak-to-trough decline</strong></p><p className="tool-note">The event name describes the historical setting, not a single proven cause. The loss covers the entire period shown, not just one day. Market dates may differ from recession dates. <a href="https://www.federalreservehistory.org/essays/federal-reserve-history">Historical context: Federal Reserve History.</a></p></div>)}
- <p className="tool-note">Includes 22 U.S. bear markets (1929–2022) and four notable corrections. Peak-to-trough S&amp;P price-index losses exclude dividends; early history predates the modern S&amp;P 500. <a href="https://yardeni.com/wp-content/uploads/BullBearTables.pdf">Source: Yardeni Research, January 2024, pages 4–6.</a> This is not a live market feed.</p><p className="tool-note">Selecting history applies only its loss percentage in one simulation year. It does not replay the event’s duration or recovery, or represent your actual holdings.</p>
- <div className="planning-inputs">{Object.entries({balance:'Starting account balance',exposed:'Share exposed to the decline (%)',decline:'Decline in the exposed share (%)'}).map(([k,label])=><Field key={k} label={label} help={fieldHelp[k]} value={market[k as keyof typeof market]} max={k==='exposed'||k==='decline'?100:100000000} onChange={v=>{setMarket(current=>({...current,[k]:v}));if(k==='decline')setHistorical('custom');}}/>)}
- <div className="linked-withdrawal"><Field label="First-year withdrawal ($)" help={fieldHelp.withdrawal} value={withdrawal} onChange={v=>{setMarket(current=>({...current,withdrawal:v}));setWithdrawalSource('manual');}}/><small>{withdrawalSource==='gap'?'Auto-filled from the annual retirement income gap above. Edit this amount to use your own withdrawal.':'Using your entered amount.'}</small><button type="button" onClick={()=>setWithdrawalSource('gap')} disabled={!incomeValid||withdrawalSource==='gap'}>Use income gap {incomeValid&&`(${money(annualGap)}/year)`}</button></div></div>
- <p className="market-assumption-line">This example assumes {Number(market.growth)===0?'no account growth in other years':`${market.growth}% account growth in years without the loss`} and {Number(market.inflation)===0?'the same withdrawal amount each year':`withdrawals that rise ${market.inflation}% each year`}. These settings are not predictions.</p>
- <details className="market-advanced"><summary>Optional: change account growth or yearly withdrawals</summary><p>Use these only when you want to test different assumptions. Leaving both at 0 keeps the example simple.</p><div className="planning-inputs"><Field label="Account growth in years without the loss (%)" help={fieldHelp.growth} value={market.growth} max={20} onChange={v=>setMarket(current=>({...current,growth:v}))}/><Field label="Yearly increase in the withdrawal (%)" help={fieldHelp.inflation} value={market.inflation} max={20} onChange={v=>setMarket(current=>({...current,inflation:v}))}/></div></details>
-      {!marketValid?<p role="alert">Complete every field. Percentages must be 0–100%; annual return and withdrawal increase must be 0–20%. Dollar amounts must be 0–$100 million.</p>:<>
-        <div className="decline-impact" aria-live="polite">
-          <span>WHAT A LOSS COULD MEAN FOR YOUR ACCOUNT</span>
-          <h3>Understand the loss. Plan for the recovery.</h3>
-          <div className="decline-impact-grid">
-            <div><small>Decline in the exposed share</small><strong>−{Number(market.decline).toLocaleString('en-US',{maximumFractionDigits:2})}%</strong></div>
-            <div><small>Loss across your full account</small><strong>−{wholeAccountLoss.toLocaleString('en-US',{maximumFractionDigits:2})}%</strong><small>{money(+market.balance*wholeAccountLoss/100)} of your starting balance</small></div>
-            <div><small>Gain needed to recover that loss</small><strong>{wholeAccountLoss>=100?'No balance left':`+${(wholeAccountLoss/(100-wholeAccountLoss)*100).toLocaleString('en-US',{maximumFractionDigits:2})}%`}</strong><small>Before any withdrawals, fees, or taxes</small></div>
-          </div>
-          <p>A 50% loss needs a 100% gain to break even. Continuing withdrawals can make recovery harder.</p>
-          <p className="tool-note">These percentages use your selected decline and exposure. They show an immediate shock to the starting balance, before withdrawals—not a prediction or a measure of your actual risk. With a total loss, recovery requires new money.</p>
-        </div>
-        <div className="runway-panel" aria-live="polite">
-          <div className="runway-intro"><div><span>YOUR RETIREMENT INCOME RUNWAY</span><h3>How long do withdrawals stay covered?</h3><p>All three paths use {money(+market.balance)} to start and {money(+withdrawal)} in year one{withdrawalSource==='gap'?' from your income gap':''}. The loss happens at different times.</p></div><div className="runway-badge"><strong>25</strong><small>years tested</small></div></div>
-          <div className="runway-body"><div className="runway-axis" aria-hidden="true">{[0,5,10,15,20,25].map(y=><span key={y}>{y}</span>)}</div>
-            {results.map((s,i)=><div className="runway-row" key={s.name} style={{'--scenario-color':s.color} as CSSProperties}>
-              <div className="runway-row-heading"><span className="runway-number">0{i+1}</span><div><strong>{s.name}</strong><small>{i===0?'Baseline path':`One-time ${wholeAccountLoss.toLocaleString('en-US',{maximumFractionDigits:2})}% account loss`}</small></div></div>
-              <div className="runway-track" role="img" aria-label={`${s.name}: ${s.firstShortfall?`withdrawals fully funded through year ${s.firstShortfall.year-1}; first shortfall in year ${s.firstShortfall.year}`:'all 25 years of withdrawals fully funded'}`}><span className="runway-fill" style={{width:`${(s.firstShortfall?s.firstShortfall.year-1:25)/25*100}%`}}/>{s.firstShortfall&&<span className="runway-marker" style={{left:`${(s.firstShortfall.year-1)/25*100}%`}}/>}</div>
-              <div className="runway-result"><strong>{s.firstShortfall?`Year ${s.firstShortfall.year}`:'25 years covered'}</strong><small>{s.firstShortfall?`First shortfall · ${money(s.shortfall)} total`:`${money(s.rows[25].balance)} left at year 25`}</small></div>
-            </div>)}
-            <p className="runway-key"><span aria-hidden="true"/> Colored length shows years with fully funded withdrawals. The pale remainder shows years with a shortfall.</p>
-          </div>
-          <div className="year-focus"><div className="year-focus-top"><div><span>COMPARE THE BALANCE</span><h4>See each path at year {focusYear}</h4></div><output htmlFor="focus-year">Year {focusYear}</output></div><input id="focus-year" type="range" min="0" max="25" step="1" value={focusYear} onChange={e=>setFocusYear(Number(e.target.value))} aria-label="Year to compare account balances"/><div className="year-focus-ticks" aria-hidden="true"><span>Start</span><span>5</span><span>10</span><span>15</span><span>20</span><span>25 years</span></div>
-            <div className="year-focus-bars">{results.map(s=><div className="year-focus-row" key={s.name} style={{'--scenario-color':s.color} as CSSProperties}><span>{s.name}</span><div className="year-focus-track" role="img" aria-label={`${s.name} balance at year ${focusYear}: ${money(s.rows[focusYear].balance)}`}><i style={{width:`${s.rows[focusYear].balance/focusScale*100}%`}}/></div><strong>{money(s.rows[focusYear].balance)}</strong></div>)}</div>
-            <p>Move the year selector to compare the same point in time. The bars share a scale for the selected year.</p>
-          </div>
-        </div>
-        <details><summary>View annual account balances</summary><div className="planning-table"><table><caption>Year-end balances after returns and withdrawals, in future dollars</caption><thead><tr><th>Year</th>{series.map(s=><th key={s.name}>{s.name}</th>)}</tr></thead><tbody>{base.map((r,i)=><tr key={r.year}><th>{r.year}</th>{series.map(s=><td key={s.name}>{money(s.rows[i].balance)}</td>)}</tr>)}</tbody></table></div></details>
-      </>}
-      <p className="tool-note">Illustration only, not a forecast or an account analysis. A positive decline applies only to the selected share; the rest is unchanged during that year. A positive decline replaces the normal annual return that year. With zero decline or zero exposure, normal annual growth applies. Returns occur before year-end withdrawals; withdrawals increase annually at the selected rate. No contributions, fees, taxes, rebalancing, or product guarantees are modeled. Balances cannot fall below zero; unfunded withdrawals are shown separately. Dollar results are not adjusted for inflation. Real returns vary and losses can recur.</p>
-      <p className="tool-note">These are hypothetical investment-account scenarios, not annuity illustrations. Annuity income and guarantees require an actual contract review.</p>
-      <h3>Could you cover expenses without selling investments during a downturn?</h3>
-      <p>Start with the gap between your spending and available income. Then use the bucket worksheet to organize reserves and plan where withdrawals could come from.</p>
-      <p><a href="#gap">Calculate my retirement income gap →</a></p>
-      <p><a href="/resources/retirement/broussard-bucket-strategy-worksheet.pdf" download>Download the fillable bucket worksheet (PDF)</a> · <Link to="/learning-library#bucket-strategy">Explore the bucket strategy →</Link></p>
-      <ReportActions targetId="market" title="TSP and market-decline simulation" disabled={!marketValid} />
-      <ConsultationCTA label="Review my retirement risk" />
+    <section className="planning-card market-simple" id="market" aria-labelledby="market-title">
+      <span>02 · A SIMPLE WHAT-IF</span>
+      <h2 id="market-title">What if your account declined? <HelpHint text="Enter an account balance and choose a hypothetical full-account decline. The illustration shows the immediate dollar change only." /></h2>
+      <p>This is one question to discuss: <strong>Would you be comfortable if this happened to your account?</strong></p>
+      <div className="planning-inputs">
+        <Field label="Current account balance ($)" help={fieldHelp.balance} value={market.balance} onChange={v=>setMarket(current=>({...current,balance:v}))}/>
+        <Field label="What if it declined by (%)" help={fieldHelp.decline} value={market.decline} max={100} onChange={v=>setMarket(current=>({...current,decline:v}))}/>
+      </div>
+      <div className="stress-presets" role="group" aria-label="Hypothetical full-account declines">{[20,30,40].map(decline=><button type="button" className="tool-button" key={decline} aria-pressed={Number(market.decline)===decline} onClick={()=>setMarket(current=>({...current,decline:String(decline)}))}>{decline}% decline</button>)}</div>
+      {!marketValid?<p role="alert">Enter an account balance from $0 to $100 million and a decline from 0% to 100%.</p>:<div className="market-simple-result" aria-live="polite">
+        <div className="market-simple-numbers"><div><small>Account today</small><strong>{money(+market.balance)}</strong></div><div><small>Hypothetical loss</small><strong>−{money(amountLost)}</strong></div><div><small>Account after the drop</small><strong>{money(afterDecline)}</strong></div></div>
+        <div className="market-simple-track" role="img" aria-label={`If the full account declined by ${market.decline} percent, the balance would move from ${money(+market.balance)} to ${money(afterDecline)}.`}><span style={{width:`${100-Number(market.decline)}%`}} /></div>
+        <h3>Would you be okay if this happened?</h3>
+        <p>If this loss would change your plans or keep you up at night, that is worth discussing with an advisor.</p>
+      </div>}
+      <p className="tool-note">This applies one hypothetical decline to the entire amount entered. Your actual investments may rise or fall differently. It does not model withdrawals, recovery, taxes, fees, or an annuity contract.</p>
+      <ReportActions targetId="market" title="Market decline conversation" disabled={!marketValid} />
+      <ConsultationCTA label="Talk through my market comfort" />
     </section>
     <div id="savings"><CompoundCalculator /></div>
     <CDCalculator />
