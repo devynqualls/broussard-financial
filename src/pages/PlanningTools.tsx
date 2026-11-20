@@ -6,6 +6,7 @@ import './PlanningTools.css';
 import ConsultationCTA from '../components/ui/ConsultationCTA';
 import LeadReviewForm from '../components/ui/LeadReviewForm';
 import CDCalculator from '../components/sections/CDCalculator';
+import {historicalDeclines} from '../utils/historicalDeclines';
 import CompoundCalculator from '../components/sections/CompoundCalculator';
 import ReportActions from '../components/ui/ReportActions';
 import HelpHint from '../components/ui/HelpHint';
@@ -26,12 +27,14 @@ export default function PlanningTools() {
   useEffect(()=>{if(window.location.hash){document.getElementById(window.location.hash.slice(1))?.scrollIntoView();}else{window.scrollTo(0,0);}},[]);
   const [income,setIncome]=useState({expenses:'6000',pension:'2000',social:'2500',other:'0'});
   const [market,setMarket]=useState({balance:'500000',decline:'30'});
+  const [historical,setHistorical]=useState('custom');
   const valid = (o:Record<string,string>, limits:Record<string,number>={})=>Object.entries(o).every(([k,v])=>v.trim()!=='' && Number.isFinite(Number(v)) && Number(v)>=0 && Number(v)<=(limits[k]??100000000));
   const incomeValid=valid(income);
   const gap=incomeGap(+income.expenses,+income.pension,+income.social,+income.other);
   const marketValid=valid(market,{decline:100});
   const amountLost=+market.balance*+market.decline/100;
   const afterDecline=+market.balance-amountLost;
+  const selectedHistory=historicalDeclines.find(event=>event.peak===historical);
   return <div className="planning-page">
     <Helmet><title>Retirement Planning Tools | Broussard Financial Services</title><meta name="description" content="Free retirement calculators for income gaps, compound growth, CD comparisons, and market decline scenarios. No signup required."/><link rel="canonical" href="https://www.broussardfinancialservices.com/planning-tools"/></Helmet>
     <header className="planning-intro"><span>EXPLORE YOUR RETIREMENT</span><h1>See how your choices<br/><em>could shape your income.</em></h1><p>Explore income, investment risk and savings—or start with our dedicated federal retirement tools. No signup required. The amounts entered here are calculated in your browser and are not submitted to us.</p></header>
@@ -67,16 +70,22 @@ export default function PlanningTools() {
       <p>This is one question to discuss: <strong>Would you be comfortable if this happened to your account?</strong></p>
       <div className="planning-inputs">
         <Field label="Current account balance ($)" help={fieldHelp.balance} value={market.balance} onChange={v=>setMarket(current=>({...current,balance:v}))}/>
-        <Field label="What if it declined by (%)" help={fieldHelp.decline} value={market.decline} max={100} onChange={v=>setMarket(current=>({...current,decline:v}))}/>
+        <Field label="What if it declined by (%)" help={fieldHelp.decline} value={market.decline} max={100} onChange={v=>{setHistorical('custom');setMarket(current=>({...current,decline:v}));}}/>
       </div>
-      <div className="stress-presets" role="group" aria-label="Hypothetical full-account declines">{[20,30,40].map(decline=><button type="button" className="tool-button" key={decline} aria-pressed={Number(market.decline)===decline} onClick={()=>setMarket(current=>({...current,decline:String(decline)}))}>{decline}% decline</button>)}</div>
+      <div className="stress-presets" role="group" aria-label="Hypothetical full-account declines">{[20,30,40].map(decline=><button type="button" className="tool-button" key={decline} aria-pressed={historical==='custom'&&Number(market.decline)===decline} onClick={()=>{setHistorical('custom');setMarket(current=>({...current,decline:String(decline)}));}}>{decline}% decline</button>)}</div>
+      <label className="tool-field market-history">Choose a past market decline <HelpHint text="Choose an S&P price-index peak-to-trough decline from the historical list. Its percentage fills the what-if field above; it does not represent the return of your own account."/><select value={historical} onChange={e=>{const peak=e.target.value;setHistorical(peak);const event=historicalDeclines.find(item=>item.peak===peak);if(event)setMarket(current=>({...current,decline:String(event.loss)}));}}><option value="custom">Custom decline</option>{historicalDeclines.map(event=><option key={event.peak} value={event.peak}>{event.event} · {event.peak}–{event.trough} · −{event.loss}%</option>)}</select></label>
+      {selectedHistory&&<p className="market-history-note">The S&amp;P price index fell {selectedHistory.loss}% from {selectedHistory.peak} to {selectedHistory.trough}. The illustration applies that percentage to the account amount you entered; it does not replay the event or show what your holdings would have done.</p>}
       {!marketValid?<p role="alert">Enter an account balance from $0 to $100 million and a decline from 0% to 100%.</p>:<div className="market-simple-result" aria-live="polite">
-        <div className="market-simple-numbers"><div><small>Account today</small><strong>{money(+market.balance)}</strong></div><div><small>Hypothetical loss</small><strong>−{money(amountLost)}</strong></div><div><small>Account after the drop</small><strong>{money(afterDecline)}</strong></div></div>
-        <div className="market-simple-track" role="img" aria-label={`If the full account declined by ${market.decline} percent, the balance would move from ${money(+market.balance)} to ${money(afterDecline)}.`}><span style={{width:`${100-Number(market.decline)}%`}} /></div>
+        <div className="market-visual-head"><span>SEE THE CHANGE</span><h3>Same account. One hypothetical drop.</h3></div>
+        <div className="market-visual-bars">
+          <div className="market-visual-row"><div><span className="market-visual-dot market-green"/>Account today</div><div className="market-visual-track"><span className="market-green" style={{width:'100%'}}/></div><strong>{money(+market.balance)}</strong></div>
+          <div className="market-visual-row"><div><span className="market-visual-dot market-blue"/>After the drop</div><div className="market-visual-track"><span className="market-blue" style={{width:`${100-Number(market.decline)}%`}}/></div><strong>{money(afterDecline)}</strong></div>
+          <div className="market-visual-row"><div><span className="market-visual-dot market-rust"/>Amount lost</div><div className="market-visual-track"><span className="market-rust" style={{width:`${Number(market.decline)}%`}}/></div><strong>−{money(amountLost)}</strong></div>
+        </div>
         <h3>Would you be okay if this happened?</h3>
         <p>If this loss would change your plans or keep you up at night, that is worth discussing with an advisor.</p>
       </div>}
-      <p className="tool-note">This applies one hypothetical decline to the entire amount entered. Your actual investments may rise or fall differently. It does not model withdrawals, recovery, taxes, fees, or an annuity contract.</p>
+      <p className="tool-note">The dropdown uses historical S&amp;P price-index declines, including 22 bear markets and four notable corrections through 2022. <a href="https://yardeni.com/wp-content/uploads/BullBearTables.pdf" target="_blank" rel="noopener noreferrer">Source: Yardeni Research, January 2024, pp. 4–6.</a> Your actual investments may rise or fall differently. This what-if applies one decline to the entire entered amount and does not model withdrawals, recovery, taxes, fees, or an annuity contract.</p>
       <ReportActions targetId="market" title="Market decline conversation" disabled={!marketValid} />
       <ConsultationCTA label="Talk through my market comfort" />
     </section>
