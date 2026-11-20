@@ -67,7 +67,7 @@ export default function PlanningTools() {
     <section className="planning-card market-simple" id="market" aria-labelledby="market-title">
       <span>02 · A SIMPLE WHAT-IF</span>
       <h2 id="market-title">What if your account declined? <HelpHint text="Enter an account balance and choose a hypothetical full-account decline. The illustration shows the immediate dollar change only." /></h2>
-      <p>This is one question to discuss: <strong>Would you be comfortable if this happened to your account?</strong></p>
+      <p>See how a hypothetical decline changes the account amount, then consider the questions below.</p>
       <div className="planning-inputs">
         <Field label="Current account balance ($)" help={fieldHelp.balance} value={market.balance} onChange={v=>setMarket(current=>({...current,balance:v}))}/>
         <Field label="What if it declined by (%)" help={fieldHelp.decline} value={market.decline} max={100} onChange={v=>{setHistorical('custom');setMarket(current=>({...current,decline:v}));}}/>
@@ -82,8 +82,8 @@ export default function PlanningTools() {
           <div className="market-visual-row"><div><span className="market-visual-dot market-blue"/>After the drop</div><div className="market-visual-track"><span className="market-blue" style={{width:`${100-Number(market.decline)}%`}}/></div><strong>{money(afterDecline)}</strong></div>
           <div className="market-visual-row"><div><span className="market-visual-dot market-rust"/>Amount lost</div><div className="market-visual-track"><span className="market-rust" style={{width:`${Number(market.decline)}%`}}/></div><strong>−{money(amountLost)}</strong></div>
         </div>
-        <h3>Would you be okay if this happened?</h3>
-        <p>If this loss would change your plans or keep you up at night, that is worth discussing with an advisor.</p>
+        <h3>Would this loss change your plans or keep you up at night?</h3>
+        <p>What rate of return is worth taking this type of risk?</p>
       </div>}
       <p className="tool-note">The dropdown uses historical S&amp;P price-index declines, including 22 bear markets and four notable corrections through 2022. <a href="https://yardeni.com/wp-content/uploads/BullBearTables.pdf" target="_blank" rel="noopener noreferrer">Source: Yardeni Research, January 2024, pp. 4–6.</a> Your actual investments may rise or fall differently. This what-if applies one decline to the entire entered amount and does not model withdrawals, recovery, taxes, fees, or an annuity contract.</p>
       <ReportActions targetId="market" title="Market decline conversation" disabled={!marketValid} />
